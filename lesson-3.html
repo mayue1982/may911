@@ -1,0 +1,777 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>AI赋能工作新方式 | 腾讯IMA · 乐享 · Workbuddy 实战课件</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;font-size:18px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;background:#0b1120;color:#e2e8f0;overflow:hidden;}
+.slide{display:none;width:100vw;min-height:100vh;position:relative;}
+.slide.active{display:flex;}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.bg-glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.7;}
+.bg-glow-1{width:520px;height:520px;background:rgba(59,130,246,.16);top:-120px;right:-80px;}
+.bg-glow-2{width:420px;height:420px;background:rgba(6,182,212,.12);bottom:-120px;left:-80px;}
+.bg-glow-3{width:360px;height:360px;background:rgba(139,92,246,.10);top:40%;left:50%;transform:translate(-50%,-50%);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(-36px);}to{opacity:1;transform:translateX(0);}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(36px);}to{opacity:1;transform:translateX(0);}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:scale(1);}}
+@keyframes pulse{0%,100%{opacity:.4;}50%{opacity:.85;}}
+.anim{animation:fadeUp .8s ease forwards;}
+.anim-l{animation:fadeLeft .8s ease forwards;}
+.anim-r{animation:fadeRight .8s ease forwards;}
+.anim-s{animation:scaleIn .7s ease forwards;}
+.delay-1{animation-delay:.15s;opacity:0;}
+.delay-2{animation-delay:.3s;opacity:0;}
+.delay-3{animation-delay:.45s;opacity:0;}
+.delay-4{animation-delay:.6s;opacity:0;}
+.delay-5{animation-delay:.75s;opacity:0;}
+.content{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:56px 72px;}
+.tag{display:inline-block;padding:8px 18px;border-radius:24px;font-size:15px;font-weight:600;}
+.tag-blue{background:rgba(59,130,246,.16);color:#60a5fa;}
+.tag-cyan{background:rgba(6,182,212,.16);color:#22d3ee;}
+.tag-purple{background:rgba(139,92,246,.16);color:#a78bfa;}
+.tag-orange{background:rgba(251,146,60,.16);color:#fb923c;}
+.tag-green{background:rgba(34,197,94,.16);color:#4ade80;}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px;backdrop-filter:blur(10px);}
+.card h3{font-size:22px;font-weight:700;color:#f1f5f9;margin-bottom:8px;}
+.card p{font-size:18px;color:#94a3b8;line-height:1.8;}
+.section-title{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;}
+.section-title .big-num{font-size:140px;font-weight:900;background:linear-gradient(135deg,#3b82f6,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.2;line-height:1;z-index:0;}
+.section-title h1{font-size:64px;font-weight:800;color:#f1f5f9;position:relative;z-index:1;}
+.section-title p{font-size:28px;color:#64748b;position:relative;z-index:1;margin-top:10px;}
+.scene-layout{display:grid;grid-template-columns:440px 1fr;gap:48px;width:100%;max-width:1320px;align-items:center;margin:0 auto;}
+.scene-left{background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(6,182,212,.08));border:1px solid rgba(59,130,246,.18);border-radius:20px;padding:28px;min-height:auto;position:relative;text-align:left;}
+.scene-left::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:24px 24px 0 0;background:linear-gradient(90deg,#3b82f6,#22d3ee,#a78bfa);} 
+.scene-num{font-size:16px;font-weight:700;color:#60a5fa;letter-spacing:1px;margin-bottom:16px;}
+.scene-left h2{font-size:32px;font-weight:800;color:#f1f5f9;line-height:1.35;margin-bottom:20px;}
+.scene-intro-label{font-size:14px;color:#64748b;font-weight:700;margin-bottom:8px;letter-spacing:1px;}
+.scene-intro{font-size:20px;color:#cbd5e1;line-height:1.9;}
+.scene-right{text-align:left;}
+.scene-right h3{font-size:24px;font-weight:700;color:#60a5fa;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+.step{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;}
+.num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.16);border:1px solid rgba(59,130,246,.35);color:#60a5fa;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;}
+.step p{font-size:20px;color:#e2e8f0;line-height:1.8;}
+.prompt-box{background:rgba(15,23,42,.72);border:1px solid rgba(59,130,246,.24);border-radius:14px;padding:22px;font-family:Consolas,'Courier New',monospace;font-size:17px;color:#22d3ee;line-height:1.85;text-align:left;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;width:100%;max-width:1200px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:1200px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;max-width:1200px;}
+.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;width:100%;max-width:1200px;}
+.kpi{font-size:44px;font-weight:800;color:#60a5fa;}
+.kpi-label{font-size:16px;color:#64748b;margin-top:6px;}
+.table-wrap{width:100%;max-width:1280px;border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.03);} 
+table{width:100%;border-collapse:collapse;font-size:18px;}
+th{padding:18px 20px;text-align:center;background:rgba(59,130,246,.10);color:#60a5fa;font-size:20px;font-weight:700;border-bottom:1px solid rgba(255,255,255,.08);} 
+td{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06);text-align:center;color:#cbd5e1;line-height:1.7;}
+tr:last-child td{border-bottom:none;}
+.nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:8px;background:rgba(15,23,42,.85);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);padding:8px 14px;border-radius:999px;max-width:95vw;}
+.nav button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#94a3b8;font-size:16px;cursor:pointer;transition:all .25s;}
+.nav button:hover{background:rgba(59,130,246,.22);border-color:#3b82f6;color:#fff;}
+.dots{display:flex;gap:6px;}
+.dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.18);cursor:pointer;transition:all .25s;}
+.dot.active{width:24px;background:#3b82f6;}
+.page-num{color:#94a3b8;font-size:14px;min-width:62px;text-align:center;}
+.small-note{font-size:16px;color:#64748b;line-height:1.8;}
+
+/* Tablet & small laptop: 768-1200px */
+@media (max-width: 1200px){
+  .scene-layout{grid-template-columns:1fr;gap:24px;}
+  .grid-5{grid-template-columns:repeat(2,1fr);}
+  .grid-4{grid-template-columns:repeat(2,1fr);}
+  .grid-3{grid-template-columns:1fr;}
+  .grid-2{grid-template-columns:1fr;}
+  .content{padding:28px 20px;}
+  .section-title h1{font-size:38px;}
+  .section-title p{font-size:18px;}
+  .scene-left{min-height:auto;padding:24px;}
+  .scene-left h2{font-size:22px;}
+  .scene-intro{font-size:17px!important;}
+  .scene-right .step p{font-size:17px!important;}
+  .prompt-box{font-size:14px!important;padding:14px;}
+  .card h3{font-size:18px;}
+  .card p{font-size:15px;}
+  table{font-size:14px!important;}
+  th{font-size:15px!important;padding:10px 8px!important;}
+  td{font-size:14px!important;padding:8px 6px!important;}
+}
+/* Phone portrait: <768px */
+@media (max-width: 767px){.slide{overflow-y:auto!important;}.content{padding-bottom:80px!important;}
+  html,body{font-size:14px;overflow-y:auto;}
+  .slide{height:auto;min-height:100vh;}
+  .content{padding:18px 14px;justify-content:flex-start;padding-top:20px;}
+  .section-title h1{font-size:28px;margin-bottom:6px;}
+  .section-title p{font-size:15px;}
+  .section-title .big-num{font-size:80px;}
+  .grid-5,.grid-4{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .grid-3,.grid-2{grid-template-columns:1fr;gap:10px;}
+  .card{padding:14px;border-radius:12px;}
+  .card h3{font-size:15px;margin-bottom:4px;}
+  .card p{font-size:13px;line-height:1.5;}
+  .scene-layout{grid-template-columns:1fr;gap:16px;}
+  .scene-left{padding:16px;min-height:auto;}
+  .scene-left h2{font-size:18px;margin-bottom:10px;}
+  .scene-num{font-size:12px;margin-bottom:8px;}
+  .scene-intro-label{font-size:11px;}
+  .scene-intro{font-size:14px!important;line-height:1.6!important;}
+  .scene-right{padding:0;}
+  .scene-right h3{font-size:16px;margin-bottom:12px;}
+  .scene-right .step{margin-bottom:10px;}
+  .scene-right .step p{font-size:14px!important;line-height:1.5!important;}
+  .step .num{width:24px;height:24px;font-size:11px;}
+  .prompt-box{font-size:12px!important;padding:10px;line-height:1.5!important;}
+  h1{font-size:28px!important;line-height:1.25!important;}
+  h2{font-size:24px!important;margin-bottom:14px!important;}
+  .tag{font-size:12px!important;padding:4px 10px!important;}
+  .kpi{font-size:28px;}
+  .kpi-label{font-size:13px;}
+  .nav{padding:6px 10px;gap:4px;bottom:10px;}
+  .nav button{width:32px;height:32px;font-size:12px;}
+  .dots{gap:3px;}
+  .dot{width:6px;height:6px;}
+  .dot.active{width:16px;}
+  .page-num{font-size:11px;min-width:40px;}
+  table{font-size:12px!important;}
+  th{font-size:13px!important;padding:8px 4px!important;}
+  td{font-size:12px!important;padding:6px 4px!important;word-break:break-word;}
+  .table-wrap{overflow-x:auto;}
+  .feature-highlight{grid-template-columns:1fr;gap:12px;}
+  .feature-item{padding:14px;}
+  .prompt-box br{display:none;}
+  .small-note{font-size:13px;}
+}
+
+
+/* ===== FUTURISTIC OVERHAUL ===== */
+/* Animated gradient mesh background */
+.bg-mesh{position:absolute;inset:0;pointer-events:none;z-index:0;}
+.bg-mesh::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 30%,rgba(59,130,246,.08),transparent),radial-gradient(ellipse 60% 50% at 80% 70%,rgba(6,182,212,.06),transparent);}
+.bg-mesh::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:80px 80px;}
+/* Floating orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(130px);pointer-events:none;transition:transform 6s ease;animation:orbFloat 8s ease-in-out infinite;mix-blend-mode:screen;}
+.orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(59,130,246,.28),transparent 70%);top:-120px;right:-80px;animation-delay:0s;}
+.orb-2{width:420px;height:420px;background:radial-gradient(circle,rgba(139,92,246,.22),transparent 70%);bottom:-100px;left:-60px;animation-delay:2s;}
+.orb-3{width:350px;height:350px;background:radial-gradient(circle,rgba(6,182,212,.2),transparent 70%);top:50%;left:30%;animation-delay:4s;}
+.orb-4{width:280px;height:280px;background:radial-gradient(circle,rgba(251,146,60,.18),transparent 70%);bottom:10%;right:15%;animation-delay:1s;}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(20px,-30px) scale(1.05);}66%{transform:translate(-15px,20px) scale(.95);}}
+/* Particle canvas overlay */
+#particle-canvas{position:fixed;inset:0;pointer-events:none;z-index:1;}
+/* Glass card upgrade */
+.card{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:24px;backdrop-filter:blur(16px);transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);opacity:0;transition:opacity .4s;}
+.card:hover{transform:translateY(-3px);border-color:rgba(59,130,246,.25);box-shadow:0 8px 32px rgba(59,130,246,.08),0 0 0 1px rgba(59,130,246,.12);}
+.card:hover::before{opacity:1;}
+/* Scene left glass upgrade */
+.scene-left{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(6,182,212,.06),rgba(139,92,246,.05));border:1px solid rgba(59,130,246,.28);border-radius:24px;padding:32px;min-height:auto;position:relative;text-align:left;backdrop-filter:blur(12px);overflow:hidden;}
+.scene-left::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#22d3ee,#a78bfa);}
+.scene-left::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent 60%);pointer-events:none;}
+/* Enhanced glow border */
+.prompt-box{background:rgba(15,23,42,.75);border:1px solid rgba(59,130,246,.2);border-radius:14px;padding:20px;font-family:Consolas,"Courier New",monospace;font-size:16px;color:#22d3ee;line-height:1.8;text-align:left;position:relative;overflow:hidden;}
+.prompt-box::before{content:"";position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.3),transparent);}
+/* Section title big-num gradient */
+.big-num{background:linear-gradient(135deg,rgba(59,130,246,.3),rgba(22,78,99,.3),rgba(139,92,246,.2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+/* Tag upgrade */
+.tag{display:inline-block;padding:7px 18px;border-radius:999px;font-size:15px;font-weight:600;letter-spacing:.3px;}
+.tag-blue{background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(37,99,235,.1));color:#60a5fa;border:1px solid rgba(59,130,246,.12);}
+.tag-cyan{background:linear-gradient(135deg,rgba(6,182,212,.18),rgba(8,145,178,.1));color:#22d3ee;border:1px solid rgba(6,182,212,.12);}
+.tag-purple{background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(124,58,237,.1));color:#a78bfa;border:1px solid rgba(139,92,246,.22);}
+.tag-orange{background:linear-gradient(135deg,rgba(251,146,60,.18),rgba(217,119,6,.1));color:#fb923c;border:1px solid rgba(251,146,60,.12);}
+.tag-green{background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(22,163,74,.1));color:#4ade80;border:1px solid rgba(34,197,94,.12);}
+/* Table upgrade */
+.table-wrap{border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.02);}
+th{background:rgba(59,130,246,.08);color:#60a5fa;font-size:18px;font-weight:700;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06);}
+td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.04);color:#cbd5e1;line-height:1.6;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(59,130,246,.035);}
+/* Step number glow */
+.num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(37,99,235,.08));border:1px solid rgba(59,130,246,.25);color:#60a5fa;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;}
+/* Nav upgrade */
+.nav{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:8px;background:rgba(15,23,42,.75);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.06);padding:8px 16px;border-radius:999px;box-shadow:0 4px 24px rgba(0,0,0,.3);}
+.nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#94a3b8;font-size:15px;cursor:pointer;transition:all .25s;}
+.nav button:hover{background:rgba(59,130,246,.2);border-color:#3b82f6;color:#fff;box-shadow:0 0 16px rgba(59,130,246,.28);}
+.dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s;}
+.dot.active{width:28px;background:linear-gradient(90deg,#3b82f6,#22d3ee);}
+/* Scrollbar theme */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(59,130,246,.2);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(59,130,246,.35);}
+/* Glitch text effect for big titles */
+.gradient-text{background:linear-gradient(135deg,#e2e8f0,#60a5fa,#22d3ee,#a78bfa);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 4s ease-in-out infinite;}
+@keyframes gradientShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+/* Extra entry animation variants */
+@keyframes fadeScale{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+@keyframes slideUpBlur{from{opacity:0;transform:translateY(40px);filter:blur(4px);}to{opacity:1;transform:translateY(0);filter:blur(0);}}
+.anim-scale{animation:fadeScale .7s cubic-bezier(.4,0,.2,1) forwards;}
+.anim-upb{animation:slideUpBlur .8s cubic-bezier(.4,0,.2,1) forwards;}
+/* Mobile override: preserve upgrades */
+@media (max-width: 767px){
+  .orb{filter:blur(60px);}
+  .orb-1{width:300px;height:300px;}
+  .orb-2{width:250px;height:250px;}
+  .orb-3,.orb-4{display:none;}
+}
+
+
+/* ===== FUTURISTIC OVERHAUL ===== */
+/* Animated gradient mesh background */
+.bg-mesh{position:absolute;inset:0;pointer-events:none;z-index:0;}
+.bg-mesh::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 30%,rgba(59,130,246,.08),transparent),radial-gradient(ellipse 60% 50% at 80% 70%,rgba(6,182,212,.06),transparent);}
+.bg-mesh::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:80px 80px;}
+/* Floating orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(130px);pointer-events:none;transition:transform 6s ease;animation:orbFloat 8s ease-in-out infinite;mix-blend-mode:screen;}
+.orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(59,130,246,.28),transparent 70%);top:-120px;right:-80px;animation-delay:0s;}
+.orb-2{width:420px;height:420px;background:radial-gradient(circle,rgba(139,92,246,.22),transparent 70%);bottom:-100px;left:-60px;animation-delay:2s;}
+.orb-3{width:350px;height:350px;background:radial-gradient(circle,rgba(6,182,212,.2),transparent 70%);top:50%;left:30%;animation-delay:4s;}
+.orb-4{width:280px;height:280px;background:radial-gradient(circle,rgba(251,146,60,.18),transparent 70%);bottom:10%;right:15%;animation-delay:1s;}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(20px,-30px) scale(1.05);}66%{transform:translate(-15px,20px) scale(.95);}}
+/* Particle canvas overlay */
+#particle-canvas{position:fixed;inset:0;pointer-events:none;z-index:1;}
+/* Glass card upgrade */
+.card{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:24px;backdrop-filter:blur(16px);transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);opacity:0;transition:opacity .4s;}
+.card:hover{transform:translateY(-3px);border-color:rgba(59,130,246,.25);box-shadow:0 8px 32px rgba(59,130,246,.08),0 0 0 1px rgba(59,130,246,.12);}
+.card:hover::before{opacity:1;}
+/* Scene left glass upgrade */
+.scene-left{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(6,182,212,.06),rgba(139,92,246,.05));border:1px solid rgba(59,130,246,.28);border-radius:24px;padding:32px;min-height:auto;position:relative;text-align:left;backdrop-filter:blur(12px);overflow:hidden;}
+.scene-left::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#22d3ee,#a78bfa);}
+.scene-left::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent 60%);pointer-events:none;}
+/* Enhanced glow border */
+.prompt-box{background:rgba(15,23,42,.75);border:1px solid rgba(59,130,246,.2);border-radius:14px;padding:20px;font-family:Consolas,"Courier New",monospace;font-size:16px;color:#22d3ee;line-height:1.8;text-align:left;position:relative;overflow:hidden;}
+.prompt-box::before{content:"";position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.3),transparent);}
+/* Section title big-num gradient */
+.big-num{background:linear-gradient(135deg,rgba(59,130,246,.3),rgba(22,78,99,.3),rgba(139,92,246,.2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+/* Tag upgrade */
+.tag{display:inline-block;padding:7px 18px;border-radius:999px;font-size:15px;font-weight:600;letter-spacing:.3px;}
+.tag-blue{background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(37,99,235,.1));color:#60a5fa;border:1px solid rgba(59,130,246,.12);}
+.tag-cyan{background:linear-gradient(135deg,rgba(6,182,212,.18),rgba(8,145,178,.1));color:#22d3ee;border:1px solid rgba(6,182,212,.12);}
+.tag-purple{background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(124,58,237,.1));color:#a78bfa;border:1px solid rgba(139,92,246,.22);}
+.tag-orange{background:linear-gradient(135deg,rgba(251,146,60,.18),rgba(217,119,6,.1));color:#fb923c;border:1px solid rgba(251,146,60,.12);}
+.tag-green{background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(22,163,74,.1));color:#4ade80;border:1px solid rgba(34,197,94,.12);}
+/* Table upgrade */
+.table-wrap{border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.02);}
+th{background:rgba(59,130,246,.08);color:#60a5fa;font-size:18px;font-weight:700;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06);}
+td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.04);color:#cbd5e1;line-height:1.6;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(59,130,246,.035);}
+/* Step number glow */
+.num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(37,99,235,.08));border:1px solid rgba(59,130,246,.25);color:#60a5fa;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;}
+/* Nav upgrade */
+.nav{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:8px;background:rgba(15,23,42,.75);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.06);padding:8px 16px;border-radius:999px;box-shadow:0 4px 24px rgba(0,0,0,.3);}
+.nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#94a3b8;font-size:15px;cursor:pointer;transition:all .25s;}
+.nav button:hover{background:rgba(59,130,246,.2);border-color:#3b82f6;color:#fff;box-shadow:0 0 16px rgba(59,130,246,.28);}
+.dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s;}
+.dot.active{width:28px;background:linear-gradient(90deg,#3b82f6,#22d3ee);}
+/* Scrollbar theme */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(59,130,246,.2);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(59,130,246,.35);}
+/* Glitch text effect for big titles */
+.gradient-text{background:linear-gradient(135deg,#e2e8f0,#60a5fa,#22d3ee,#a78bfa);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 4s ease-in-out infinite;}
+@keyframes gradientShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+/* Extra entry animation variants */
+@keyframes fadeScale{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+@keyframes slideUpBlur{from{opacity:0;transform:translateY(40px);filter:blur(4px);}to{opacity:1;transform:translateY(0);filter:blur(0);}}
+.anim-scale{animation:fadeScale .7s cubic-bezier(.4,0,.2,1) forwards;}
+.anim-upb{animation:slideUpBlur .8s cubic-bezier(.4,0,.2,1) forwards;}
+/* Mobile override: preserve upgrades */
+@media (max-width: 767px){
+  .orb{filter:blur(60px);}
+  .orb-1{width:300px;height:300px;}
+  .orb-2{width:250px;height:250px;}
+  .orb-3,.orb-4{display:none;}
+}
+
+
+.bg1{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIHZpZXdCb3g9JzAgMCAxOTIwIDEwODAnPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0nZyc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0nIzBkMWEzMCcvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nIzA3MGUxYScvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdoJyBjeD0nMjUlJyBjeT0nMjUlJyByPSc2NSUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoNTksMTMwLDI0NiwuMDcpJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdG9wLWNvbG9yPSd0cmFuc3BhcmVudCcvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdrJyBjeD0nNzUlJyBjeT0nNzUlJyByPSc1NSUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoNTksMTMwLDI0NiwuMDQpJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdG9wLWNvbG9yPSd0cmFuc3BhcmVudCcvPjwvcmFkaWFsR3JhZGllbnQ+PHBhdHRlcm4gaWQ9J3AnIHg9JzAnIHk9JzAnIHdpZHRoPSc4MCcgaGVpZ2h0PSc4MCcgcGF0dGVyblVuaXRzPSd1c2VyU3BhY2VPblVzZSc+PGNpcmNsZSBjeD0nNDAnIGN5PSc0MCcgcj0nLjYnIGZpbGw9J3JnYmEoMjU1LDI1NSwyNTUsLjAxNSknLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSdsJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0ncmdiYSg1OSwxMzAsMjQ2LC4wMiknLz48c3RvcCBvZmZzZXQ9JzUwJScgc3RvcC1jb2xvcj0ndHJhbnNwYXJlbnQnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9J3JnYmEoNTksMTMwLDI0NiwuMDEpJy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzE5MjAnIGhlaWdodD0nMTA4MCcgZmlsbD0ndXJsKCNnKScvPjxyZWN0IHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIGZpbGw9J3VybCgjaCknLz48cmVjdCB3aWR0aD0nMTkyMCcgaGVpZ2h0PScxMDgwJyBmaWxsPSd1cmwoI2spJy8+PHJlY3Qgd2lkdGg9JzE5MjAnIGhlaWdodD0nMTA4MCcgZmlsbD0ndXJsKCNsKScvPjxyZWN0IHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIGZpbGw9J3VybCgjcCknLz48L3N2Zz4=');background-size:cover;background-position:center;background-repeat:no-repeat;}
+.bg2{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIHZpZXdCb3g9JzAgMCAxOTIwIDEwODAnPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0nZyc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0nIzEyMGQyZScvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nIzA4MDYxNCcvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdoJyBjeD0nMjUlJyBjeT0nMjUlJyByPSc2NSUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoMTM5LDkyLDI0NiwuMDcpJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdG9wLWNvbG9yPSd0cmFuc3BhcmVudCcvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdrJyBjeD0nNzUlJyBjeT0nNzUlJyByPSc1NSUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoMTM5LDkyLDI0NiwuMDQpJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdG9wLWNvbG9yPSd0cmFuc3BhcmVudCcvPjwvcmFkaWFsR3JhZGllbnQ+PHBhdHRlcm4gaWQ9J3AnIHg9JzAnIHk9JzAnIHdpZHRoPSc4MCcgaGVpZ2h0PSc4MCcgcGF0dGVyblVuaXRzPSd1c2VyU3BhY2VPblVzZSc+PGNpcmNsZSBjeD0nNDAnIGN5PSc0MCcgcj0nLjYnIGZpbGw9J3JnYmEoMjU1LDI1NSwyNTUsLjAxNSknLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSdsJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0ncmdiYSgxMzksOTIsMjQ2LC4wMiknLz48c3RvcCBvZmZzZXQ9JzUwJScgc3RvcC1jb2xvcj0ndHJhbnNwYXJlbnQnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9J3JnYmEoMTM5LDkyLDI0NiwuMDEpJy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzE5MjAnIGhlaWdodD0nMTA4MCcgZmlsbD0ndXJsKCNnKScvPjxyZWN0IHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIGZpbGw9J3VybCgjaCknLz48cmVjdCB3aWR0aD0nMTkyMCcgaGVpZ2h0PScxMDgwJyBmaWxsPSd1cmwoI2spJy8+PHJlY3Qgd2lkdGg9JzE5MjAnIGhlaWdodD0nMTA4MCcgZmlsbD0ndXJsKCNsKScvPjxyZWN0IHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIGZpbGw9J3VybCgjcCknLz48L3N2Zz4=');background-size:cover;background-position:center;background-repeat:no-repeat;}
+.bg3{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIHZpZXdCb3g9JzAgMCAxOTIwIDEwODAnPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0nZyc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0nIzBhMTgyMicvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nIzA1MGMxMicvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdoJyBjeD0nMjUlJyBjeT0nMjUlJyByPSc2NSUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoNiwxODIsMjEyLC4wNyknLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9J3RyYW5zcGFyZW50Jy8+PC9yYWRpYWxHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9J2snIGN4PSc3NSUnIGN5PSc3NSUnIHI9JzU1JSc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0ncmdiYSg2LDE4MiwyMTIsLjA0KScvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0ndHJhbnNwYXJlbnQnLz48L3JhZGlhbEdyYWRpZW50PjxwYXR0ZXJuIGlkPSdwJyB4PScwJyB5PScwJyB3aWR0aD0nODAnIGhlaWdodD0nODAnIHBhdHRlcm5Vbml0cz0ndXNlclNwYWNlT25Vc2UnPjxjaXJjbGUgY3g9JzQwJyBjeT0nNDAnIHI9Jy42JyBmaWxsPSdyZ2JhKDI1NSwyNTUsMjU1LC4wMTUpJy8+PC9wYXR0ZXJuPjxsaW5lYXJHcmFkaWVudCBpZD0nbCcgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzEnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoNiwxODIsMjEyLC4wMiknLz48c3RvcCBvZmZzZXQ9JzUwJScgc3RvcC1jb2xvcj0ndHJhbnNwYXJlbnQnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9J3JnYmEoNiwxODIsMjEyLC4wMSknLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nMTkyMCcgaGVpZ2h0PScxMDgwJyBmaWxsPSd1cmwoI2cpJy8+PHJlY3Qgd2lkdGg9JzE5MjAnIGhlaWdodD0nMTA4MCcgZmlsbD0ndXJsKCNoKScvPjxyZWN0IHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIGZpbGw9J3VybCgjayknLz48cmVjdCB3aWR0aD0nMTkyMCcgaGVpZ2h0PScxMDgwJyBmaWxsPSd1cmwoI2wpJy8+PHJlY3Qgd2lkdGg9JzE5MjAnIGhlaWdodD0nMTA4MCcgZmlsbD0ndXJsKCNwKScvPjwvc3ZnPg==');background-size:cover;background-position:center;background-repeat:no-repeat;}
+.bg4{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIHZpZXdCb3g9JzAgMCAxOTIwIDEwODAnPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0nZyc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0nIzE0MGMyOCcvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nIzA4MDUxMicvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdoJyBjeD0nMjUlJyBjeT0nMjUlJyByPSc2NSUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoMjM2LDcyLDE1MywuMDcpJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdG9wLWNvbG9yPSd0cmFuc3BhcmVudCcvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSdrJyBjeD0nNzUlJyBjeT0nNzUlJyByPSc1NSUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoMjM2LDcyLDE1MywuMDQpJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdG9wLWNvbG9yPSd0cmFuc3BhcmVudCcvPjwvcmFkaWFsR3JhZGllbnQ+PHBhdHRlcm4gaWQ9J3AnIHg9JzAnIHk9JzAnIHdpZHRoPSc4MCcgaGVpZ2h0PSc4MCcgcGF0dGVyblVuaXRzPSd1c2VyU3BhY2VPblVzZSc+PGNpcmNsZSBjeD0nNDAnIGN5PSc0MCcgcj0nLjYnIGZpbGw9J3JnYmEoMjU1LDI1NSwyNTUsLjAxNSknLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSdsJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0ncmdiYSgyMzYsNzIsMTUzLC4wMiknLz48c3RvcCBvZmZzZXQ9JzUwJScgc3RvcC1jb2xvcj0ndHJhbnNwYXJlbnQnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9J3JnYmEoMjM2LDcyLDE1MywuMDEpJy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzE5MjAnIGhlaWdodD0nMTA4MCcgZmlsbD0ndXJsKCNnKScvPjxyZWN0IHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIGZpbGw9J3VybCgjaCknLz48cmVjdCB3aWR0aD0nMTkyMCcgaGVpZ2h0PScxMDgwJyBmaWxsPSd1cmwoI2spJy8+PHJlY3Qgd2lkdGg9JzE5MjAnIGhlaWdodD0nMTA4MCcgZmlsbD0ndXJsKCNsKScvPjxyZWN0IHdpZHRoPScxOTIwJyBoZWlnaHQ9JzEwODAnIGZpbGw9J3VybCgjcCknLz48L3N2Zz4=');background-size:cover;background-position:center;background-repeat:no-repeat;}
+.slide-bg{position:absolute;inset:0;pointer-events:none;z-index:-1;}
+
+
+.bg1{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBkMWEzMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA3MGUxYSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iMjUlIiBjeT0iMjUlIiByPSI2NSUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoNTksMTMwLDI0NiwuMDcpIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJ0cmFuc3BhcmVudCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJrIiBjeD0iNzUlIiBjeT0iNzUlIiByPSI1NSUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoNTksMTMwLDI0NiwuMDQpIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJ0cmFuc3BhcmVudCIvPjwvcmFkaWFsR3JhZGllbnQ+PHBhdHRlcm4gaWQ9InAiIHg9IjAiIHk9IjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iLjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsLjAxNSkiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJsIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0icmdiYSg1OSwxMzAsMjQ2LC4wMikiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0idHJhbnNwYXJlbnQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9InJnYmEoNTksMTMwLDI0NiwuMDEpIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjE5MjAiIGhlaWdodD0iMTA4MCIgZmlsbD0idXJsKCNnKSIvPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjaCkiLz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI2spIi8+PHJlY3Qgd2lkdGg9IjE5MjAiIGhlaWdodD0iMTA4MCIgZmlsbD0idXJsKCNsKSIvPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjcCkiLz48L3N2Zz4=");background-size:cover;background-position:center;background-repeat:no-repeat;}
+.bg2{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzEyMGQyZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA4MDYxNCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iMjUlIiBjeT0iMjUlIiByPSI2NSUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMTM5LDkyLDI0NiwuMDcpIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJ0cmFuc3BhcmVudCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJrIiBjeD0iNzUlIiBjeT0iNzUlIiByPSI1NSUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMTM5LDkyLDI0NiwuMDQpIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJ0cmFuc3BhcmVudCIvPjwvcmFkaWFsR3JhZGllbnQ+PHBhdHRlcm4gaWQ9InAiIHg9IjAiIHk9IjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iLjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsLjAxNSkiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJsIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0icmdiYSgxMzksOTIsMjQ2LC4wMikiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0idHJhbnNwYXJlbnQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9InJnYmEoMTM5LDkyLDI0NiwuMDEpIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjE5MjAiIGhlaWdodD0iMTA4MCIgZmlsbD0idXJsKCNnKSIvPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjaCkiLz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI2spIi8+PHJlY3Qgd2lkdGg9IjE5MjAiIGhlaWdodD0iMTA4MCIgZmlsbD0idXJsKCNsKSIvPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjcCkiLz48L3N2Zz4=");background-size:cover;background-position:center;background-repeat:no-repeat;}
+.bg3{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBhMTgyMiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA1MGMxMiIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iMjUlIiBjeT0iMjUlIiByPSI2NSUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoNiwxODIsMjEyLC4wNykiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9InRyYW5zcGFyZW50Ii8+PC9yYWRpYWxHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImsiIGN4PSI3NSUiIGN5PSI3NSUiIHI9IjU1JSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0icmdiYSg2LDE4MiwyMTIsLjA0KSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0idHJhbnNwYXJlbnQiLz48L3JhZGlhbEdyYWRpZW50PjxwYXR0ZXJuIGlkPSJwIiB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9Ii42IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LC4wMTUpIi8+PC9wYXR0ZXJuPjxsaW5lYXJHcmFkaWVudCBpZD0ibCIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoNiwxODIsMjEyLC4wMikiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0idHJhbnNwYXJlbnQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9InJnYmEoNiwxODIsMjEyLC4wMSkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI2cpIi8+PHJlY3Qgd2lkdGg9IjE5MjAiIGhlaWdodD0iMTA4MCIgZmlsbD0idXJsKCNoKSIvPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjaykiLz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI2wpIi8+PHJlY3Qgd2lkdGg9IjE5MjAiIGhlaWdodD0iMTA4MCIgZmlsbD0idXJsKCNwKSIvPjwvc3ZnPg==");background-size:cover;background-position:center;background-repeat:no-repeat;}
+.bg4{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxOTIwIDEwODAiPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iZyI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzE0MGMyOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA4MDUxMiIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iMjUlIiBjeT0iMjUlIiByPSI2NSUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMjM2LDcyLDE1MywuMDcpIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJ0cmFuc3BhcmVudCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJrIiBjeD0iNzUlIiBjeT0iNzUlIiByPSI1NSUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMjM2LDcyLDE1MywuMDQpIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJ0cmFuc3BhcmVudCIvPjwvcmFkaWFsR3JhZGllbnQ+PHBhdHRlcm4gaWQ9InAiIHg9IjAiIHk9IjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iLjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsLjAxNSkiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJsIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0icmdiYSgyMzYsNzIsMTUzLC4wMikiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0idHJhbnNwYXJlbnQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9InJnYmEoMjM2LDcyLDE1MywuMDEpIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjE5MjAiIGhlaWdodD0iMTA4MCIgZmlsbD0idXJsKCNnKSIvPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjaCkiLz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI2spIi8+PHJlY3Qgd2lkdGg9IjE5MjAiIGhlaWdodD0iMTA4MCIgZmlsbD0idXJsKCNsKSIvPjxyZWN0IHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiIGZpbGw9InVybCgjcCkiLz48L3N2Zz4=");background-size:cover;background-position:center;background-repeat:no-repeat;}
+.slide-bg{position:absolute;inset:0;pointer-events:none;z-index:-1;}
+
+</style>
+</head>
+<body>
+<canvas id="particle-canvas"></canvas>
+<div class="slide active" id="s1">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-4"></div><div class="orb orb-4"></div>
+  <div class="content">
+    <div class="anim-s"><span class="tag tag-blue"><i class="fas fa-robot"></i> 企业AI工具实战课</span></div>
+    <h1 class="anim delay-1" style="font-size:82px;font-weight:900;line-height:1.15;margin-top:20px;background:linear-gradient(135deg,#60a5fa,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">AI 赋能工作新方式</h1>
+    <p class="anim delay-2" style="font-size:30px;color:#94a3b8;max-width:760px;margin-top:18px;">腾讯 IMA · 腾讯乐享 · Workbuddy 实战</p>
+    <div class="anim delay-3" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:34px;">
+      <span class="tag tag-cyan"><i class="far fa-clock"></i> 1.5小时授课</span><span class="tag tag-purple"><i class="far fa-comments"></i> 0.5小时答疑</span><span class="tag tag-green"><i class="fas fa-user-graduate"></i> 零基础友好</span>
+    </div>
+    <div class="grid-4 anim delay-4" style="margin-top:56px;max-width:640px;">
+      <div class="card"><h3>IMA</h3><p>企业知识问答</p></div>
+      <div class="card"><h3>乐享</h3><p>知识社区沉淀</p></div>
+      <div class="card"><h3>Workbuddy</h3><p>桌面Agent实战</p></div>
+      <div class="card"><h3>Skill</h3><p>能力扩展</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s2">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="orb orb-3"></div>
+  <div class="content">
+    <h2 class="anim" style="font-size:46px;font-weight:800;margin-bottom:42px;">课程目录</h2>
+    <div class="grid-2">
+      <div class="card anim-l delay-1" style="text-align:left;cursor:pointer;" onclick="goSlide(3)"><h3><i class="fas fa-brain" style="color:#60a5fa;"></i> 01 腾讯 IMA</h3><p>智能知识助手 · 企业知识库问答</p></div>
+      <div class="card anim-r delay-2" style="text-align:left;cursor:pointer;" onclick="goSlide(5)"><h3><i class="fas fa-book-open" style="color:#22d3ee;"></i> 02 腾讯乐享</h3><p>知识社区 · 文档课程沉淀</p></div>
+      <div class="card anim-l delay-3" style="text-align:left;cursor:pointer;" onclick="goSlide(7)"><h3><i class="fas fa-laptop" style="color:#a78bfa;"></i> 03 Workbuddy 基础实战</h3><p>围绕一份调研报告，跑完整个工作流</p></div>
+      <div class="card anim-r delay-4" style="text-align:left;cursor:pointer;" onclick="goSlide(19)"><h3><i class="fas fa-rocket" style="color:#fb923c;"></i> 04 Workbuddy 进阶展示</h3><p>专家团 · 电脑控制 · 智库打通 · Skill</p></div>
+    </div>
+    <div class="card anim delay-5" style="margin-top:18px;max-width:1200px;width:100%;text-align:left;cursor:pointer;" onclick="goSlide(17)"><h3><i class="far fa-comments" style="color:#4ade80;"></i> 05 答疑与互动</h3><p>现场提需求，直接演示给学员看</p></div>
+    <div class="anim" style="margin-top:24px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;max-width:1100px;">
+      <a href="https://ima.qq.com/" target="_blank" style="color:#60a5fa;text-decoration:none;padding:7px 16px;border:1px solid rgba(59,130,246,.2);border-radius:8px;background:rgba(59,130,246,.06);font-size:13px;display:flex;align-items:center;gap:5px;transition:all .25s;" onmouseover="this.style.borderColor='#3b82f6';this.style.background='rgba(59,130,246,.12)'" onmouseout="this.style.borderColor='rgba(59,130,246,.2)';this.style.background='rgba(59,130,246,.06)'">
+        <span style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#2563eb);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;flex-shrink:0;"><i class="fas fa-brain"></i></span>
+        IMA 知识库 → ima.qq.com
+      </a>
+      <a href="https://lexiang.tencent.com/" target="_blank" style="color:#22d3ee;text-decoration:none;padding:7px 16px;border:1px solid rgba(6,182,212,.2);border-radius:8px;background:rgba(6,182,212,.06);font-size:13px;display:flex;align-items:center;gap:5px;transition:all .25s;" onmouseover="this.style.borderColor='#06b6d4';this.style.background='rgba(6,182,212,.12)'" onmouseout="this.style.borderColor='rgba(6,182,212,.2)';this.style.background='rgba(6,182,212,.06)'">
+        <span style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#0891b2);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;flex-shrink:0;"><i class="fas fa-book"></i></span>
+        乐享知识库 → lexiang.tencent.com
+      </a>
+      <a href="https://www.codebuddy.cn/work/" target="_blank" style="color:#a78bfa;text-decoration:none;padding:7px 16px;border:1px solid rgba(139,92,246,.2);border-radius:8px;background:rgba(139,92,246,.06);font-size:13px;display:flex;align-items:center;gap:5px;transition:all .25s;" onmouseover="this.style.borderColor='#8b5cf6';this.style.background='rgba(139,92,246,.12)'" onmouseout="this.style.borderColor='rgba(139,92,246,.2)';this.style.background='rgba(139,92,246,.06)'">
+        <span style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;flex-shrink:0;"><i class="fas fa-laptop"></i></span>
+        Workbuddy → codebuddy.cn/work
+      </a>
+    </div></div>
+  </div>
+</div>
+
+<div class="slide" id="s3">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="orb orb-1"></div>
+  <div class="content section-title">
+    <div class="big-num">01</div>
+    <div class="anim-s"><span class="tag tag-blue"><i class="fas fa-brain"></i> 第一部分</span></div>
+    <h1 class="anim delay-1">腾讯 IMA</h1>
+    <p class="anim delay-2">你的智能知识助手</p>
+  </div>
+</div>
+
+<div class="slide" id="s4">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div>
+  <div class="content">
+    <h2 class="anim" style="font-size:40px;font-weight:800;margin-bottom:12px;">IMA 是什么？</h2>
+    <p class="anim delay-1" style="font-size:22px;color:#64748b;margin-bottom:30px;">把分散的文档，变成可以直接提问的知识库</p>
+    <div class="grid-3">
+      <div class="card anim-l delay-2"><h3>上传资料</h3><p>把文档、网页、笔记都放进去，AI自动学习</p></div>
+      <div class="card anim delay-3"><h3>直接问答</h3><p>不用翻文件，直接问“制度怎么规定”“报告讲了什么”</p></div>
+      <div class="card anim-r delay-4"><h3>团队共享</h3><p>新同事来了直接问，减少重复答疑</p></div>
+    </div>
+    <div class="grid-2" style="margin-top:24px;">
+      <div class="card anim delay-4" style="text-align:left;"><h3>适合的演示</h3><p>把公司制度文档扔进去，现场问：年假怎么休？出差补贴多少？</p></div>
+      <div class="card anim delay-5" style="text-align:left;"><h3>一句话价值</h3><p>IMA 不是存文件，而是把文件变成“会回答问题”的知识库。</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s5">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="orb orb-2"></div>
+  <div class="content section-title">
+    <div class="big-num">02</div>
+    <div class="anim-s"><span class="tag tag-cyan"><i class="fas fa-book-open"></i> 第二部分</span></div>
+    <h1 class="anim delay-1">腾讯乐享</h1>
+    <p class="anim delay-2">企业知识社区平台</p>
+  </div>
+</div>
+
+<div class="slide" id="s6">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div>
+  <div class="content">
+    <h2 class="anim" style="font-size:40px;font-weight:800;margin-bottom:12px;">乐享能做什么？</h2>
+    <p class="anim delay-1" style="font-size:22px;color:#64748b;margin-bottom:30px;">文档、课程、问答、社区，一站式沉淀企业知识</p>
+    <div class="grid-3">
+      <div class="card anim-l delay-2"><h3>知识文档</h3><p>沉淀制度、流程、经验，方便员工反复查找</p></div>
+      <div class="card anim delay-3"><h3>课程学习</h3><p>上传培训课程，形成企业内部学习体系</p></div>
+      <div class="card anim-r delay-4"><h3>问答社区</h3><p>把经验讨论留下来，形成组织记忆</p></div>
+    </div>
+    <div class="card anim delay-5" style="margin-top:24px;max-width:1100px;text-align:left;">
+      <h3>IMA + 乐享 + Workbuddy 的关系</h3>
+      <p>乐享负责沉淀内容，IMA负责把内容变成“可提问”的知识，Workbuddy负责把这些知识直接用到日常工作里。</p>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s7">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-4"></div><div class="orb orb-4"></div>
+  <div class="content section-title">
+    <div class="big-num">03</div>
+    <div class="anim-s"><span class="tag tag-purple"><i class="fas fa-laptop"></i> 第三部分</span></div>
+    <h1 class="anim delay-1">Workbuddy</h1>
+    <p class="anim delay-2">腾讯桌面工作台</p>
+  </div>
+</div>
+
+<div class="slide" id="s8">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div>
+  <div class="content">
+    <h2 class="anim" style="font-size:40px;font-weight:800;margin-bottom:16px;">快速上手 Workbuddy</h2>
+    <div class="grid-2 anim delay-1">
+      <div class="card anim-l" style="text-align:left;">
+        <h3>下载安装</h3>
+        <p>官网下载 Windows / Mac 客户端，安装后用微信或企业微信扫码登录，3 分钟上手。</p>
+        <p style="margin-top:10px;">主界面 = 对话框 + 侧边栏。<br>支持上传 PDF、Word、Excel、图片。</p>
+      </div>
+      <div class="card anim-r" style="text-align:left;">
+        <h3>它能做什么？</h3>
+        <p>一个 AI 桌面助手：帮你写东西、读文档、查资料、做分析、控电脑、调能力。</p>
+        <p style="margin-top:10px;">支持联网搜索、问 IMA 知识库、执行桌面操作、扩展 Skill。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s9">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="orb orb-3"></div>
+  <div class="content">
+    <div class="anim-s"><span class="tag tag-orange"><i class="fas fa-star"></i> 为什么在中国首选 Workbuddy？</span></div>
+    <h2 class="anim delay-1" style="font-size:42px;font-weight:800;margin-top:20px;margin-bottom:32px;">和主流助手对比</h2>
+    <div class="table-wrap anim delay-2">
+      <table>
+        <thead><tr><th>对比维度</th><th>Workbuddy</th><th>Cursor</th><th>Claude Code</th><th>Codex</th></tr></thead>
+        <tbody>
+          <tr><td>面向人群</td><td>普通办公人员</td><td>程序员</td><td>程序员</td><td>开发者 / 研究者</td></tr>
+          <tr><td>中文友好度</td><td>原生中文</td><td>一般</td><td>一般</td><td>一般</td></tr>
+          <tr><td>微信生态</td><td>深度打通</td><td>无</td><td>无</td><td>无</td></tr>
+          <tr><td>Computer Use</td><td>支持</td><td>部分</td><td>部分</td><td>部分</td></tr>
+          <tr><td>零基础门槛</td><td>低，对话即用</td><td>高，需懂代码</td><td>高，需懂代码</td><td>高，需懂技术</td></tr>
+          <tr><td>企业知识库对接</td><td>IMA / 乐享原生打通</td><td>无</td><td>无</td><td>无</td></tr>
+          <tr><td>Skill 扩展</td><td>支持安装与创建</td><td>MCP 协议</td><td>MCP 协议</td><td>Skill 系统</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card anim delay-4" style="margin-top:22px;max-width:1200px;text-align:left;">
+      <h3><i class="fas fa-thumbs-up" style="color:#4ade80;"></i> 对小白最友好的选择</h3>
+      <p>这些工具各有定位，但对大多数中国办公用户来说，Workbuddy 的核心优势很明显：<span style="color:#22d3ee;font-weight:700;">原生中文、微信生态一键打通、零代码门槛、企业知识库完整对接</span>。Workbuddy 就是最适合你日常工作场景的那一个。</p>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s10">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div>
+  <div class="content section-title">
+    <div class="big-num">CU</div>
+    <div class="anim-s"><span class="tag tag-cyan"><i class="fas fa-mouse"></i> Computer Use 演示</span></div>
+    <h1 class="anim delay-1" style="font-size:56px;font-weight:800;">电脑控制</h1>
+    <p class="anim delay-2">Workbuddy 不只是动嘴，还能动手</p>
+  </div>
+</div>
+
+<div class="slide" id="s11">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div>
+  <div class="content">
+    <h2 class="anim" style="font-size:38px;font-weight:800;margin-bottom:20px;">Computer Use 能做什么？</h2>
+    <div class="grid-3">
+      <div class="card anim-l delay-1"><h3>打开应用和文件</h3><p>说一句“帮我打开桌面上的调研文件夹”，Workbuddy 就会帮你打开。</p></div>
+      <div class="card anim delay-2"><h3>操作浏览器</h3><p>“打开浏览器，帮我搜一下智能办公行业报告”，直接给你结果。</p></div>
+      <div class="card anim-r delay-3"><h3>整理桌面</h3><p>“帮我把桌面上的 PDF 文件都移到‘待读’文件夹里”，配合完成操作。</p></div>
+    </div>
+    <div class="card anim delay-4" style="margin-top:20px;max-width:1200px;text-align:left;">
+      <h3>一句话就能让它动起来</h3>
+      <p>你可以直接打开一个文件夹或浏览器，让 Workbuddy 配合你完成操作。学员会直观看到：这不是一个只会聊天的工具。</p>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s12">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="orb orb-3"></div>
+  <div class="content">
+    <div class="anim"><span class="tag tag-purple">主线案例</span></div>
+    <h2 class="anim delay-1" style="font-size:42px;font-weight:800;margin-top:18px;margin-bottom:16px;">李小明接到一个任务</h2>
+    <p class="anim delay-2" style="font-size:24px;color:#94a3b8;max-width:800px;margin-bottom:28px;">小明想了解：<span style="color:#60a5fa;font-weight:700;">"OPC一人公司模式值不值得做？该往哪个方向选？"</span></p>
+    <div class="grid-5 anim delay-3">
+      <div class="card"><h3>第1步</h3><p>列调研框架</p></div>
+      <div class="card"><h3>第2步</h3><p>搜方向读案例</p></div>
+      <div class="card"><h3>第3步</h3><p>发问卷问同行</p></div>
+      <div class="card"><h3>第4步</h3><p>分析数据出方向</p></div>
+      <div class="card"><h3>第5步</h3><p>做可视化看板</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s13"><div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="content"><div class="scene-layout"><div class="scene-left anim-l"><div class="scene-num">第1步 · 明确方向</div><h2>让 AI 帮你梳理调研框架</h2><div class="scene-intro-label">小明的困惑</div><div class="scene-intro">"OPC一人公司"范围太广——有人做自媒体、有人做咨询、有人做工具。他想先搞清楚到底有哪些方向可以选。</div></div><div class="scene-right anim-r"><h3><i class="fas fa-keyboard" style="color:#22d3ee;"></i> 在 Workbuddy 输入提示词</h3><div class="prompt-box">"我想研究 <span style="color:#fbbf24;">OPC一人公司</span>这个方向，<br>帮我列一个详细的调研框架，包含：<br>· 目前主流的一人公司模式（自媒体/咨询/工具/电商等）<br>· 每种模式的 <span style="color:#fbbf24;">收入规模与门槛</span><br>· 成功案例与失败教训<br>· 我该怎么判断哪个方向适合我"</div><div class="step anim delay-3"><div class="num">1</div><p>AI 列出一个完整的方向框架，帮你理清整体面貌</p></div><div class="step anim delay-4"><div class="num">2</div><p>继续追问：<span style="color:#22d3ee;">"我只关注零基础起步的方向，去掉需要专业技能的部分"</span></p></div></div></div></div></div>
+
+<div class="slide" id="s14"><div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="content"><div class="scene-layout"><div class="scene-left anim-l"><div class="scene-num">第2步 · 收集资料</div><h2>联网搜索 + 总结报告 + 翻译外文</h2><div class="scene-intro-label">小明的进展</div><div class="scene-intro">大纲有了，但手头没有数据。网上信息太散，还有英文报告看不懂。</div></div><div class="scene-right anim-r"><h3><i class="fas fa-keyboard" style="color:#22d3ee;"></i> 在 Workbuddy 输入提示词</h3><div class="prompt-box">"帮我搜索 <span style="color:#fbbf24;">OPC一人公司 2025-2026</span><br>最新的成功案例和行业趋势，<br>整理成 <span style="color:#fbbf24;">5个真实案例</span>，每条说清楚：<br>做什么方向、起步投入多少、月收入大概多少。"<br><br>（把找到的案例文章拖进去）<br>"帮我总结这篇案例的 <span style="color:#fbbf24;">三个关键动作</span>，他是怎么从0到1的。"<br><br>（把英文文章拖进去）<br>"帮我翻译成中文，<span style="color:#fbbf24;">保留关键数据</span>，把数字用表格单独拎出来。"</div></div></div></div></div>
+
+<div class="slide" id="s15"><div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="content"><div class="scene-layout"><div class="scene-left anim-l"><div class="scene-num">第3步 · 发出问卷</div><h2>写邀请邮件 + 设计调研问卷</h2><div class="scene-intro-label">小明的进展</div><div class="scene-intro">需要发邮件给客户邀请填问卷，还要设计题目，时间很紧。</div></div><div class="scene-right anim-r"><h3><i class="fas fa-keyboard" style="color:#22d3ee;"></i> 在 Workbuddy 输入提示词</h3><div class="prompt-box">"帮我设计一份 <span style="color:#fbbf24;">OPC一人公司调研问卷</span>，<br>面向正在做或想做 OPC 的人，<br>包含：<br>· 现在做什么方向（单选题）<br>· 为什么选这个方向（多选题）<br>· 月收入规模（分段选项）<br>· 踩过最大的坑是什么（开放题）<br>· 给新手的建议（开放题）"<br><br>"再帮我写一段 <span style="color:#fbbf24;">朋友圈文案</span>，邀请朋友来填问卷，语气自然，不用太正式。"</div></div></div></div></div>
+
+<div class="slide" id="s16"><div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="content"><div class="scene-layout"><div class="scene-left anim-l"><div class="scene-num">第4步 · 分析数据</div><h2>Excel 数据处理不求人</h2><div class="scene-intro-label">小明的进展</div><div class="scene-intro">问卷收回来了，200 份数据在 Excel 里，但小明不会写公式、不会做图表。</div></div><div class="scene-right anim-r"><h3><i class="fas fa-keyboard" style="color:#22d3ee;"></i> 在 Workbuddy 输入提示词</h3><div class="prompt-box">（把 Excel 拖进去）<br>"帮我统计：<span style="color:#fbbf24;">最热门的方向</span> 是哪个？占多少比例？"<br>"按 <span style="color:#fbbf24;">月收入</span> 排序，收入最高的方向是什么？"<br>"踩坑最多的方向是哪个？踩的坑集中在什么类型？"<br><br>"基于以上数据，帮我出 <span style="color:#fbbf24;">3条方向选择建议</span>：<br>1. 新手最推荐的方向<br>2. 收入天花板最高的方向<br>3. 风险最低的方向"</div></div></div></div></div>
+
+<div class="slide" id="s17"><div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="content"><div class="scene-layout"><div class="scene-left anim-l"><div class="scene-num">第5步 · 汇报准备</div><h2>PPT 大纲 + 演讲稿</h2><div class="scene-intro-label">小明的进展</div><div class="scene-intro">资料有了、数据有了，但马上要汇报，PPT 和演讲稿都还没做。</div></div><div class="scene-right anim-r"><h3><i class="fas fa-keyboard" style="color:#22d3ee;"></i> 在 Workbuddy 输入提示词</h3><div class="prompt-box">"帮我设计一页 <span style="color:#fbbf24;">可视化数据看板</span> 的排版方案：<br>· 左上角：方向分布饼图<br>· 右上角：收入对比柱状图<br>· 下方：方向选择建议清单（新手推荐 / 收入最高 / 风险最低）"<br><br>"帮我写一段 <span style="color:#fbbf24;">5分钟口头汇报稿</span>，语气自然，<br>内容框架：<br>· 我调研了什么（OPC一人公司）<br>· 我发现了什么（Top 3 方向）<br>· 我建议做什么（最终推荐 + 理由）"<br><br>最后追问：<span style="color:#22d3ee;">"帮我把这些数据用文字描述成一幅可画的图表布局"</span></div></div></div></div></div>
+
+
+<div class="slide" id="s18">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div>
+  <div class="content">
+    <div class="anim"><span class="tag tag-orange">进阶能力展示</span></div>
+    <h2 class="anim delay-1" style="font-size:42px;font-weight:800;margin-top:18px;margin-bottom:28px;">Workbuddy 还能帮你做这些</h2>
+    <div class="grid-3">
+      <div class="card anim-l delay-2" style="text-align:left;">
+        <h3>1. 调用专家团</h3>
+        <p>同样一份内容，可以交给不同专家来优化：<br><span style="color:#22d3ee;">小红书专家</span> 帮你改写成爆款文案<br><span style="color:#22d3ee;">公众号专家</span> 帮你做成深度文章<br><span style="color:#22d3ee;">行业专家</span> 从专业角度给出补充建议</p>
+        <p style="margin-top:10px;color:#94a3b8;">你不用自己学每个平台的风格，Workbuddy 帮你调专家来写。</p>
+      </div>
+      <div class="card anim delay-3" style="text-align:left;">
+        <h3>2. 打通 IMA + 乐享知识库</h3>
+        <p>如果公司已经用了乐享或 IMA，Workbuddy 可以直接调用里面的内容：<br>· 找公司制度 → 问 IMA<br>· 找培训资料 → 从乐享调<br>· 写报告需要内部数据 → 直接从企业知识库拉</p>
+        <p style="margin-top:10px;color:#94a3b8;">不用每次从零搜索，公司内部的知识就是你的资料库。</p>
+      </div>
+      <div class="card anim-r delay-4" style="text-align:left;">
+        <h3>3. Skill 安装与创建</h3>
+        <p>如果有些工作你经常做，可以把它装成 Workbuddy 的一个 Skill：<br>· 安装现成的 Skill：别人做好的能力，直接装上就能用<br>· 创建自己的 Skill：把公司常用的流程封装成一个专属能力</p>
+        <p style="margin-top:10px;color:#94a3b8;">Workbuddy 不是固定的，它可以持续长出你需要的新能力。</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="slide" id="s19">
+  <div class="bg-mesh"></div><div class="bg-grid"></div><div class="slide-bg bg1"></div><div class="slide-bg bg1"></div><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-4"></div><div class="orb orb-4"></div>
+  <div class="content">
+    <div class="anim-s"><span class="tag tag-green"><i class="far fa-comments"></i> 第五部分</span></div>
+    <h1 class="anim delay-1" style="font-size:64px;font-weight:800;background:linear-gradient(135deg,#4ade80,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:18px;">答疑与互动</h1>
+    <p class="anim delay-2" style="font-size:28px;color:#94a3b8;margin-top:16px;">开放 Q&A · 现场用你的工作场景演示</p>
+    <div class="grid-3 anim delay-3" style="margin-top:34px;max-width:1000px;">
+      <div class="card"><h3>你提一个真实工作任务</h3><p>比如写通知、做报告、整理资料、做公众号内容</p></div>
+      <div class="card"><h3>现场用 Workbuddy 跑一遍</h3><p>咱们一起看它怎么把你的工作做出来</p></div>
+      <div class="card"><h3>前面讲的能力你直接用</h3><p>刚才展示的专家团、知识库、Skill，你都可以当场试</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <button onclick="prevSlide()">◀</button>
+  <div class="dots" id="dots"></div>
+  <span class="page-num" id="pageNum">1 / 18</span>
+  <button onclick="nextSlide()">▶</button>
+</div>
+
+
+<script>
+const c = document.getElementById("particle-canvas");
+const ctx = c.getContext("2d");
+let w, h, particles = [];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight;}
+function init(){
+  resize();
+  const count = Math.min(Math.floor(w*h/12000), 80);
+  particles = Array.from({length:count},()=>({
+    x:Math.random()*w, y:Math.random()*h,
+    vx:(Math.random()-.5)*.5, vy:(Math.random()-.5)*.5,
+    r:Math.random()*2+1, a:Math.random()*.4+.1
+  }));
+}
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>w)p.vx*=-1;
+    if(p.y<0||p.y>h)p.vy*=-1;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(96,165,250,${p.a*1.5})`;ctx.fill();
+  });
+  // connections
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<150){
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(59,130,246,${.06*(1-d/150)})`;
+        ctx.lineWidth=.5;ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+init();draw();
+window.addEventListener("resize",()=>{resize();init();});
+</script>
+
+<script>
+const c = document.getElementById("particle-canvas");
+const ctx = c.getContext("2d");
+let w, h, particles = [];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight;}
+function init(){
+  resize();
+  const count = Math.min(Math.floor(w*h/12000), 80);
+  particles = Array.from({length:count},()=>({
+    x:Math.random()*w, y:Math.random()*h,
+    vx:(Math.random()-.5)*.5, vy:(Math.random()-.5)*.5,
+    r:Math.random()*2+1, a:Math.random()*.4+.1
+  }));
+}
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>w)p.vx*=-1;
+    if(p.y<0||p.y>h)p.vy*=-1;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(96,165,250,${p.a*1.5})`;ctx.fill();
+  });
+  // connections
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<150){
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(59,130,246,${.06*(1-d/150)})`;
+        ctx.lineWidth=.5;ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+init();draw();
+window.addEventListener("resize",()=>{resize();init();});
+</script>
+
+
+<script>
+const c = document.getElementById("particle-canvas");
+const ctx = c.getContext("2d");
+let w, h, particles = [];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight;}
+function init(){
+  resize();
+  const count = Math.min(Math.floor(w*h/12000), 80);
+  particles = Array.from({length:count},()=>({
+    x:Math.random()*w, y:Math.random()*h,
+    vx:(Math.random()-.5)*.5, vy:(Math.random()-.5)*.5,
+    r:Math.random()*2+1, a:Math.random()*.4+.1
+  }));
+}
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>w)p.vx*=-1;
+    if(p.y<0||p.y>h)p.vy*=-1;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(96,165,250,${p.a*1.5})`;ctx.fill();
+  });
+  // connections
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<150){
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(59,130,246,${.06*(1-d/150)})`;
+        ctx.lineWidth=.5;ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+init();draw();
+window.addEventListener("resize",()=>{resize();init();});
+</script>
+
+<script>
+let current = 1;
+const total = 19;
+for (let i = 1; i <= total; i++) {
+  const dot = document.createElement("div");
+  dot.className = "dot" + (i === 1 ? " active" : "");
+  dot.onclick = () => goSlide(i);
+  document.getElementById("dots").appendChild(dot);
+}
+function goSlide(n){
+  document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
+  const el = document.getElementById("s" + n);
+  if(el){ el.classList.add("active"); current = n; }
+  document.querySelectorAll(".dot").forEach((d,i)=>d.className="dot"+(i+1===n?" active":""));
+  document.getElementById("pageNum").textContent = n + " / " + total;
+}
+function nextSlide(){ if(current < total) goSlide(current+1); else goSlide(1); }
+function prevSlide(){ if(current > 1) goSlide(current-1); else goSlide(total); }
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === " ") { e.preventDefault(); nextSlide(); }
+  if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); prevSlide(); }
+  if (e.key === "Home") { e.preventDefault(); goSlide(1); }
+  if (e.key === "End") { e.preventDefault(); goSlide(total); }
+});
+let touchX = 0;
+document.addEventListener("touchstart", e => touchX = e.changedTouches[0].screenX);
+document.addEventListener("touchend", e => { const diff = touchX - e.changedTouches[0].screenX; if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide(); });
+</script>
+
+<div id="editor-bar" style="position:fixed;top:10px;right:10px;z-index:99999;display:flex;gap:6px;align-items:center;">
+  <button id="editBtn" onclick="toggleEdit()" style="padding:5px 12px;border-radius:5px;border:1px solid rgba(255,255,255,.15);background:rgba(15,23,42,.75);color:#94a3b8;cursor:pointer;font-size:12px;font-family:inherit;">编辑</button>
+  <button id="saveBtn" onclick="saveEdit()" style="padding:5px 12px;border-radius:5px;border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.15);color:#4ade80;cursor:pointer;font-size:12px;font-family:inherit;">保存</button>
+  <button onclick="exportHTML()" style="padding:5px 12px;border-radius:5px;border:1px solid rgba(139,92,246,.2);background:rgba(139,92,246,.15);color:#a78bfa;cursor:pointer;font-size:12px;font-family:inherit;">导出</button>
+  <span id="editStatus" style="font-size:11px;color:#64748b;"></span>
+</div>
+<script>
+let editing = false;
+const editables = "p, h1, h2, h3, .scene-intro, .prompt-box, .scene-intro-label, .scene-num, .card h3, .card p, .step p, th, td, li";
+
+function toggleEdit(){
+  editing = !editing;
+  document.querySelectorAll(editables).forEach(el => {
+    if(el.closest("#editor-bar")) return;
+    if(editing && el.textContent.trim().length > 0){
+      el.contentEditable = "true";
+      el.style.outline = "2px dashed rgba(59,130,246,.4)";
+      el.style.borderRadius = "3px";
+      el.style.padding = "1px 3px";
+    } else {
+      el.contentEditable = "false";
+      el.style.outline = "none";
+      el.style.padding = "";
+      el.style.borderRadius = "";
+    }
+  });
+  document.getElementById("editStatus").textContent = editing ? "编辑中... Ctrl+E切换" : "";
+}
+
+function saveEdit(){
+  editing = false;
+  document.querySelectorAll(editables).forEach(el => {
+    el.contentEditable = "false";
+    el.style.outline = "none"; el.style.padding = ""; el.style.borderRadius = "";
+  });
+  const s = document.getElementById("editStatus");
+  s.textContent = "已保存"; setTimeout(() => s.textContent = "", 1500);
+}
+
+function exportHTML(){
+  const html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+  const blob = new Blob([html], {type: "text/html;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "课件_已编辑_" + new Date().toISOString().slice(0,10) + ".html";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  const s = document.getElementById("editStatus");
+  s.textContent = "已导出"; setTimeout(() => s.textContent = "", 2000);
+}
+
+document.addEventListener("keydown", e => { if(e.ctrlKey && e.key === "e"){ e.preventDefault(); toggleEdit(); } });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
