@@ -30,6 +30,9 @@
     .viewer{position:relative;margin-top:68px;padding:18px;border:1px solid var(--line);border-radius:24px;background:rgba(8,19,25,.82);box-shadow:var(--shadow);backdrop-filter:blur(18px)}.viewer:before{content:"LIVE LEARNING INTERFACE";position:absolute;right:24px;top:-23px;color:#46616a;font:10px ui-monospace,Consolas,monospace;letter-spacing:.18em}.viewer-title small{color:var(--green);font-family:ui-monospace,Consolas,monospace}.viewer-title strong{color:#effcff}.btn{border:1px solid var(--line);background:#0c1b22;color:#a9c0c8}.btn.primary{background:var(--green);border-color:var(--green);color:#031115;box-shadow:0 0 24px rgba(94,242,255,.18)}.frame-wrap{border:1px solid rgba(94,242,255,.13);background:#071016}.placeholder{background:radial-gradient(circle at 50% 0,rgba(47,116,255,.16),transparent 45%),#071016}.placeholder-icon{background:rgba(94,242,255,.08);border:1px solid rgba(94,242,255,.35);color:var(--green);box-shadow:0 0 38px rgba(94,242,255,.13)}.placeholder h3{color:#effcff}.placeholder p,footer{color:#66808a}footer{border-top:1px solid var(--line);margin-top:42px}
     @media(max-width:800px){.hero{min-height:500px;padding:44px 26px}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr)}.stat{min-width:0;padding:12px}.stat b{font-size:18px}.stat span{font-size:9px}.viewer:before{display:none}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+    .back-courses{position:fixed;z-index:9999;right:22px;bottom:24px;display:none;align-items:center;gap:8px;padding:12px 17px;border:1px solid rgba(116,191,255,.5);border-radius:999px;background:rgba(6,20,48,.9);color:#eef7ff;text-decoration:none;font-weight:800;font-size:14px;box-shadow:0 12px 40px rgba(0,0,0,.48),0 0 28px rgba(55,130,255,.22);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+    .back-courses span{color:#67c7ff;font-size:18px}.course-open .back-courses{display:flex}
+    @media(max-width:800px){h1{font-size:32px;line-height:1.16;letter-spacing:-.045em}h1 .title-line{display:block;white-space:nowrap}h1 em.title-line{display:block}.hero{min-height:460px}.back-courses{right:14px;bottom:20px;padding:11px 15px;font-size:13px}}
   </style>
 </head>
 <body>
@@ -37,7 +40,7 @@
     <nav class="nav"><div class="brand"><span class="brand-mark">AI</span><span>AI 实战进化营</span></div><div class="nav-note">SYSTEM ONLINE · 05 MODULES</div></nav>
     <section class="hero">
       <div class="eyebrow"><i></i>INTELLIGENCE × CREATION × ACTION</div>
-      <h1>解锁 AI 新能力，<br><em>进化你的创造力。</em></h1>
+      <h1><span class="title-line">解锁 AI 新能力，</span><em class="title-line">进化你的创造力。</em></h1>
       <p class="lead">这里不是知识仓库，而是你的 AI 能力控制台。五个模块，从认知升级到真实应用，把灵感快速变成成果。</p>
       <div class="hero-stats"><div class="stat"><b>05</b><span>核心课程</span></div><div class="stat"><b>3 种</b><span>学习形式</span></div><div class="stat"><b>1 站式</b><span>统一入口</span></div></div>
     </section>
@@ -51,6 +54,7 @@
     </section>
     <footer><span>AI 实战成长课 · 学习中心</span><span>保持好奇，持续实践</span></footer>
   </main>
+  <a class="back-courses" id="backToCourses" href="#courseGrid" aria-label="返回课程选择"><span>↑</span> 返回选课</a>
   <script>
     const courses=[
       {n:'01',title:'第一课 · 认知与启程',type:'飞书课件',desc:'建立学习框架，理解 AI 能力边界与实用价值。',url:'https://w1r97ej4ka.feishu.cn/docx/GtPRdSf1TobqVExFeVLcmyjQnCc?from=from_copylink'},
@@ -61,7 +65,7 @@
     ];
     const grid=document.getElementById('courseGrid'),frame=document.getElementById('courseFrame'),title=document.getElementById('currentTitle'),openBtn=document.getElementById('openBtn'),ph=document.getElementById('placeholder');let current=null;
     grid.innerHTML=courses.map((c,i)=>`<article class="course" tabindex="0" role="button" data-i="${i}" aria-label="打开${c.title}"><div class="topline"><span class="num">LESSON ${c.n}</span><span class="tag">${c.type}</span></div><h3>${c.title}</h3><p>${c.desc}</p><div class="go"><span>进入学习</span><span class="arrow">↗</span></div></article>`).join('');
-    function load(i){current=courses[i];document.querySelectorAll('.course').forEach((el,j)=>el.classList.toggle('active',j===i));title.textContent=current.title;openBtn.href=current.url;ph.classList.add('hide');frame.src=current.url;document.getElementById('viewer').scrollIntoView({behavior:'smooth',block:'start'});}
+    function load(i){current=courses[i];document.body.classList.add('course-open');document.querySelectorAll('.course').forEach((el,j)=>el.classList.toggle('active',j===i));title.textContent=current.title;openBtn.href=current.url;ph.classList.add('hide');frame.src=current.url;document.getElementById('viewer').scrollIntoView({behavior:'smooth',block:'start'});}
     grid.addEventListener('click',e=>{const card=e.target.closest('.course');if(card)load(+card.dataset.i)});grid.addEventListener('keydown',e=>{const card=e.target.closest('.course');if(card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();load(+card.dataset.i)}});document.getElementById('reloadBtn').onclick=()=>{if(current){frame.src='about:blank';setTimeout(()=>frame.src=current.url,60)}};
   </script>
 </body>
