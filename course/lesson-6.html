@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>第六课：两个月后的 AI 工具格局更新</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #273047;
+      --muted: #7d879b;
+      --line: #e8ebf2;
+      --panel: #ffffff;
+      --purple: #7558eb;
+      --purple-soft: #f1edff;
+      --aqua: #16c8aa;
+      --aqua-soft: #e8fbf6;
+      --coral: #ff786a;
+      --yellow: #ffd45e;
+      --shadow: 0 6px 18px rgba(53, 64, 99, .08);
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    a { color: inherit; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    .page { width: min(930px, calc(100% - 32px)); margin: 0 auto; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      min-height: 282px;
+      margin: 0 0 34px calc(50% - 50vw);
+      padding: 54px max(16px, calc((100vw - 930px) / 2)) 46px;
+      display: block;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(112deg, #7a5eea 0%, #7077e9 44%, #1fc7b6 100%);
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); pointer-events: none; }
+    .hero::before { width: 310px; height: 310px; top: -185px; left: 10%; box-shadow: 0 0 0 36px rgba(255,255,255,.045), 0 0 0 74px rgba(255,255,255,.035); }
+    .hero::after { width: 270px; height: 270px; right: 8%; bottom: -180px; box-shadow: 0 0 0 34px rgba(255,255,255,.05); }
+    .hero > div:first-child { max-width: 760px; margin: 0 auto; }
+    .hero-card { display: none; }
+    .eyebrow { position: relative; z-index: 1; margin: 0 0 11px; color: rgba(255,255,255,.88); font-weight: 700; font-size: 14px; }
+    .eyebrow::before { content: "✦"; margin-right: 6px; color: #ffe057; }
+    h1 { position: relative; z-index: 1; margin-bottom: 8px; color: #fff; font-size: clamp(34px, 5vw, 50px); line-height: 1.15; letter-spacing: .035em; }
+    .lead { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; color: rgba(255,255,255,.92); font-size: 17px; line-height: 1.8; }
+    .hero-meta { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; margin-top: 21px; }
+    .hero-meta span { padding: 4px 10px; border: 1px solid rgba(255,255,255,.24); border-radius: 999px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.92); font-size: 12px; }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: -15px 0 25px;
+    }
+    .toc a {
+      padding: 5px 12px;
+      border: 1px solid #e4ddff;
+      border-radius: 999px;
+      background: #fff;
+      color: #6553c6;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 3px 10px rgba(82, 64, 164, .08);
+    }
+
+    section { padding: 26px 0 12px; border: 0; }
+    .section-head { display: block; margin-bottom: 16px; }
+    .section-head > div:first-child { position: relative; padding-left: 47px; }
+    .section-head > div:first-child::before {
+      position: absolute; left: 0; top: 1px;
+      width: 30px; height: 30px; border-radius: 9px;
+      display: grid; place-items: center;
+      background: var(--purple); color: #fff;
+      font-weight: 800; font-size: 16px; line-height: 1;
+    }
+    #opening .section-head > div:first-child::before { content: "🎯"; background: transparent; font-size: 25px; }
+    #llm .section-head > div:first-child::before { content: "1"; }
+    #image .section-head > div:first-child::before { content: "2"; background: var(--aqua); }
+    #video .section-head > div:first-child::before { content: "3"; background: #4e9cf5; }
+    #agent .section-head > div:first-child::before { content: "4"; background: var(--coral); }
+    #workbuddy .section-head > div:first-child::before { content: "5"; background: #efad3d; }
+    #setup .section-head > div:first-child::before { content: "6"; background: #4d9cf5; }
+    h2 { margin-bottom: 2px; font-size: 23px; line-height: 1.35; letter-spacing: -.01em; }
+    .section-head p { margin-bottom: 0; color: var(--muted); font-size: 13px; }
+
+    .note, .figure, .rank-row, .card, .table-wrap, .script {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .note { margin-top: 15px; padding: 13px 16px; border-left: 4px solid var(--purple); background: var(--purple-soft); color: #55478e; }
+    .pain-box { margin-top: 16px; padding: 17px 18px; border: 1px solid #ffd0cb; border-radius: var(--radius); background: linear-gradient(135deg, #fff7f6, #fff1ef); }
+    .pain-box h3 { margin-bottom: 8px; color: #e26558; font-size: 16px; }
+    .pain-box ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; color: #6e6665; font-size: 13px; }
+    .pain-box li::before { content: "⚡"; margin-right: 7px; }
+    .position-box { margin-top: 13px; padding: 15px 17px; border-left: 4px solid var(--purple); border-radius: 0 10px 10px 0; background: var(--purple-soft); color: #55478e; font-size: 13px; }
+    .route-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; }
+    .route-card { padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; box-shadow: var(--shadow); }
+    .route-card b { display: block; margin-bottom: 2px; color: var(--purple); font-size: 13px; }
+    .route-card span { color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .figure { margin: 16px 0 0; padding: 10px; }
+    .figure img { display: block; width: 100%; border-radius: 7px; }
+    .caption { margin: 7px 3px 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+
+    .rank-list { display: grid; gap: 10px; margin-top: 0; }
+    .rank-row { display: grid; grid-template-columns: 88px 1fr; gap: 13px; padding: 14px 16px; }
+    .rank-name { color: var(--purple); font-weight: 800; }
+    .category-label { margin: 18px 0 8px; color: #5b4ec2; font-size: 14px; font-weight: 800; }
+    .category-label::before { content: "●"; margin-right: 7px; color: var(--aqua); font-size: 11px; }
+    .tool-line { display: grid; grid-template-columns: 128px 1fr; gap: 16px; padding: 13px 16px; border-bottom: 1px solid var(--line); background: #fff; }
+    .tool-line:first-of-type { border-radius: var(--radius) var(--radius) 0 0; }
+    .tool-line:last-child { border-bottom: 0; border-radius: 0 0 var(--radius) var(--radius); }
+    .tool-line + .tool-line { margin-top: 0; }
+    .tool-line strong { color: var(--purple); }
+    .tool-line:nth-child(4n+2) strong { color: #10a98f; }
+    .tool-line:nth-child(4n+3) strong { color: #3984dd; }
+    .tool-line:nth-child(4n) strong { color: #e36c58; }
+    .tool-line span { color: #68728a; font-size: 13px; }
+    .tool-list { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; margin-top: 16px; }
+    .card { position: relative; padding: 16px; border-top: 4px solid var(--aqua); }
+    .card:nth-child(3n+2) { border-top-color: var(--purple); }
+    .card:nth-child(3n) { border-top-color: #5aa2ff; }
+    h3 { margin-bottom: 7px; font-size: 17px; line-height: 1.35; }
+    .card p { margin-bottom: 0; color: #667087; font-size: 13px; line-height: 1.7; }
+    .tag { display: inline-flex; margin-bottom: 8px; padding: 2px 8px; border-radius: 999px; background: #e9f9f5; color: #0c8f78; font-size: 11px; font-weight: 800; }
+    .tag.hot { background: #fff0ed; color: #e66255; }
+    .tag.cool { background: var(--purple-soft); color: #6954d2; }
+    .tag.gray { background: #f0f2f7; color: #7d879b; }
+
+    .table-wrap { overflow-x: auto; margin-top: 16px; }
+    table { width: 100%; min-width: 710px; border-collapse: collapse; }
+    th, td { padding: 11px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: 13px; line-height: 1.6; }
+    th { background: var(--purple); color: #fff; font-weight: 700; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr:nth-child(even) { background: #fafaff; }
+
+    .script { margin-top: 16px; padding: 14px 16px; border-left: 4px solid var(--aqua); background: var(--aqua-soft); box-shadow: none; }
+    .script h3 { margin-bottom: 4px; color: #0b927b; font-size: 15px; }
+    .script h3::before { content: "💡 "; }
+    .script p { margin: 0; color: #416c65; font-size: 13px; }
+
+    #close { margin-top: 22px; padding: 25px 22px; border-radius: 12px; background: linear-gradient(135deg, #effdea, #dff6dd); }
+    #close h2 { font-size: 22px; }
+    #close > p { margin-bottom: 0; color: #4e6c55; }
+    #reflection { margin-top: 34px; padding: 34px 26px; border-radius: 14px; background: linear-gradient(130deg, #6756dc, #2abdb2); color: #fff; text-align: center; box-shadow: 0 12px 30px rgba(73, 84, 182, .2); }
+    #reflection h2 { color: #fff; font-size: clamp(25px, 3.8vw, 35px); }
+    #reflection .question { margin: 16px auto 22px; color: #ffea83; font-size: clamp(19px, 2.8vw, 25px); font-weight: 800; line-height: 1.5; }
+    #reflection .reflection-copy { max-width: 720px; margin: 0 auto; color: rgba(255,255,255,.94); font-size: 15px; line-height: 1.9; }
+    #references { padding-top: 30px; }
+    #references h2 { font-size: 17px; }
+    .sources { color: var(--muted); font-size: 12px; }
+    .sources li { margin-bottom: 5px; }
+    footer { padding: 30px 0 50px; color: #9ba2b1; font-size: 12px; text-align: center; }
+
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .hero { padding-top: 32px; }
+      .route-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .page { width: min(100% - 22px, 930px); }
+      .hero { min-height: 190px; padding: 29px 18px; }
+      h1 { font-size: 28px; }
+      .grid { grid-template-columns: 1fr; }
+      .rank-row { grid-template-columns: 1fr; gap: 3px; }
+      .route-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">第六课｜工具更新与接入</div>
+        <h1>⚡ AI 工具新格局</h1>
+        <p class="lead">两个月之后，AI 工具排名重新洗牌</p>
+        <div class="hero-meta">
+          <span>大语言模型</span><span>AI 生图</span><span>AI 视频</span><span>AI 智能体</span><span>2026 · 第六课</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="assets/llm-ranking.jpg" alt="大语言模型段位图" />
+        <p class="caption">本课会沿用“夯、顶级、人上人、NPC、拉完了”的课堂表达，但会把它翻译成更清楚的选型逻辑。</p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="课程目录">
+      <a href="#llm">01 大语言模型</a>
+      <a href="#image">02 AI 生图工具</a>
+      <a href="#video">03 AI 视频工具</a>
+      <a href="#agent">04 AI 智能体</a>
+      <a href="#workbuddy">05 WorkBuddy 新功能</a>
+      <a href="#setup">06 安装与接入</a>
+    </nav>
+
+    <section id="opening">
+      <div class="section-head">
+        <div>
+          <h2>开篇：先补一张“两个月的江湖地图”</h2>
+          <p>距离上次分享大约两个月。先把变化讲清楚，再谈怎么选；这次不是罗列工具，而是更新一张真正能用的 AI 地图。</p>
+        </div>
+      </div>
+      <div class="pain-box">
+        <h3>这期先记住三句话</h3>
+        <ul>
+          <li><strong>大模型没有永远的王者，只有一轮接一轮的迭代与价格战。</strong>能力与价格，都可能在两个月内重新排序。</li>
+          <li><strong>AI 生图的王者位置依然稳，但追赶者已经换了一批。</strong>生成、修图、排版必须拆开看。</li>
+          <li><strong>真正的新战场在视频与智能体。</strong>工具不再只会聊天，而是开始进入“能干活”的阶段。</li>
+        </ul>
+      </div>
+      <div class="position-box"><strong>💡 本期定位：</strong>这是一份“速报 + 选型指南”。每个赛道都按同一套逻辑讲：<strong>当下格局 → 工具特点 → 一句话选型建议</strong>。榜单会变化，但判断工具的方法可以留下来。</div>
+      <div class="route-grid" aria-label="本课路线图">
+        <div class="route-card"><b>01 大模型</b><span>能力、价格与实际任务</span></div>
+        <div class="route-card"><b>02 AI 生图</b><span>生成、修图与工作流</span></div>
+        <div class="route-card"><b>03 AI 视频</b><span>效果、时长与单秒成本</span></div>
+        <div class="route-card"><b>04 AI 智能体</b><span>从会聊天到会干活</span></div>
+      </div>
+    </section>
+
+    <section id="llm">
+      <div class="section-head">
+        <div>
+          <h2>第一部分：大语言模型排名与变化</h2>
+          <p>过去两个月，大语言模型几乎每一家都在升级。国内外头部模型之间的差距越来越小，但它们的使用体验、价格策略和擅长任务开始明显分化。</p>
+        </div>
+        <div class="figure">
+          <img src="assets/llm-ranking.jpg" alt="大语言模型排名图" />
+          <p class="caption">图示用于课堂引导：先让学生看到格局，再解释每一档的原因。</p>
+        </div>
+      </div>
+
+      <p class="category-label">夯｜第一梯队</p>
+      <div class="tool-list">
+        <div class="tool-line"><strong>DeepSeek</strong><span>开源生态中的核心选手。推理、代码与低成本调用仍有优势，适合开发者和需要控制预算的工作流。</span></div>
+        <div class="tool-line"><strong>Kimi K3</strong><span>长上下文与综合能力表现突出。适合长文档阅读、复杂信息整理和需要持续上下文的任务。</span></div>
+        <div class="tool-line"><strong>Claude</strong><span>长文本、复杂分析和编程协作能力稳健，是海外专业用户常用的生产力模型之一。</span></div>
+        <div class="tool-line"><strong>ChatGPT + Codex</strong><span>模型能力与工程型智能体结合最完整。遇到复杂代码、调试和端到端交付时，依然是最可靠的强组合。</span></div>
+      </div>
+      <p class="category-label">顶级</p>
+      <div class="tool-list">
+        <div class="tool-line"><strong>智谱清言</strong><span>容易被低估的强产品。编程、长文本、复杂推理和任务执行都很均衡，尤其适合 debug 与综合型任务。</span></div>
+      </div>
+      <p class="category-label">人上人</p>
+      <div class="tool-list">
+        <div class="tool-line"><strong>豆包</strong><span>中文沟通自然、情绪价值高，适合日常问答和轻量创作；涉及事实与专业结论时，需要主动复核。</span></div>
+        <div class="tool-line"><strong>千问</strong><span>属于综合型模型，能力覆盖面广，也具备视觉能力；企业和工业场景的适配度较好。</span></div>
+        <div class="tool-line"><strong>Gemini</strong><span>综合能力稳定，网页生成和海外工具生态仍有优势；适合需要多模态和海外服务协作的用户。</span></div>
+      </div>
+      <p class="category-label">NPC / 拉完了</p>
+      <div class="tool-list">
+        <div class="tool-line"><strong>Grok</strong><span>在 X 平台及海外社区有较强存在感，但国内用户的日常使用频率相对较低。</span></div>
+        <div class="tool-line"><strong>文心一言</strong><span>具有国内早期 AI 产品的历史地位，但以本课的个人创作与智能体接入场景衡量，推荐优先级较低。</span></div>
+        <div class="tool-line"><strong>Meta AI</strong><span>海外生态完整，但对国内课堂的直接可用性有限；这里作为格局参考，不作为优先推荐。</span></div>
+      </div>
+
+      <div class="script">
+        <h3>建议口播稿</h3>
+        <p>“这一部分大家不要只盯着榜单看。模型强不强，要放到任务里判断。比如写作、查资料、编程、长文本、调用工具，每个场景的第一名都可能不一样。我们今天的排名，是站在个人学习、内容创作和智能体接入这几个维度综合判断的。”</p>
+      </div>
+    </section>
+
+    <section id="image">
+      <div class="section-head">
+        <div>
+          <h2>第二部分：AI 生图工具格局</h2>
+          <p>生图工具的变化，比大语言模型更容易被肉眼感知。这里要把“从 0 到 1 生成图片”和“修图、改图、排版”分开讲，否则学生会把不同类型的工具混在一起比较。</p>
+        </div>
+        <div class="figure">
+          <img src="assets/image-ranking.jpg" alt="AI 生图工具排名图" />
+          <p class="caption">生图榜单重点看画质、可控性、中文提示词、修图能力和工作流完整度。</p>
+        </div>
+      </div>
+
+      <p class="category-label">夯</p>
+      <div class="tool-list"><div class="tool-line"><strong>ChatGPT Image</strong><span>综合体验最强的一档。理解需求、多轮修改、文字排版与图像连续编辑都很成熟，适合作为从想法到成品的主力工具。</span></div></div>
+      <p class="category-label">顶级</p>
+      <div class="tool-list">
+        <div class="tool-line"><strong>可灵</strong><span>图片质量稳定，适合追求高分辨率、商业质感和成片稳定性的创作需求。</span></div>
+        <div class="tool-line"><strong>Midjourney</strong><span>艺术审美与风格化表达依然突出；更适合熟悉提示词、追求创作风格的用户。</span></div>
+      </div>
+      <p class="category-label">人上人</p>
+      <div class="tool-list">
+        <div class="tool-line"><strong>豆包</strong><span>更适合日常修图、改图和轻量创作，中文操作体验友好。</span></div>
+        <div class="tool-line"><strong>千问</strong><span>功能覆盖全面，适合低成本尝试和基础图像需求，但单项能力不一定最突出。</span></div>
+      </div>
+      <p class="category-label">NPC / 拉完了</p>
+      <div class="tool-list">
+        <div class="tool-line"><strong>即梦</strong><span>视频侧更有竞争力；单看生图和画布工作流时，并不总是优先选择。</span></div>
+        <div class="tool-line"><strong>Leonardo</strong><span>曾是许多创作者的常用工具，现在更适合作为补充选择。</span></div>
+        <div class="tool-line"><strong>Canva</strong><span>强项是模板、排版和设计流程，不是从 0 到 1 的纯 AI 生图能力。</span></div>
+        <div class="tool-line"><strong>Nano Banana</strong><span>曾经亮眼，但目前被更强的新工具反超，课堂推荐优先级下降。</span></div>
+        <div class="tool-line"><strong>文心一言</strong><span>本课的生图比较中不作为优先推荐工具。</span></div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="section-head">
+        <div>
+          <h2>第三部分：AI 生成视频</h2>
+          <p>视频工具目前已经进入“贵但能打”的阶段。能力强的模型可以直接生成更长、更清晰的视频，但价格也开始成为真实门槛。课堂上建议让学生同时关注质量、时长、分辨率、镜头稳定性和单秒成本。</p>
+        </div>
+        <div class="figure">
+          <img src="assets/video-seedance-minimax-complete.png" alt="Seedance 2.5 与 MiniMax H3 对比图" />
+          <p class="caption">完整展示 Seedance 2.5 与 MiniMax H3 的名称及图标，作为本节课视频工具部分的重点对比。</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>工具</th>
+              <th>课堂定位</th>
+              <th>主要优势</th>
+              <th>提醒学生注意</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Seedance 2.5</td>
+              <td>当下视频生成第一梯队</td>
+              <td>画面质量、镜头调度、动态稳定性强，可支持更高分辨率和更长视频。</td>
+              <td>成本较高，适合商业样片、关键镜头和高质量展示，不适合无脑批量试错。</td>
+            </tr>
+            <tr>
+              <td>MiniMax H3</td>
+              <td>高性价比强竞争者</td>
+              <td>广告片、产品展示、声音与画面结合等场景表现突出，价格相对友好。</td>
+              <td>单次生成时长和调用方式要看平台限制，适合先做短片段测试。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="script">
+        <h3>建议口播稿</h3>
+        <p>“AI 视频不是谁便宜就用谁，也不是谁参数高就一定最好。你要先问自己：我要的是广告质感、人物动作、产品展示，还是只是一个氛围短片？视频工具的成本是按秒烧钱，所以先用便宜方案做分镜和试错，再用强模型做最终镜头，会更合理。”</p>
+      </div>
+    </section>
+
+    <section id="agent">
+      <div class="section-head">
+        <div>
+          <h2>第四部分：AI 智能体对比与接入</h2>
+          <p>大模型负责“脑子”，智能体负责“行动”。当模型能调用工具、读写文件、浏览网页、执行命令、沉淀技能，它就从聊天机器人进入了工作流系统。这里重点对比 DeepSeek Harness、WorkBuddy、Hermes Agent 和 Codex。</p>
+        </div>
+        <div class="figure">
+          <img src="assets/agent-comparison.png" alt="四类 AI 智能体工具图" />
+          <p class="caption">四个 Agent 的差异，不在于谁“绝对更强”，而在于它们服务的用户和场景不同。</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Agent</th>
+              <th>核心特点</th>
+              <th>适合谁</th>
+              <th>一句话建议</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DeepSeek Harness</td>
+              <td>“一切皆插件”的可组合架构，更像轻量级 Agent 操作系统层。</td>
+              <td>喜欢折腾、想自己组合工具链的开发者。</td>
+              <td>追求开放、轻量、灵活，选它。</td>
+            </tr>
+            <tr>
+              <td>WorkBuddy</td>
+              <td>偏企业协作与日常办公的智能体工作台，开箱即用程度高。</td>
+              <td>非纯技术用户、办公自动化用户、团队协作场景。</td>
+              <td>要做浏览器操作、信息收集、办公流，优先看它。</td>
+            </tr>
+            <tr>
+              <td>Hermes Agent</td>
+              <td>强调长期记忆和技能系统，能把复杂任务经验沉淀成可复用技能。</td>
+              <td>想做长期个人助手、复杂链路任务和自我进化系统的人。</td>
+              <td>重视记忆、技能传承和长期任务，重点关注它。</td>
+            </tr>
+            <tr>
+              <td>Codex</td>
+              <td>面向专业开发者和工程代码场景，代码生成、调试、终端闭环成熟。</td>
+              <td>软件工程师、产品开发者、需要严肃工程交付的人。</td>
+              <td>要做重度编程和工程交付，Codex 仍然是标准答案之一。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag hot">选型 1</span>
+          <h3>日常办公</h3>
+          <p>选 WorkBuddy。它的优势是门槛低、集成顺、适合信息整理和流程自动化。</p>
+        </article>
+        <article class="card">
+          <span class="tag">选型 2</span>
+          <h3>长期记忆</h3>
+          <p>选 Hermes Agent。它适合持续沉淀经验、复用技能和做长期个性化助手。</p>
+        </article>
+        <article class="card">
+          <span class="tag cool">选型 3</span>
+          <h3>自由插件</h3>
+          <p>选 DeepSeek Harness。它更适合极客式定制，把不同工具拼成自己的工作系统。</p>
+        </article>
+        <article class="card">
+          <span class="tag gray">选型 4</span>
+          <h3>严肃开发</h3>
+          <p>选 Codex。它的优势在代码仓库、终端执行、调试验证和工程化交付闭环。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="reflection">
+      <h2>停一下，问大家一个问题</h2>
+      <p class="question">短短的几个月时间，所有的 AI 工具都在升级。<br />那么，你有没有升级？</p>
+      <p class="reflection-copy">学习 AI，并不只是追着一个又一个新工具跑，更重要的是建立学习 AI 的思维和理念：理解它能解决什么问题，知道怎样提出需求，也愿意持续练习和更新自己。这样，当新的工具出现时，我们才能接得住、用得上；不被工具推着走，而是让它真正成为自己的生产力工具。</p>
+    </section>
+
+    <section id="workbuddy">
+      <div class="section-head">
+        <div>
+          <h2>第五部分：WorkBuddy 新功能详解</h2>
+          <p>本部分建议切换为电脑录屏，围绕资料沉淀与个人工作流搭建展开。</p>
+        </div>
+      </div>
+      <div class="tool-list">
+        <div class="tool-line"><strong>资料库搭建</strong><span>演示怎样把常用资料、文件与信息沉淀到资料库中，让后续检索、整理和调用更高效。</span></div>
+        <div class="tool-line"><strong>个人工作台搭建</strong><span>演示如何按自己的工作习惯搭建个人工作台，把常用任务、资料与 AI 能力放到一个顺手的位置。</span></div>
+      </div>
+    </section>
+
+    <section id="setup">
+      <div class="section-head">
+        <div>
+          <h2>第六部分：DeepSeek Harness 安装与 Codex 接入 DeepSeek</h2>
+          <p>本部分建议完全用电脑录屏完成：安装、配置、首次运行与接入测试，一步一步带学生走通。</p>
+        </div>
+      </div>
+      <div class="tool-list">
+        <div class="tool-line"><strong>环境准备</strong><span>确认系统、终端、运行环境与 API Key 的准备情况；让学生知道每一步是在解决什么问题。</span></div>
+        <div class="tool-line"><strong>Harness 安装</strong><span>演示 DeepSeek Harness 的获取、安装与基础配置，完成一次最小可运行验证。</span></div>
+        <div class="tool-line"><strong>Codex 接入 DeepSeek</strong><span>演示在 Codex 工作流中配置 DeepSeek 服务、检查模型可用性，并执行一次简单任务验证调用链路。</span></div>
+      </div>
+      <div class="script"><h3>录屏提醒</h3><p>涉及 API Key 时务必打码。课程中展示“从零到跑通”即可，复杂配置与高级玩法可留到后续课。</p></div>
+    </section>
+
+    <section id="close">
+      <h2>课堂收束：工具排名会变，判断框架要留下</h2>
+      <p>今天这节课的核心不是让大家背一张榜单，而是理解 AI 工具正在从“单点能力竞争”进入“工作流竞争”。未来真正有价值的，不是会打开多少工具，而是知道什么时候用模型、什么时候用生图、什么时候用视频，什么时候让 Agent 接管重复劳动。</p>
+
+      <div class="script">
+        <h3>结尾口播稿</h3>
+        <p>“这两个月的变化告诉我们，AI 工具没有永远的第一名。今天强的工具，可能两个月后被新版本反超；今天便宜的工具，也可能因为价格调整变成高成本选择。所以大家要掌握的是判断方法：看任务、看成本、看稳定性、看生态。工具会换，但这个判断框架不会过时。”</p>
+      </div>
+    </section>
+
+    <section id="references">
+      <h2>资料备注</h2>
+      <div class="tool-list">
+        <div class="tool-line"><strong>DeepSeek Harness</strong><span><a href="https://www.deepseek.com/harness/" target="_blank" rel="noopener">https://www.deepseek.com/harness/</a></span></div>
+        <div class="tool-line"><strong>Codex 国内安装</strong><span><a href="https://codexapp.agentsmirror.com/#top" target="_blank" rel="noopener">https://codexapp.agentsmirror.com/#top</a></span></div>
+        <div class="tool-line"><strong>Hermes Agent 国内安装</strong><span><a href="https://desktop.hermesagent.org.cn/" target="_blank" rel="noopener">https://desktop.hermesagent.org.cn/</a></span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page">
+    第六课课件｜AI 工具两个月格局更新｜建议课堂配合真实演示与价格页截图使用
+  </footer>
+</body>
+</html>
