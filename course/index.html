@@ -50,10 +50,16 @@
     body.light .recording-stat>span:not(.recording-shine){color:#546f95}
     @media(prefers-reduced-motion:reduce){.recording-stat,.recording-shine:after{animation:none!important}}
   </style>
+  <style>
+    /* Brand mark — AI capability core */
+    .brand-mark{position:relative;isolation:isolate;width:42px;height:42px;display:grid;place-items:center;flex:none;border-radius:14px;background:linear-gradient(145deg,#0c1d42,#071127);border:1px solid rgba(104,212,255,.72);box-shadow:0 0 0 1px rgba(119,112,255,.18),0 0 27px rgba(61,135,255,.32),inset 0 1px 0 rgba(255,255,255,.12);overflow:visible;color:inherit}
+    .brand-mark:after{z-index:-1;border-radius:18px}.brand-mark svg{width:32px;height:32px;overflow:visible;filter:drop-shadow(0 0 6px rgba(99,211,255,.75))}.brand-wordmark{font-size:16px;font-weight:850;letter-spacing:.025em;background:linear-gradient(90deg,#edf8ff,#b7ddff 58%,#d4c8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    body.light .brand-mark{background:linear-gradient(145deg,#fff,#e8f6ff);border-color:#77bdf3;box-shadow:0 0 22px rgba(65,154,235,.18),inset 0 1px 0 #fff}body.light .brand-wordmark{background:linear-gradient(90deg,#153e69,#177ed3 58%,#695bd0);-webkit-background-clip:text;background-clip:text}
+  </style>
 </head>
 <body>
   <main class="shell">
-    <nav class="nav"><div class="brand"><span class="brand-mark">AI</span><span>AI 实战进化营</span></div><div class="nav-actions"><div class="nav-note">SYSTEM ONLINE · 06 MODULES</div><button class="theme-toggle" id="themeToggle" type="button" aria-label="切换浅色模式" aria-pressed="false">☀ 切换浅色</button></div></nav>
+    <nav class="nav"><div class="brand"><span class="brand-mark" role="img" aria-label="AI 实战进化营标志"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 4 40 13v22L24 44 8 35V13L24 4Z" stroke="url(#logoGradient)" stroke-width="2.4"/><path d="M16 17.5 24 13l8 4.5v9L24 31l-8-4.5v-9Z" stroke="#c7f2ff" stroke-width="1.7" stroke-linejoin="round"/><path d="M24 13v-5M16 17.5l-4-2.2M32 17.5l4-2.2M24 31v8M16 26.5l-4 2.2M32 26.5l4 2.2" stroke="url(#logoGradient)" stroke-width="1.8" stroke-linecap="round"/><circle cx="24" cy="22" r="3.6" fill="#f0fbff"/><circle cx="24" cy="22" r="1.4" fill="#6e8dff"/><defs><linearGradient id="logoGradient" x1="8" y1="5" x2="42" y2="43" gradientUnits="userSpaceOnUse"><stop stop-color="#70e9ff"/><stop offset=".55" stop-color="#4ea9ff"/><stop offset="1" stop-color="#9b7bff"/></linearGradient></defs></svg></span><span class="brand-wordmark">AI 实战进化营</span></div><div class="nav-actions"><div class="nav-note">SYSTEM ONLINE · 06 MODULES</div><button class="theme-toggle" id="themeToggle" type="button" aria-label="切换浅色模式" aria-pressed="false">☀ 切换浅色</button></div></nav>
     <section class="hero">
       <div class="hero-orbit" aria-hidden="true">
         <div class="orbit-ring"></div>
