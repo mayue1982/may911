@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>心爱自然甄选 · 商品后台</title>
+  <style>
+    :root {
+      --blue: #0072bc;
+      --deep: #005da8;
+      --page: #f4f8fb;
+      --ink: #17364b;
+      --sub: #6f8290;
+      --line: #dfeaf1;
+      --white: #fff;
+      --green: #20a67a;
+      --red: #e65045;
+      --shadow: 0 10px 24px rgba(0, 72, 120, .08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+    button, input, select, textarea { font: inherit; }
+    .shell { min-height: 100vh; display: grid; grid-template-columns: 236px 1fr; }
+    .side {
+      padding: 26px 18px;
+      background: var(--blue);
+      color: #fff;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 34px; }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(255,255,255,.16);
+      font-weight: 900;
+    }
+    .brand h1 { margin: 0; font-size: 18px; line-height: 1.25; letter-spacing: 0; }
+    .nav { display: grid; gap: 8px; }
+    .nav-item {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 12px;
+      border-radius: 8px;
+      color: rgba(255,255,255,.76);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .nav-item.active { background: rgba(255,255,255,.16); color: #fff; }
+    .main { padding: 26px 30px 36px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+    .topbar h2 { margin: 0 0 6px; font-size: 26px; letter-spacing: 0; }
+    .topbar p { margin: 0; color: var(--sub); font-size: 13px; }
+    .actions { display: flex; gap: 10px; }
+    .btn {
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 15px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .btn.primary { border-color: var(--blue); background: var(--blue); color: #fff; box-shadow: 0 9px 18px rgba(0,114,188,.18); }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+    .stat {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .stat span { color: var(--sub); font-size: 12px; }
+    .stat strong { display: block; margin-top: 8px; font-size: 26px; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid #edf3f6;
+    }
+    .panel-title { font-size: 16px; font-weight: 900; }
+    .filters { display: flex; gap: 9px; }
+    .filters input, .filters select {
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 11px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 13px 18px; border-bottom: 1px solid #edf3f6; text-align: left; font-size: 13px; }
+    th { color: var(--sub); font-weight: 800; background: #fbfdfe; }
+    tr:last-child td { border-bottom: 0; }
+    .product-cell { display: flex; align-items: center; gap: 12px; }
+    .thumb { width: 58px; height: 58px; border-radius: 8px; object-fit: cover; background: #edf5f9; }
+    .name { font-weight: 900; }
+    .desc { margin-top: 4px; color: var(--sub); font-size: 12px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 12px;
+      background: #edf7fc;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .tag.on { background: #e9f8f2; color: var(--green); }
+    .tag.off { background: #fff0ef; color: var(--red); }
+    .row-actions { display: flex; gap: 8px; }
+    .link { border: 0; background: transparent; color: var(--blue); font-weight: 800; cursor: pointer; }
+    .form { padding: 18px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; margin-bottom: 7px; color: var(--sub); font-size: 12px; font-weight: 800; }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+    }
+    .field textarea { min-height: 82px; resize: vertical; line-height: 1.5; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .upload {
+      height: 132px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed #b8cedc;
+      border-radius: 8px;
+      background: #f7fbfd;
+      color: var(--sub);
+      text-align: center;
+      font-size: 13px;
+    }
+    .visual-images { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin-top: 10px; }
+    .visual-image { padding: 8px; border: 1px solid #dce8ef; border-radius: 10px; background: #fff; }
+    .visual-image img { display: block; width: 100%; max-height: 220px; object-fit: contain; border-radius: 7px; background: #f2f7fa; }
+    .switch-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 8px 0 18px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .switch { width: 46px; height: 26px; position: relative; border-radius: 13px; background: var(--blue); }
+    .switch::after { content: ""; position: absolute; right: 3px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; }
+    .notice {
+      margin-top: 14px;
+      padding: 13px 14px;
+      border: 1px solid #cfe6f5;
+      border-radius: 8px;
+      background: #edf7fc;
+      color: #315f7a;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .view-section { display: none; }
+    .view-section.active { display: block; }
+    .enterprise-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+    .enterprise-form textarea { min-height: 110px; }
+    .logo-image { width: 42px; height: 42px; object-fit: cover; border-radius: 9px; }
+    .view-section:not(.active) { display: none !important; }
+    .editor-drawer {
+      position: fixed;
+      z-index: 60;
+      top: 0;
+      right: 0;
+      width: min(520px, 100vw);
+      height: 100vh;
+      overflow-y: auto;
+      border-radius: 0;
+      transform: translateX(105%);
+      transition: transform .22s ease;
+      box-shadow: -18px 0 50px rgba(15, 52, 76, .18);
+    }
+    .editor-drawer.open { transform: translateX(0); }
+    .drawer-close {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: #edf7fc;
+      color: var(--ink);
+      font-size: 22px;
+      cursor: pointer;
+    }
+    .login-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: linear-gradient(145deg, #006db5 0%, #009cc5 52%, #e9f7fb 52%, #f5fbfd 100%);
+    }
+    .login-screen.hidden { display: none; }
+    .login-card {
+      width: min(420px, 100%);
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.97);
+      box-shadow: 0 24px 70px rgba(0,44,78,.24);
+    }
+    .login-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .login-brand img { width: 54px; height: 54px; border-radius: 14px; object-fit: cover; }
+    .login-brand h2 { margin: 0; font-size: 22px; }
+    .login-brand p { margin: 4px 0 0; color: var(--sub); font-size: 13px; }
+    .login-error { min-height: 22px; margin: 8px 0; color: var(--red); font-size: 13px; }
+    @media (max-width: 980px) {
+      .shell { grid-template-columns: 1fr; }
+      .side { position: static; }
+      .workspace { grid-template-columns: 1fr; }
+      .enterprise-layout { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .main { padding: 18px 14px 28px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .actions { width: 100%; flex-wrap: wrap; }
+      .panel { overflow-x: auto; }
+      table { min-width: 720px; }
+      .side { padding: 16px; }
+      .nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    .view-section.workspace.active { display: grid; }
+    .view-section.enterprise-layout.active { display: grid; }
+    .main { min-width: 0; }
+    @media (max-width: 760px) {
+      .shell { display: block; }
+      .side { position: sticky; top: 0; z-index: 20; padding: 10px 12px; box-shadow: 0 4px 16px rgba(0,55,96,.18); }
+      .brand { margin: 0 0 9px; gap: 8px; }
+      .logo-image { width: 34px; height: 34px; }
+      .brand h1 { font-size: 15px; }
+      .nav { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav-item { flex: 0 0 auto; height: 36px; padding: 0 12px; font-size: 13px; white-space: nowrap; }
+      .nav-item:not([data-view]) { display: none; }
+      .main { padding: 16px 12px 28px; }
+      .topbar { margin-bottom: 14px; gap: 13px; }
+      .topbar h2 { font-size: 22px; }
+      .topbar p { line-height: 1.55; }
+      .actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .btn { min-height: 42px; }
+      .stats { gap: 9px; margin-bottom: 12px; }
+      .stat { padding: 14px; }
+      .stat strong { font-size: 22px; }
+      .view-section.workspace.active,
+      .view-section.enterprise-layout.active { display: block; }
+      .view-section.active > .panel,
+      .view-section.active > aside { margin-bottom: 12px; }
+      .panel { border-radius: 12px; overflow: hidden; }
+      .panel-head { align-items: stretch; flex-direction: column; padding: 14px; }
+      .filters { display: grid; grid-template-columns: 1fr; }
+      .filters input, .filters select { width: 100%; height: 42px; }
+      table, tbody { display: block; width: 100%; min-width: 0; }
+      thead { display: none; }
+      tr { display: block; margin: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+      td { display: block; padding: 5px 0; border: 0; font-size: 14px; }
+      td[colspan] { padding: 30px 8px !important; }
+      .thumb { width: 64px; height: 64px; }
+      .row-actions { margin-top: 7px; padding-top: 9px; border-top: 1px solid #edf3f6; flex-wrap: wrap; }
+      .link { min-height: 36px; padding: 0 9px; border-radius: 7px; background: #edf7fc; }
+      .form { padding: 14px; }
+      .field input, .field select, .field textarea { min-height: 44px; font-size: 16px; }
+      .upload { height: 108px; }
+      .editor-drawer { width: 100vw; }
+    }
+  </style>
+</head>
+<body>
+  <section class="login-screen" id="loginScreen">
+    <form class="login-card" id="loginForm">
+      <div class="login-brand"><img src="brand-logo.jpg" alt=""><div><h2>心爱自然甄选</h2><p>网页管理后台</p></div></div>
+      <div class="field"><label>管理员账号</label><input name="username" autocomplete="username" required placeholder="请输入管理员账号"></div>
+      <div class="field"><label>登录密码</label><input name="password" type="password" autocomplete="current-password" required placeholder="请输入登录密码"></div>
+      <div class="login-error" id="loginError"></div>
+      <button class="btn primary" type="submit" style="width:100%">登录后台</button>
+    </form>
+  </section>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand"><img class="logo-image" src="brand-logo.jpg" alt=""><h1>心爱自然甄选<br>管理后台</h1></div>
+      <nav class="nav">
+        <div class="nav-item active" data-view="products">商品管理</div>
+        <div class="nav-item" data-view="enterprises">企业专区管理</div>
+        <div class="nav-item" data-view="travel">商旅服务管理</div>
+        <div class="nav-item" data-view="orders">订单管理</div>
+        <div class="nav-item" data-view="admins" id="adminNav" style="display:none">管理员账号</div>
+        <div class="nav-item">7 个商品分类</div>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h2>商品上架后台</h2>
+          <p>电脑端完整编辑，手机端也可管理商品；商品数据与小程序使用同一个云数据库。</p>
+        </div>
+        <div class="actions">
+          <button class="btn" id="connect" type="button">未登录</button>
+          <button class="btn" id="changePassword" type="button">修改密码</button>
+          <button class="btn" id="logout" type="button">退出登录</button>
+          <button class="btn primary" id="newProduct">新增商品</button>
+          <button class="btn primary" id="newEnterprise" style="display:none">新增企业</button>
+        </div>
+      </header>
+
+      <section class="stats">
+        <div class="stat"><span>商品总数</span><strong id="totalCount">0</strong></div>
+        <div class="stat"><span>已上架商品</span><strong id="liveCount">0</strong></div>
+        <div class="stat"><span>待补库存</span><strong id="lowCount">0</strong></div>
+        <div class="stat"><span>连接状态</span><strong id="connectionState" style="font-size:16px">未连接</strong></div>
+      </section>
+
+      <section id="productsView" class="view-section active workspace">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">商品列表</div>
+            <div class="filters">
+              <input id="search" value="" placeholder="搜索商品名称">
+              <select id="categoryFilter"><option>全部分类</option></select>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr><th>商品</th><th>分类</th><th>价格</th><th>库存</th><th>状态</th><th>操作</th></tr>
+            </thead>
+            <tbody id="productRows"><tr><td colspan="6" style="text-align:center;color:#6f8290;padding:50px">连接后台后显示商品</td></tr></tbody>
+          </table>
+        </div>
+
+        <aside class="panel editor-drawer" id="productEditor">
+          <div class="panel-head"><div class="panel-title" id="formTitle">新增商品</div><button class="drawer-close" id="closeProductEditor" type="button">×</button></div>
+          <form class="form" id="productForm">
+            <input type="hidden" name="id">
+            <div class="field"><label>商品名称</label><input name="name" required></div>
+            <div class="form-grid">
+              <div class="field"><label>分类</label><select name="category" id="categorySelect"></select></div>
+              <div class="field"><label>规格</label><input name="spec" placeholder="如 500g"></div>
+            </div>
+            <div class="form-grid">
+              <div class="field"><label>售价</label><input name="price" type="number" min="0" step="0.01" required></div>
+              <div class="field"><label>库存</label><input name="stock" type="number" min="0" step="1" required></div>
+            </div>
+            <div class="field"><label>多规格（可选）</label><div class="notice">每行一个颜色／尺码／包装组合。单件、10件装分别填整份售价与可售份数；10件装库存1代表1包。无规格商品留空。保存后列表价格取最低价、库存为各规格之和。</div><div id="skuRows"></div><button type="button" class="btn" onclick="addSkuRow()">＋ 添加规格组合</button></div><div class="field"><label>商品卖点</label><textarea name="desc"></textarea></div>
+            <div class="field"><label>商品详情</label><textarea name="detail"></textarea></div>
+            <div class="field"><label>商品主图（列表与顶部轮播）</label><input type="file" id="imageFile" accept="image/png,image/jpeg,image/webp" multiple><input type="hidden" name="image"><input type="hidden" name="images" value="[]"><div class="upload" id="uploadState">上传 1–9 张正方形主图，可左右调整顺序</div><div id="productImagePreview" class="visual-images"></div><div class="notice" style="margin-top:10px"><strong>主图规范：</strong>建议1000×1000px；仅主图要求1:1；第1张作为商品列表封面，可调整顺序。</div></div>
+            <div class="field"><label>商品详情图（允许长图，可与主图重复）</label><input type="file" id="detailImageFile" accept="image/png,image/jpeg,image/webp" multiple><input type="hidden" name="detailImages" value="[]"><div class="upload" id="detailUploadState">上传 1–12 张横图、竖图或长图</div><div id="detailImagePreview" class="visual-images"></div></div>
+            <div class="field"><label>状态</label><select name="status"><option value="draft">草稿/下架</option><option value="published">已上架</option></select></div>
+            <button class="btn primary" type="submit" style="width:100%">保存商品</button>
+            <div class="notice" id="notice">请先点击“连接云后台”，填写 HTTP 网关地址和管理员令牌。</div>
+          </form>
+        </aside>
+      </section>
+
+      <section id="enterprisesView" class="view-section enterprise-layout">
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">企业资料列表</div><div class="filters"><input id="enterpriseSearch" placeholder="搜索企业名称"></div></div>
+          <table><thead><tr><th>企业</th><th>联系人</th><th>联系电话</th><th>状态</th><th>操作</th></tr></thead><tbody id="enterpriseRows"><tr><td colspan="5" style="text-align:center;color:#6f8290;padding:50px">连接后台后显示企业资料</td></tr></tbody></table>
+        </div>
+        <aside class="panel editor-drawer" id="enterpriseEditor">
+          <div class="panel-head"><div class="panel-title" id="enterpriseFormTitle">新增企业</div><button class="drawer-close" id="closeEnterpriseEditor" type="button">×</button></div>
+          <form class="form enterprise-form" id="enterpriseForm">
+            <input type="hidden" name="id"><input type="hidden" name="coverImage"><input type="hidden" name="introImages" value="[]">
+            <input type="hidden" name="kind" value="enterprise"><div class="field"><label>企业名称</label><input name="name" required></div>
+            <div class="field"><label>企业简介</label><textarea name="summary" placeholder="用于企业列表中的简短介绍"></textarea></div>
+            <div class="field"><label>企业详细介绍</label><textarea name="description" placeholder="支持多段文字介绍"></textarea></div>
+            <div class="field"><label>企业封面图</label><input type="file" id="enterpriseImageFile" accept="image/png,image/jpeg,image/webp"><div class="upload" id="enterpriseUploadState">选择封面图后自动压缩上传</div><div id="enterpriseCoverPreview" class="visual-images"></div></div>
+            <div class="field"><label>企业详情图片（可多选）</label><input type="file" id="enterpriseIntroFiles" accept="image/png,image/jpeg,image/webp" multiple><div class="upload" id="enterpriseIntroState">最多上传 12 张，可预览、排序和删除</div><div id="enterpriseIntroPreview" class="visual-images"></div></div>
+            <div class="form-grid"><div class="field"><label>联系人</label><input name="contactName"></div><div class="field"><label>联系电话</label><input name="phone" inputmode="tel"></div></div>
+            <div class="field"><label>微信号</label><input name="wechat"></div><div class="field"><label>企业地址</label><textarea name="address"></textarea></div>
+            <div class="form-grid"><div class="field"><label>状态</label><select name="status"><option value="draft">草稿/隐藏</option><option value="published">发布展示</option></select></div><div class="field"><label>排序</label><input name="sort" type="number" value="100"></div></div>
+            <button class="btn primary" type="submit" style="width:100%">保存企业资料</button>
+          </form>
+        </aside>
+      </section>
+
+      <section id="ordersView" class="view-section">
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">订单管理</div><div class="actions"><select id="orderStatusFilter"><option value="all">全部状态</option><option value="created">待支付</option><option value="paid">已支付/待发货</option><option value="shipping">已发货/待收货</option><option value="completed">已完成</option><option value="cancelled">已取消</option><option value="after_sale">售后处理中</option><option value="refund_pending">退款处理中</option><option value="refunded">已退款</option></select><input id="orderSearch" placeholder="订单号/姓名/手机号"><button class="btn" onclick="loadOrders()">刷新</button><button class="btn" onclick="exportOrders()">导出订单</button></div></div>
+          <div style="overflow-x:auto"><table><thead><tr><th>订单号/时间</th><th>商品</th><th>金额</th><th>订单状态</th><th>收货信息</th><th>物流状态</th><th>操作人</th><th>操作</th></tr></thead><tbody id="orderRows"><tr><td colspan="8" style="text-align:center;color:#6f8290;padding:50px">连接后台后显示订单</td></tr></tbody></table></div>
+        </div>
+      </section>
+
+      <section id="adminsView" class="view-section">
+        <div class="panel">
+          <div class="panel-head"><div><div class="panel-title">管理员账号管理</div><div class="desc">密码采用加密保存，不能查看旧密码；超级管理员可重置普通管理员密码或停用账号。</div></div><button class="btn" onclick="loadAdminUsers()">刷新</button></div>
+          <div style="overflow-x:auto"><table><thead><tr><th>用户名</th><th>权限</th><th>密码状态</th><th>账号状态</th><th>最近登录</th><th>操作</th></tr></thead><tbody id="adminRows"><tr><td colspan="6" style="text-align:center;color:#6f8290;padding:50px">仅超级管理员可查看</td></tr></tbody></table></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="config.js"></script>
+  <script>
+    const categories=["服装","食品","文创","百货","办公用品","电器","建材"];
+    let directoryMode="enterprise";
+    const directoryName=()=>directoryMode==="travel"?"商旅":"企业";
+    const directoryApi=(action,payload={})=>api(directoryMode==="travel"?action.replace("enterprise","travel"):action,payload);
+    let products=[],enterprises=[],orders=[],adminUsers=[],currentUser=null,productImageItems=[],productDetailImageItems=[],enterpriseCoverItems=[],enterpriseIntroItems=[];
+    const $=s=>document.querySelector(s);
+    const config=()=>({url:(window.XAZR_ADMIN_CONFIG&&window.XAZR_ADMIN_CONFIG.apiUrl)||"",token:localStorage.getItem("xazr_session_token")||""});
+    async function api(action,payload={}){const c=config();if(!c.url||!c.token)throw new Error("请先登录后台");let r;try{r=await fetch(c.url,{method:"POST",headers:{"content-type":"application/json","authorization":`Bearer ${c.token}`},body:JSON.stringify({action,...payload})})}catch(error){throw new Error("无法连接云后台，请检查网络或重新部署 productAdmin 云函数")}let d;try{d=await r.json()}catch(error){throw new Error(`云后台返回异常（HTTP ${r.status}）`)}if(r.status===401){localStorage.removeItem("xazr_session_token");$("#loginScreen").classList.remove("hidden")}if(!r.ok||!d.ok)throw new Error(d.error||`请求失败（HTTP ${r.status}）`);return d}
+    async function loginRequest(username,password){const r=await fetch(config().url,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({action:"login",username,password})});const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||"登录失败");return d}
+    function message(text){$("#notice").textContent=text}
+    function render(){const key=$("#search").value.trim();const category=$("#categoryFilter").value;const rows=products.filter(p=>(!key||p.name.includes(key))&&(category==="全部分类"||p.category===category));$("#productRows").innerHTML=rows.length?rows.map(p=>`<tr><td><div class="product-cell"><img class="thumb" src="${p.displayImage||p.image||''}"><div><div class="name">${p.name}</div><div class="desc">${p.desc||p.spec||''}</div></div></div></td><td><span class="tag">${p.category}</span></td><td>¥${Number(p.price).toFixed(2)}</td><td><span class="tag ${Number(p.stock)<10?'off':'on'}">${p.stock||0}${Number(p.stock)<10?' · 库存不足':''}</span></td><td><span class="tag ${p.status==='published'?'on':'off'}">${p.status==='published'?'已上架':'草稿'}</span></td><td><div class="row-actions"><button class="link" onclick="adjustInventory('${p._id}')">入库/盘点</button><button class="link" onclick="edit('${p._id}')">编辑</button><button class="link" onclick="toggle('${p._id}')">${p.status==='published'?'下架':'上架'}</button><button class="link" onclick="removeProduct('${p._id}')">删除</button></div></td></tr>`).join(''):`<tr><td colspan="6" style="text-align:center;color:#6f8290;padding:50px">暂无符合条件的商品</td></tr>`;$("#totalCount").textContent=products.length;$("#liveCount").textContent=products.filter(p=>p.status==='published').length;$("#lowCount").textContent=products.filter(p=>Number(p.stock)<10).length}
+    async function load(){const d=await api("list");products=d.products||[];render();$("#connectionState").textContent="已连接";message("商品数据已从云数据库加载")}
+    function renderEnterprises(){const key=$("#enterpriseSearch").value.trim();const rows=enterprises.filter(e=>!key||e.name.includes(key));$("#enterpriseRows").innerHTML=rows.length?rows.map(e=>`<tr><td><div class="product-cell"><img class="thumb" src="${e.displayImage||e.coverImage||''}"><div><div class="name">${e.name}</div><div class="desc">${e.summary||''}</div></div></div></td><td>${e.contactName||'-'}</td><td>${e.phone||'-'}</td><td><span class="tag ${e.status==='published'?'on':'off'}">${e.status==='published'?'已发布':'草稿'}</span></td><td><div class="row-actions"><button class="link" onclick="editEnterprise('${e._id}')">编辑</button><button class="link" onclick="toggleEnterprise('${e._id}')">${e.status==='published'?'隐藏':'发布'}</button><button class="link" onclick="removeEnterprise('${e._id}')">删除</button></div></td></tr>`).join(''):`<tr><td colspan="5" style="text-align:center;color:#6f8290;padding:50px">暂无资料，请在当前专区新增</td></tr>`}
+    async function loadEnterprises(){const mode=directoryMode;const d=await directoryApi("enterpriseList");if(mode!==directoryMode)return;enterprises=(d.enterprises||[]).filter(item=>mode==="travel"?["hotel","travel"].includes(item.kind):!["hotel","travel"].includes(item.kind));renderEnterprises();message(directoryName()+"资料已加载")}
+    function orderStatus(status){return {created:"待支付",prepay_created:"待支付",notpay:"待支付",paid:"已支付/待发货",shipping:"已发货/待收货",completed:"已完成",cancelled:"已取消",after_sale:"售后处理中",refund_pending:"退款处理中",refunded:"已退款"}[status]||status}
+    function orderAddress(o){const a=o.address||{};return [a.provinceName,a.cityName,a.countyName,a.detailInfo].filter(Boolean).join('')}
+    function orderTime(value){if(!value)return '-';const date=value.$date?new Date(value.$date):new Date(value);return Number.isNaN(date.getTime())?'-':date.toLocaleString('zh-CN',{hour12:false})}
+    function filteredOrders(){const status=$("#orderStatusFilter").value,key=$("#orderSearch").value.trim().toLowerCase();return orders.filter(o=>(status==='all'||(status==='created'?['created','prepay_created','notpay'].includes(o.status):o.status===status))&&(!key||[o.outTradeNo,o._id,o.address&&o.address.userName,o.address&&o.address.telNumber].some(v=>String(v||'').toLowerCase().includes(key))))}
+    function renderOrders(){const rows=filteredOrders();$("#orderRows").innerHTML=rows.length?rows.map(o=>{const canRefund=['paid','shipping','completed','after_sale'].includes(o.status),canDelete=['created','prepay_created','notpay','cancelled','completed','refunded'].includes(o.status);return `<tr><td><div class="name">${o.outTradeNo||o._id}</div><div class="desc">${orderTime(o.createdAt)}</div></td><td>${(o.items||[]).map(i=>`${i.name} × ${i.quantity}`).join('<br>')}</td><td>¥${(Number(o.amount||0)/100).toFixed(2)}</td><td><span class="tag ${['paid','shipping','completed','refunded'].includes(o.status)?'on':'off'}">${orderStatus(o.status)}</span>${o.refundReason?`<div class="desc">${o.refundReason}</div>`:''}</td><td><div class="name">${o.address&&o.address.userName||'-'} ${o.address&&o.address.telNumber||''}</div><div class="desc">${orderAddress(o)||'未填写地址'}</div></td><td>${o.fulfillmentType==='no_shipping'?'无需物流':o.trackingNo?`已发货<br>${o.shippingCompany||'快递'} ${o.trackingNo}`:(o.status==='paid'?'待发货':'-')}</td><td>${o.lastOperator||'-'}<div class="desc">${o.lastOperation||''}</div></td><td><div class="row-actions">${o.status==='paid'?`<button class="link" onclick="shipOrder('${o._id}')">录入发货</button><button class="link" onclick="finishNoShipping('${o._id}')">无需物流</button>`:''}${canRefund?`<button class="link" onclick="requestRefund('${o._id}')">登记退款</button>`:''}${o.status==='refund_pending'?`<button class="link" onclick="markRefunded('${o._id}')">确认已退款</button>`:''}${canDelete?`<button class="link" onclick="deleteOrder('${o._id}')">删除</button>`:''}</div></td></tr>`}).join(''):`<tr><td colspan="8" style="text-align:center;color:#6f8290;padding:50px">暂无符合条件的订单</td></tr>`}
+    async function loadOrders(){const d=await api("orders");orders=d.orders||[];renderOrders();message("订单数据已刷新")}
+    async function shipOrder(id){const company=prompt("请输入快递公司");if(!company)return;const trackingNo=prompt("请输入快递单号");if(!trackingNo)return;await api("orderShip",{id,company,trackingNo});await loadOrders()}
+    async function finishNoShipping(id){if(!confirm("确认该订单无需物流并直接完成吗？"))return;await api("orderNoShipping",{id});await loadOrders()}
+    async function deleteOrder(id){if(!confirm("确认从后台删除该订单吗？系统会保留审计记录。"))return;await api("orderDelete",{id});await loadOrders()}
+    async function requestRefund(id){const reason=prompt("请输入退款原因");if(!reason)return;if(!confirm("此操作只登记为“退款处理中”。请随后在微信支付商户平台实际发起退款。"))return;await api("orderRefundRequest",{id,reason});await loadOrders()}
+    async function markRefunded(id){const reference=prompt("请输入微信支付退款单号或处理备注");if(!reference)return;if(!confirm("请确认微信支付商户平台已经实际退款到账。"))return;await api("orderMarkRefunded",{id,reference});await loadOrders()}
+    function csvCell(value){return `"${String(value??'').replace(/"/g,'""')}"`}
+    function exportOrders(){const header=['订单号','下单时间','商品','金额','订单状态','收货人','手机号','收货地址','物流公司','物流单号','物流状态','操作人','最近操作','退款原因','退款凭据'];const data=filteredOrders().map(o=>[o.outTradeNo||o._id,orderTime(o.createdAt),(o.items||[]).map(i=>`${i.name}×${i.quantity}`).join(';'),(Number(o.amount||0)/100).toFixed(2),orderStatus(o.status),o.address&&o.address.userName||'',o.address&&o.address.telNumber||'',orderAddress(o),o.shippingCompany||'',o.trackingNo||'',o.fulfillmentType==='no_shipping'?'无需物流':o.trackingNo?'已发货':o.status==='paid'?'待发货':'',o.lastOperator||'',o.lastOperation||'',o.refundReason||'',o.refundReference||'']);const csv='\ufeff'+[header,...data].map(row=>row.map(csvCell).join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=`心爱自然订单-${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(a.href);message(`已导出 ${data.length} 条订单`)}
+    async function cleanTestOrders(){if(!confirm("只删除标记为支付测试的订单，确定继续吗？"))return;const d=await api("cleanTestOrders");await loadOrders();message(`已清理 ${d.removed||0} 条测试订单`)}
+    function renderAdminUsers(){const rows=adminUsers;$("#adminRows").innerHTML=rows.length?rows.map(user=>`<tr><td><div class="name">${user.username}</div></td><td>${user.role==='super'?'超级管理员':'普通管理员'}</td><td>${user.mustChangePassword?'初始/重置密码，登录后应修改':'已自行修改'}</td><td><span class="tag ${user.disabled?'off':'on'}">${user.disabled?'已停用':'正常'}</span></td><td>${orderTime(user.lastLoginAt)}</td><td><div class="row-actions">${user.role!=='super'?`<button class="link" onclick="resetAdminPassword('${user.username}')">重置密码</button><button class="link" onclick="toggleAdmin('${user.username}')">${user.disabled?'启用':'停用'}</button>`:'请在右上角修改本人密码'}</div></td></tr>`).join(''):`<tr><td colspan="6" style="text-align:center;color:#6f8290;padding:50px">暂无管理员账号</td></tr>`}
+    async function loadAdminUsers(){if(!currentUser||currentUser.role!=='super')return message("仅超级管理员可管理账号");const d=await api("adminUsers");adminUsers=d.users||[];renderAdminUsers()}
+    async function resetAdminPassword(username){const newPassword=prompt(`请输入 ${username} 的新密码（至少6位）`,`123456`);if(!newPassword)return;if(!confirm(`确认重置 ${username} 的登录密码吗？`))return;try{await api("adminResetPassword",{username,newPassword});await loadAdminUsers();message(`${username} 的密码已重置`)}catch(err){message(err.message)}}
+    async function toggleAdmin(username){const user=adminUsers.find(item=>item.username===username);if(!user)return;if(!confirm(`确认${user.disabled?'启用':'停用'} ${username} 吗？`))return;try{await api("adminToggle",{username});await loadAdminUsers();message(`${username} 已${user.disabled?'启用':'停用'}`)}catch(err){message(err.message)}}
+    function applyCurrentUser(user){currentUser=user;$("#connect").textContent=user.username;$("#adminNav").style.display=user.role==='super'?'':'none'}
+    function logout(){localStorage.removeItem("xazr_session_token");currentUser=null;adminUsers=[];$("#loginForm").reset();$("#loginError").textContent="";$("#loginScreen").classList.remove("hidden")}
+    function openProductEditor(){$("#productEditor").classList.add("open")}
+    function closeProductEditor(){$("#productEditor").classList.remove("open")}
+    function imageCard(item,index,total,label,moveName,removeName){return `<div class="visual-image"><img src="${item.preview||''}"><div class="desc" style="margin:6px 0;text-align:center">${label}</div><div class="row-actions" style="justify-content:center"><button type="button" class="link" onclick="${moveName}(${index},-1)" ${index===0?'disabled':''}>左移/上移</button><button type="button" class="link" onclick="${moveName}(${index},1)" ${index===total-1?'disabled':''}>右移/下移</button><button type="button" class="link" onclick="${removeName}(${index})">删除</button></div></div>`}
+    function syncProductImages(){const f=$("#productForm"),ids=productImageItems.map(item=>item.fileID),detailIds=productDetailImageItems.map(item=>item.fileID);f.elements.image.value=ids[0]||"";f.elements.images.value=JSON.stringify(ids);f.elements.detailImages.value=JSON.stringify(detailIds);$("#uploadState").textContent=ids.length?`已上传 ${ids.length} 张主图，第1张为封面`:`上传 1–9 张正方形主图`;$("#detailUploadState").textContent=detailIds.length?`已上传 ${detailIds.length} 张详情图`:`上传 1–12 张横图、竖图或长图`;renderProductImages()}
+    function renderProductImages(){$("#productImagePreview").innerHTML=productImageItems.map((item,index)=>imageCard(item,index,productImageItems.length,index===0?'列表封面':`主图 ${index+1}`,'moveProductImage','removeProductImage')).join('');$("#detailImagePreview").innerHTML=productDetailImageItems.map((item,index)=>imageCard(item,index,productDetailImageItems.length,`详情图 ${index+1}`,'moveDetailImage','removeDetailImage')).join('')}
+    function moveProductImage(index,direction){const target=index+direction;if(target<0||target>=productImageItems.length)return;[productImageItems[index],productImageItems[target]]=[productImageItems[target],productImageItems[index]];syncProductImages()}
+    function setMainProductImage(index){const item=productImageItems.splice(index,1)[0];productImageItems.unshift(item);syncProductImages()}
+    function removeProductImage(index){productImageItems.splice(index,1);syncProductImages()}
+    function moveDetailImage(index,direction){const target=index+direction;if(target<0||target>=productDetailImageItems.length)return;[productDetailImageItems[index],productDetailImageItems[target]]=[productDetailImageItems[target],productDetailImageItems[index]];syncProductImages()}
+    function removeDetailImage(index){productDetailImageItems.splice(index,1);syncProductImages()}
+    function addSkuRow(sku={}) {
+      const row=document.createElement("div"); row.className="form-grid"; row.style.cssText="border-bottom:1px solid #ddd;padding:12px 0";
+      row.dataset.id=sku.id||("sku-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8));
+      for(const [key,label] of [["color","颜色/款式"],["size","尺码/型号"],["pack","包装，如单件/10件装"],["price","整份售价"],["stock","可售份数"]]) {
+        const field=document.createElement("label");field.textContent=label;
+        const input=document.createElement("input");input.dataset.sku=key;input.value=sku[key]??"";
+        if(key==="price"||key==="stock"){input.type="number";input.min=key==="price"?"0.01":"0";input.step=key==="price"?"0.01":"1";input.required=true;}
+        input.oninput=updateSkuTotals;field.appendChild(input);row.appendChild(field);
+      }
+      const remove=document.createElement("button");remove.type="button";remove.textContent="删除此规格";remove.onclick=()=>{row.remove();updateSkuTotals();};row.appendChild(remove);$("#skuRows").appendChild(row);updateSkuTotals();
+    }
+    function updateSkuTotals(){const skus=readSkus(),f=$("#productForm");if(skus.length){f.elements.price.value=Math.min(...skus.map(s=>Number(s.price)||0));f.elements.stock.value=skus.reduce((sum,s)=>sum+(Number(s.stock)||0),0);}}
+    function readSkus(){return [...$("#skuRows").children].map(row=>{const sku={id:row.dataset.id};row.querySelectorAll("[data-sku]").forEach(input=>sku[input.dataset.sku]=input.value.trim());return sku;});}
+    function resetForm(){$("#skuRows").replaceChildren();$("#productForm").reset();const f=$("#productForm");f.elements.id.value="";productImageItems=[];productDetailImageItems=[];syncProductImages();$("#formTitle").textContent="新增商品"}
+    function edit(id){const p=products.find(x=>x._id===id),f=$("#productForm");$("#skuRows").replaceChildren();(p.skus||[]).forEach(addSkuRow);for(const name of ["id","name","category","spec","price","stock","desc","detail","image","status"])if(f.elements[name])f.elements[name].value=name==='id'?p._id:(p[name]??'');const ids=(p.images&&p.images.length?p.images:[p.image]).filter(Boolean),previews=(p.displayImages&&p.displayImages.length?p.displayImages:[p.displayImage]),detailIds=(p.detailImages||[]).filter(Boolean),detailPreviews=p.displayDetailImages||[];productImageItems=ids.map((fileID,index)=>({fileID,preview:previews[index]||previews[0]||''}));productDetailImageItems=detailIds.map((fileID,index)=>({fileID,preview:detailPreviews[index]||''}));syncProductImages();$("#formTitle").textContent="编辑商品";openProductEditor()}
+    async function toggle(id){const p=products.find(x=>x._id===id);await api("toggle",{id,status:p.status==='published'?"draft":"published"});await load()}
+    async function adjustInventory(id){const p=products.find(x=>x._id===id);const value=prompt(`请输入“${p.name}”盘点后的实际库存`,String(p.stock||0));if(value===null)return;const stock=Number(value);if(!Number.isInteger(stock)||stock<0)return message("库存必须是大于等于0的整数");const reason=prompt("请输入调整原因（如：采购入库、盘点修正）","采购入库")||"后台库存调整";await api("inventoryAdjust",{id,stock,reason});await load();message(`库存已更新为 ${stock}`)}
+    async function removeProduct(id){if(confirm("确定删除这个商品吗？")){await api("remove",{id});await load()}}
+    function openEnterpriseEditor(){$("#enterpriseEditor").classList.add("open")}
+    function closeEnterpriseEditor(){$("#enterpriseEditor").classList.remove("open")}
+    function syncEnterpriseImages(){const f=$("#enterpriseForm");f.elements.coverImage.value=enterpriseCoverItems[0]?.fileID||"";f.elements.introImages.value=JSON.stringify(enterpriseIntroItems.map(item=>item.fileID));$("#enterpriseUploadState").textContent=enterpriseCoverItems.length?'企业封面图已上传':'选择封面图后自动压缩上传';$("#enterpriseIntroState").textContent=enterpriseIntroItems.length?`已上传 ${enterpriseIntroItems.length} 张详情图`:'最多上传 12 张，可预览、排序和删除';$("#enterpriseCoverPreview").innerHTML=enterpriseCoverItems.map((item,index)=>imageCard(item,index,1,'企业封面','moveEnterpriseCover','removeEnterpriseCover')).join('');$("#enterpriseIntroPreview").innerHTML=enterpriseIntroItems.map((item,index)=>imageCard(item,index,enterpriseIntroItems.length,`详情图 ${index+1}`,'moveEnterpriseIntro','removeEnterpriseIntro')).join('')}
+    function moveEnterpriseCover(){}
+    function removeEnterpriseCover(){enterpriseCoverItems=[];syncEnterpriseImages()}
+    function moveEnterpriseIntro(index,direction){const target=index+direction;if(target<0||target>=enterpriseIntroItems.length)return;[enterpriseIntroItems[index],enterpriseIntroItems[target]]=[enterpriseIntroItems[target],enterpriseIntroItems[index]];syncEnterpriseImages()}
+    function removeEnterpriseIntro(index){enterpriseIntroItems.splice(index,1);syncEnterpriseImages()}
+    function resetEnterpriseForm(){$("#enterpriseForm").reset();$("#enterpriseForm").elements.id.value="";enterpriseCoverItems=[];enterpriseIntroItems=[];syncEnterpriseImages();$("#enterpriseForm").elements.kind.value=directoryMode;$("#enterpriseFormTitle").textContent="新增"+directoryName()}
+    function editEnterprise(id){const e=enterprises.find(x=>x._id===id),f=$("#enterpriseForm");for(const name of ["id","name","kind","summary","description","coverImage","contactName","phone","wechat","address","status","sort"])if(f.elements[name])f.elements[name].value=name==='id'?e._id:(e[name]??'');enterpriseCoverItems=e.coverImage?[{fileID:e.coverImage,preview:e.displayImage||e.coverImage}]:[];enterpriseIntroItems=(e.introImages||[]).map((fileID,index)=>({fileID,preview:(e.displayIntroImages||[])[index]||''}));syncEnterpriseImages();$("#enterpriseFormTitle").textContent="编辑"+directoryName();openEnterpriseEditor()}
+    async function toggleEnterprise(id){const e=enterprises.find(x=>x._id===id);await directoryApi("enterpriseToggle",{id,status:e.status==='published'?"draft":"published"});await loadEnterprises()}
+    async function removeEnterprise(id){if(confirm("确定删除这家企业资料吗？")){await directoryApi("enterpriseRemove",{id});await loadEnterprises()}}
+    function switchView(view){const product=view==='products',enterprise=view==='enterprises'||view==='travel',order=view==='orders',admins=view==='admins';if(admins&&(!currentUser||currentUser.role!=='super'))return message("仅超级管理员可管理账号");$("#productsView").classList.toggle("active",product);$("#enterprisesView").classList.toggle("active",enterprise);$("#ordersView").classList.toggle("active",order);$("#adminsView").classList.toggle("active",admins);$("#newProduct").style.display=product?'':'none';$("#newEnterprise").style.display=enterprise?'':'none';document.querySelectorAll(".nav-item[data-view]").forEach(item=>item.classList.toggle("active",item.dataset.view===view));if(enterprise){closeEnterpriseEditor();directoryMode=view==='travel'?'travel':'enterprise';enterprises=[];renderEnterprises();$("#newEnterprise").textContent="新增"+directoryName();$("#enterprisesView .panel-title").textContent=directoryName()+"资料列表";$("#enterprisesView thead th").textContent=directoryName();$("#enterpriseSearch").placeholder="搜索"+directoryName()+"名称";$("#enterpriseForm").querySelectorAll("label").forEach(label=>label.textContent=label.textContent.replace(/企业|商旅/g,directoryName()));$("#enterpriseForm button[type=submit]").textContent="保存"+directoryName()+"资料";resetEnterpriseForm();}if(enterprise)loadEnterprises().catch(e=>message(e.message));else if(order)loadOrders().catch(e=>message(e.message));else if(admins)loadAdminUsers().catch(e=>message(e.message));else load().catch(e=>message(e.message))}
+    $("#loginForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);$("#loginError").textContent="正在登录…";try{const d=await loginRequest(f.get("username"),f.get("password"));localStorage.setItem("xazr_session_token",d.token);applyCurrentUser(d.user);$("#loginScreen").classList.add("hidden");await load();if(d.user.mustChangePassword)message("当前使用初始密码，建议点击右上角“修改密码”") }catch(err){$("#loginError").textContent=err.message}};
+    $("#connect").onclick=()=>message(currentUser?`当前登录：${currentUser.username}`:"尚未登录");
+    $("#changePassword").onclick=async()=>{if(!config().token)return $("#loginScreen").classList.remove("hidden");const currentPassword=prompt("请输入原密码");if(!currentPassword)return;const newPassword=prompt("请输入新密码（至少6位）");if(!newPassword)return;const confirmPassword=prompt("请再次输入新密码");if(confirmPassword!==newPassword)return message("两次输入的新密码不一致");try{await api("changePassword",{currentPassword,newPassword});message("密码修改成功，请妥善保存新密码")}catch(err){message(err.message)}};
+    $("#logout").onclick=()=>{if(confirm("确认退出管理后台吗？"))logout()};
+    $("#newProduct").onclick=()=>{resetForm();openProductEditor()};$("#closeProductEditor").onclick=closeProductEditor;$("#search").oninput=render;$("#categoryFilter").onchange=render;$("#orderSearch").oninput=renderOrders;$("#orderStatusFilter").onchange=renderOrders;
+    $("#newEnterprise").onclick=()=>{resetEnterpriseForm();openEnterpriseEditor()};$("#closeEnterpriseEditor").onclick=closeEnterpriseEditor;$("#enterpriseSearch").oninput=renderEnterprises;document.querySelectorAll(".nav-item[data-view]").forEach(item=>item.onclick=()=>switchView(item.dataset.view));
+    async function prepareProductImage(file,requireSquare){if(file.size>12*1024*1024)throw new Error(`${file.name} 原图超过12MB`);const url=URL.createObjectURL(file);try{const img=await new Promise((ok,fail)=>{const value=new Image();value.onload=()=>ok(value);value.onerror=()=>fail(new Error(`${file.name} 无法读取`));value.src=url});if(requireSquare&&Math.abs(img.naturalWidth-img.naturalHeight)/Math.max(img.naturalWidth,img.naturalHeight)>.02)throw new Error(`${file.name} 作为主图必须是1:1正方形（当前${img.naturalWidth}×${img.naturalHeight}）`);const maxSide=requireSquare?1000:1400,scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);let quality=.82,dataUrl=canvas.toDataURL('image/jpeg',quality);while(dataUrl.length>420000&&quality>.34){quality-=.08;dataUrl=canvas.toDataURL('image/jpeg',quality)}if(dataUrl.length>520000)throw new Error(`${file.name} 压缩后仍过大，请先缩小图片尺寸`);return dataUrl}finally{URL.revokeObjectURL(url)}}
+    async function uploadDataUrl(dataUrl,folder,onProgress){const comma=dataUrl.indexOf(','),mime=dataUrl.slice(5,dataUrl.indexOf(';')),base64=dataUrl.slice(comma+1),chunkSize=90000,total=Math.ceil(base64.length/chunkSize),uploadId=`${Date.now()}-${Math.random().toString(16).slice(2)}`;let result=null;for(let index=0;index<total;index++){onProgress&&onProgress(index+1,total);result=await api("uploadImageChunk",{uploadId,index,total,chunk:base64.slice(index*chunkSize,(index+1)*chunkSize),mime,folder})}if(!result||!result.fileID)throw new Error("图片分片合并失败");return result}
+    async function uploadFiles(files,target,limit,folder,requireSquare,stateSelector,sync){if(target.length+files.length>limit)throw new Error(`最多上传 ${limit} 张图片`);for(let i=0;i<files.length;i++){document.querySelector(stateSelector).textContent=`正在压缩第 ${i+1}/${files.length} 张…`;const dataUrl=await prepareProductImage(files[i],requireSquare);const d=await uploadDataUrl(dataUrl,folder,(part,total)=>{document.querySelector(stateSelector).textContent=`上传第 ${i+1}/${files.length} 张（分片 ${part}/${total}）…`});target.push({fileID:d.fileID,preview:d.tempURL||dataUrl});sync()}}
+    $("#imageFile").onchange=async e=>{const files=[...e.target.files];if(!files.length)return;try{await uploadFiles(files,productImageItems,9,"products",true,"#uploadState",syncProductImages);message("商品主图上传完成")}catch(err){$("#uploadState").textContent="上传失败："+err.message;message(err.message)}finally{e.target.value=""}};
+    $("#detailImageFile").onchange=async e=>{const files=[...e.target.files];if(!files.length)return;try{await uploadFiles(files,productDetailImageItems,12,"products",false,"#detailUploadState",syncProductImages);message("商品详情图上传完成")}catch(err){$("#detailUploadState").textContent="上传失败："+err.message;message(err.message)}finally{e.target.value=""}};
+    $("#productForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),images=JSON.parse(f.get("images")||"[]"),detailImages=JSON.parse(f.get("detailImages")||"[]");if(!images.length)return message("请至少上传1张商品主图");const product={skus:readSkus(),_id:f.get("id"),name:f.get("name"),category:f.get("category"),spec:f.get("spec"),price:Number(f.get("price")),stock:Number(f.get("stock")),desc:f.get("desc"),detail:f.get("detail"),image:images[0],images,detailImages,status:f.get("status")};try{await api("save",{product});resetForm();closeProductEditor();await load();message("商品已保存并同步到云数据库")}catch(err){message(err.message)}};
+    $("#enterpriseImageFile").onchange=async e=>{const files=[...e.target.files];if(!files.length)return;enterpriseCoverItems=[];try{await uploadFiles(files.slice(0,1),enterpriseCoverItems,1,"enterprises",false,"#enterpriseUploadState",syncEnterpriseImages);message("企业封面图上传完成")}catch(err){$("#enterpriseUploadState").textContent="上传失败："+err.message;message(err.message)}finally{e.target.value=""}};
+    $("#enterpriseIntroFiles").onchange=async e=>{const files=[...e.target.files];if(!files.length)return;try{await uploadFiles(files,enterpriseIntroItems,12,"enterprises",false,"#enterpriseIntroState",syncEnterpriseImages);message("企业详情图片上传完成")}catch(err){$("#enterpriseIntroState").textContent="上传失败："+err.message;message(err.message)}finally{e.target.value=""}};
+    $("#enterpriseForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const enterprise={kind:f.get("kind"),_id:f.get("id"),name:f.get("name"),summary:f.get("summary"),description:f.get("description"),coverImage:f.get("coverImage"),introImages:JSON.parse(f.get("introImages")||"[]"),contactName:f.get("contactName"),phone:f.get("phone"),wechat:f.get("wechat"),address:f.get("address"),status:f.get("status"),sort:Number(f.get("sort"))};try{await directoryApi("enterpriseSave",{enterprise});resetEnterpriseForm();closeEnterpriseEditor();await loadEnterprises();message(directoryName()+"资料已保存到对应专区")}catch(err){message(err.message)}};
+    $("#categorySelect").innerHTML=categories.map(c=>`<option>${c}</option>`).join('');$("#categoryFilter").innerHTML='<option>全部分类</option>'+categories.map(c=>`<option>${c}</option>`).join('');
+    if(config().token){api("me").then(d=>{$("#loginScreen").classList.add("hidden");applyCurrentUser(d.user);return load()}).catch(()=>logout())}
+  </script>
+</body>
+</html>
