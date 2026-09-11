@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="qDBosrvEZbpkMM6gcLawku">
+<head data-page-node-id="Sdf4yD7BkuIvXF1maoiwoo">
+<meta charset="UTF-8" data-page-node-id="iPphPEqvWksK3eRQ1o2aS2">
+<meta name="viewport" content="width=device-width,initial-scale=1" data-page-node-id="EncjTyBJdourn3fNg1VltJ">
+<title>生态文明与发展论坛 · Ecological Civilization &amp; Development Forum</title>
+<meta name="description" content="生态文明与发展论坛一年一届、长期举办。第一届于 2026 年 10 月 3 日至 6 日在中国长春举行，主题为「共建生态文明——探索人类文明发展新格局」。" data-page-node-id="BY4yvkjJfprOf8j51KPOot">
+<meta name="theme-color" content="#0A3D63" data-page-node-id="jcFHUTq7YAGcgKIgCpQ1DQ">
+<style>
+/* ============================================================
+   生态文明与发展论坛 · 官网样式
+   设计体系：White Paper + Deep Navy Weight + UN Blue Accent
+   版式：常驻左侧目录（Rail）+ 右侧文档栏（Document Grid）
+   ============================================================ */
+
+:root{
+  /* 色彩令牌 —— 深海军蓝层 */
+  --ink:#062A42;
+  --navy:#0A3D63;
+  --navy-2:#0E4E7C;
+  --navy-3:#1470A8;
+
+  /* 联合国蓝层（点睛色，不铺面） */
+  --un:#009EDB;
+  --un-600:#0F6FA8;   /* 白底文字安全色，对比度 5.4:1 */
+  --un-700:#0B5580;
+  --un-100:#D9EDF8;
+  --un-50:#EFF8FC;
+
+  /* 辅助 */
+  --eco:#2E8B6F;
+  --gold:#A98A54;
+
+  /* 中性层 */
+  --paper:#FFFFFF;
+  --stone:#F4F8FA;
+  --stone-2:#EBF1F5;
+  --line:#E3EBF1;
+  --line-2:#C9D8E2;
+  --body:#2B3D4B;
+  --muted:#65798A;
+  --faint:#93A6B4;
+
+  /* 版式 */
+  --sans:"PingFang SC","Microsoft YaHei UI","Microsoft YaHei","Hiragino Sans GB","Source Han Sans SC","Noto Sans SC",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"SF Mono","JetBrains Mono","Consolas","Liberation Mono","Courier New",monospace;
+  --serif:"Songti SC","STSong","SimSun","Source Han Serif SC","Noto Serif SC",serif;
+
+  --wrap:1320px;
+  --gut:clamp(22px,4vw,56px);
+  --rail-w:236px;
+  --r:2px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--body);
+  font-family:var(--sans);font-size:16px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  font-variant-numeric:tabular-nums;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+h1,h2,h3,h4,p,ul,ol,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+
+::selection{background:var(--un-100);color:var(--ink)}
+
+/* ---------- 焦点可见（无障碍） ---------- */
+:focus-visible{outline:2px solid var(--un-600);outline-offset:3px;border-radius:1px}
+
+/* ---------- 跳转链接 ---------- */
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--navy);color:#fff;padding:12px 20px;font-size:14px}
+.skip:focus{left:16px;top:16px}
+
+/* ---------- 通用容器 ---------- */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+
+/* ---------- 阅读进度条 ---------- */
+.progress{position:fixed;left:0;top:0;height:2px;width:0;background:var(--un);z-index:120;transition:width .1s linear}
+
+/* ============================================================
+   1. 顶部工具条
+   ============================================================ */
+.ubar{background:var(--ink);color:#BBD0DE;font-size:12.5px;letter-spacing:.03em}
+.ubar-in{
+  max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);
+  height:38px;display:flex;align-items:center;gap:18px;
+}
+.ubar b{color:#fff;font-weight:500}
+.ubar .dot{width:4px;height:4px;background:var(--un);border-radius:50%;flex:0 0 auto}
+.ubar .sp{margin-left:auto}
+.ubar a{color:#BBD0DE;transition:color .2s}
+.ubar a:hover{color:#fff}
+.ubar .sep{opacity:.35;margin:0 2px}
+
+/* ============================================================
+   2. 主导航
+   ============================================================ */
+.nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--line);transition:box-shadow .3s var(--ease),background .3s}
+.nav.solid{box-shadow:0 1px 16px rgba(10,61,99,.10)}
+.nav-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);height:74px;display:flex;align-items:center;gap:26px}
+
+.brand{display:flex;align-items:center;gap:13px;flex:0 0 auto}
+.brand-mark{color:var(--navy);display:flex;flex:0 0 auto}
+.brand-txt{display:flex;flex-direction:column;line-height:1.25}
+.brand-txt strong{font-size:17.5px;font-weight:650;letter-spacing:.055em;color:var(--ink)}
+.brand-txt em{font-style:normal;font-size:9.5px;letter-spacing:.135em;color:var(--muted);text-transform:uppercase;margin-top:3px}
+
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-links a{
+  position:relative;padding:9px 13px;font-size:14.5px;color:var(--body);
+  letter-spacing:.02em;transition:color .22s;white-space:nowrap;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:13px;right:13px;bottom:2px;height:1.5px;
+  background:var(--un-600);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.nav-links a:hover{color:var(--un-700)}
+.nav-links a:hover::after,.nav-links a.on::after{transform:scaleX(1)}
+.nav-links a.on{color:var(--un-700);font-weight:600}
+.nav-cta{
+  margin-left:12px;background:var(--un-600);color:#fff!important;font-weight:600;
+  padding:10px 22px!important;transition:background .22s,transform .22s var(--ease);
+}
+.nav-cta::after{display:none}
+.nav-cta:hover{background:var(--navy);transform:translateY(-1px)}
+
+.burger{display:none;width:42px;height:42px;border:1px solid var(--line-2);background:none;cursor:pointer;padding:0;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger span{display:block;width:17px;height:1.5px;background:var(--ink);transition:.3s var(--ease)}
+
+/* ============================================================
+   3. HERO —— 左深蓝档案块 + 右白纸信息栏（非对称）
+   ============================================================ */
+.hero{background:var(--paper);overflow:hidden}
+.hero-in{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:640px}
+
+.hero-l{
+  background:linear-gradient(158deg,#062A42 0%,#0A3D63 52%,#0E4E7C 100%);
+  color:#fff;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:78px var(--gut) 70px max(var(--gut),calc((100vw - var(--wrap))/2 + 24px));
+}
+.hero-l svg.hl{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+.hero-eyebrow{
+  position:relative;display:flex;align-items:center;gap:12px;
+  font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#8FC4E4;font-weight:600;
+}
+.hero-eyebrow i{font-style:normal;color:#fff;letter-spacing:.12em;font-weight:600}
+.hero-eyebrow .ln{width:34px;height:1px;background:rgba(255,255,255,.4);flex:0 0 auto}
+
+.hero h1{
+  position:relative;margin-top:26px;
+  font-size:clamp(32px,3.9vw,56px);font-weight:750;letter-spacing:.06em;line-height:1.22;
+}
+.hero .h1-en{
+  position:relative;margin-top:16px;font-size:11.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:#7FB6D6;font-weight:500;line-height:1.7;
+}
+.hero .h1-rule{position:relative;width:64px;height:2px;background:var(--un);margin:30px 0 26px}
+.hero .theme-line{
+  position:relative;font-family:var(--serif);font-size:clamp(16px,1.6vw,21px);
+  letter-spacing:.06em;color:#EAF4FA;line-height:1.85;
+}
+.hero .mission{
+  position:relative;margin-top:12px;font-size:13px;letter-spacing:.22em;
+  color:var(--un);font-weight:600;
+}
+
+/* 倒计时 */
+.count{position:relative;margin-top:38px;display:flex;align-items:flex-end;gap:0}
+.count-label{
+  position:absolute;top:-21px;left:0;font-size:11px;letter-spacing:.16em;
+  color:#7FB6D6;text-transform:uppercase;
+}
+.count-cell{
+  display:flex;align-items:baseline;gap:5px;padding:0 17px;
+  border-left:1px solid rgba(255,255,255,.17);
+}
+.count-cell:first-child{padding-left:0;border-left:none}
+.count-cell b{font-family:var(--mono);font-size:clamp(24px,2.5vw,34px);font-weight:600;letter-spacing:-.01em;color:#fff;line-height:1}
+.count-cell span{font-size:11.5px;color:#8FC4E4;letter-spacing:.06em}
+.count.done .count-cell b{color:#7BD8B4}
+
+.hero-btns{position:relative;margin-top:40px;display:flex;gap:12px;flex-wrap:wrap}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 30px;border-radius:var(--r);font-size:14.5px;font-weight:600;
+  letter-spacing:.04em;cursor:pointer;border:1px solid transparent;
+  transition:all .24s var(--ease);
+}
+.btn-primary{background:var(--un-600);color:#fff}
+.btn-primary:hover{background:#fff;color:var(--navy);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.38)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn svg{flex:0 0 auto}
+
+/* 右栏 —— 白纸 + 规格表 */
+.hero-r{
+  position:relative;background:var(--paper);
+  padding:78px max(var(--gut),calc((100vw - var(--wrap))/2 + 24px)) 70px var(--gut);
+  display:flex;flex-direction:column;justify-content:center;
+  border-left:1px solid var(--line);
+}
+.hero-r .grid-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-year{
+  position:relative;font-family:var(--sans);font-weight:800;
+  font-size:clamp(78px,10.5vw,158px);line-height:.82;letter-spacing:-.045em;
+  color:transparent;-webkit-text-stroke:1.4px var(--line-2);
+  margin-bottom:34px;user-select:none;
+}
+@supports not (-webkit-text-stroke:1px black){.hero-year{color:var(--stone-2)}}
+.hero-year-cap{
+  position:absolute;right:0;bottom:8px;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--faint);font-weight:600;
+}
+
+.spec{position:relative;border-top:1px solid var(--line-2)}
+.spec-row{
+  display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;
+  padding:15px 0;border-bottom:1px solid var(--line);
+}
+.spec-row .sk{
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;padding-top:3px;
+}
+.spec-row .sv{font-size:15px;color:var(--ink);font-weight:600;line-height:1.6}
+.spec-row .sv em{display:block;font-style:normal;font-size:12.5px;font-weight:400;color:var(--muted);margin-top:3px;letter-spacing:.01em}
+
+/* ============================================================
+   4. 文档区 —— 左常驻目录 + 右正文
+   ============================================================ */
+.doc{border-top:1px solid var(--line)}
+.doc-in{
+  max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);
+  display:grid;grid-template-columns:var(--rail-w) minmax(0,1fr);gap:64px;
+  align-items:start;
+}
+
+/* 左侧目录 */
+.rail{position:sticky;top:98px;padding:78px 0 60px}
+.rail-t{
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);
+  font-weight:700;padding-bottom:14px;border-bottom:1px solid var(--line-2);
+}
+.rail ol{margin-top:6px}
+.rail li a{
+  display:flex;align-items:baseline;gap:11px;padding:10px 12px 10px 0;
+  font-size:14px;color:var(--body);border-left:2px solid transparent;
+  margin-left:-2px;padding-left:12px;transition:all .22s var(--ease);
+}
+.rail li a i{
+  font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--faint);
+  letter-spacing:.04em;flex:0 0 auto;transition:color .22s;
+}
+.rail li a:hover{color:var(--navy);background:var(--stone)}
+.rail li a.on{
+  border-left-color:var(--un);color:var(--navy);font-weight:650;background:var(--un-50);
+}
+.rail li a.on i{color:var(--un-600)}
+.rail-box{
+  margin-top:30px;padding:20px;background:var(--stone);border:1px solid var(--line);
+}
+.rail-box p{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.rail-box strong{
+  display:block;margin-top:9px;font-family:var(--mono);font-size:18px;
+  color:var(--navy);font-weight:600;letter-spacing:.01em;
+}
+.rail-box span{display:block;margin-top:5px;font-size:12px;color:var(--muted);line-height:1.6}
+.rail-box a{
+  display:inline-flex;align-items:center;gap:6px;margin-top:14px;
+  font-size:12.5px;font-weight:650;color:var(--un-700);border-bottom:1px solid var(--un-100);padding-bottom:2px;
+}
+.rail-box a:hover{border-bottom-color:var(--un-600)}
+
+/* 正文栏 */
+.doc-body{min-width:0;padding-bottom:20px}
+.dsec{padding:76px 0;border-bottom:1px solid var(--line);scroll-margin-top:96px}
+.dsec:first-child{padding-top:78px}
+.dsec:last-child{border-bottom:none}
+
+/* 章节头 —— 方形编号 + 标题 + 英文 + 延伸细线 */
+.sh{display:flex;align-items:center;gap:20px;margin-bottom:40px}
+.sh-no{
+  flex:0 0 auto;width:46px;height:46px;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.02em;
+}
+.sh-txt{flex:0 0 auto}
+.sh h2{font-size:clamp(21px,2.1vw,27px);font-weight:700;letter-spacing:.06em;color:var(--ink);line-height:1.3}
+.sh-en{
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;margin-top:5px;
+}
+.sh-line{flex:1 1 auto;height:1px;background:var(--line);min-width:24px}
+
+.lead{font-size:15.5px;line-height:1.95;color:var(--muted);max-width:76ch}
+.lead strong{color:var(--ink);font-weight:650}
+
+/* ---------- 要览：数据带 ---------- */
+.figures{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin-bottom:40px}
+.fig{padding:26px 24px 24px;border-right:1px solid var(--line)}
+.fig:last-child{border-right:none}
+.fig b{
+  display:block;font-family:var(--mono);font-size:clamp(30px,3.4vw,44px);
+  font-weight:600;color:var(--navy);line-height:1;letter-spacing:-.02em;
+}
+.fig b sup{font-size:.42em;vertical-align:super;color:var(--un-600);margin-left:2px;font-weight:700}
+.fig .fl{display:block;margin-top:13px;font-size:14px;font-weight:600;color:var(--ink)}
+.fig .fe{display:block;margin-top:5px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);font-weight:600}
+
+/* ---------- 规格清单（组织/关键信息通用） ---------- */
+.sheet{border-top:1px solid var(--line-2)}
+.sheet-row{
+  display:grid;grid-template-columns:176px minmax(0,1fr);gap:24px;
+  padding:17px 0;border-bottom:1px solid var(--line);
+  transition:background .24s;
+}
+.sheet-row:hover{background:var(--stone)}
+.sheet-row .k{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;padding-top:5px;
+}
+.sheet-row .k b{display:block;font-size:12.5px;letter-spacing:.06em;color:var(--ink);text-transform:none;font-weight:600;margin-bottom:2px}
+.sheet-row .v{font-size:15.5px;color:var(--ink);font-weight:600;line-height:1.65}
+.sheet-row .v em{display:block;font-style:normal;font-size:12.5px;font-weight:400;color:var(--muted);margin-top:3px}
+
+/* ---------- 缘起：正文 + 主张卡 ---------- */
+.rat{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:52px;align-items:start}
+.rat p{font-size:15.5px;line-height:2.05;color:var(--body);margin-bottom:22px}
+.rat p:last-child{margin-bottom:0}
+.rat p .mk{color:var(--un-700);font-weight:650}
+.claim{
+  background:var(--navy);color:#fff;padding:38px 32px 34px;position:relative;overflow:hidden;
+}
+.claim::after{
+  content:'';position:absolute;right:-58px;bottom:-58px;width:170px;height:170px;
+  border:1px solid rgba(255,255,255,.16);border-radius:50%;
+}
+.claim::before{
+  content:'';position:absolute;right:-16px;bottom:-16px;width:88px;height:88px;
+  border:1px dashed rgba(255,255,255,.2);border-radius:50%;
+}
+.claim .q{position:relative;font-family:var(--serif);font-size:26px;letter-spacing:.1em;line-height:1.75;color:#fff;margin-bottom:0}
+.claim .qt{
+  position:absolute;top:-6px;left:-4px;font-family:var(--serif);font-size:56px;
+  color:rgba(255,255,255,.16);line-height:1;
+}
+.claim .src{
+  position:relative;margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.2);
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#8FC4E4;font-weight:600;
+}
+
+/* ---------- 四大议题 2×2 ---------- */
+.ag{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.ag-cell{
+  padding:36px 32px 32px;position:relative;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  transition:background .3s var(--ease);
+}
+.ag-cell:nth-child(2n){border-right:none}
+.ag-cell:nth-child(n+3){border-bottom:none}
+.ag-cell:hover{background:var(--un-50)}
+.ag-cell .rn{
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;
+  color:var(--un-600);display:block;
+}
+.ag-cell .rbar{width:26px;height:2px;background:var(--un);margin:14px 0 22px;transition:width .4s var(--ease)}
+.ag-cell:hover .rbar{width:52px}
+.ag-cell h3{font-size:20px;font-weight:700;letter-spacing:.05em;color:var(--ink)}
+.ag-cell .hn{margin-top:6px;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.ag-cell p{margin-top:18px;font-size:14.5px;line-height:2;color:var(--body)}
+
+/* ---------- 议程表 ---------- */
+.tbl-wrap{border:1px solid var(--line);overflow:hidden}
+table.pt{width:100%;border-collapse:collapse;font-size:14.5px}
+.pt thead th{
+  background:var(--navy);color:#fff;text-align:left;padding:14px 18px;
+  font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;
+}
+.pt thead th:first-child{width:126px}
+.pt thead th:nth-child(2){width:150px}
+.pt tbody td{padding:15px 18px;border-bottom:1px solid var(--line);vertical-align:middle;color:var(--ink)}
+.pt tbody tr:last-child td{border-bottom:none}
+.pt tbody tr:nth-child(even){background:var(--stone)}
+.pt tbody tr:hover{background:var(--un-50)}
+.pt .d{font-family:var(--mono);font-weight:600;color:var(--navy);letter-spacing:0}
+.pt .d em{display:block;font-style:normal;font-family:var(--sans);font-size:11px;color:var(--muted);font-weight:400;margin-top:2px;letter-spacing:.04em}
+.pt .t{font-family:var(--mono);color:var(--body);font-size:13.5px}
+.pt .n{font-weight:600}
+.pt .n em{display:block;font-style:normal;font-size:11.5px;font-weight:400;color:var(--muted);margin-top:2px;letter-spacing:.04em}
+.tg{
+  display:inline-block;font-size:11px;font-weight:650;letter-spacing:.06em;
+  padding:3px 10px;border:1px solid var(--line-2);color:var(--muted);white-space:nowrap;
+}
+.tg.free{color:var(--eco);border-color:#BCDCCF;background:#F1F9F5}
+.tg.paid{color:var(--gold);border-color:#E4D4B6;background:#FBF7EF}
+.tbl-note{margin-top:14px;font-size:13px;color:var(--muted);display:flex;gap:9px;align-items:flex-start}
+.tbl-note svg{flex:0 0 auto;margin-top:3px;color:var(--un-600)}
+
+/* ---------- 与会各界 ---------- */
+.sec-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}
+.sec-cell{
+  padding:24px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  transition:background .26s;
+}
+.sec-cell:nth-child(4n){border-right:none}
+.sec-cell:nth-child(n+5){border-bottom:none}
+.sec-cell:hover{background:var(--un-50)}
+.sec-cell .i{
+  display:block;font-family:var(--mono);font-size:10.5px;color:var(--faint);font-weight:600;letter-spacing:.1em;
+}
+.sec-cell h4{margin-top:11px;font-size:15px;font-weight:650;color:var(--ink);letter-spacing:.03em;line-height:1.5}
+.sec-cell .e{display:block;margin-top:6px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+.gains{margin-top:52px;border-top:1px solid var(--line-2);padding-top:34px}
+.gains-t{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700;
+  margin-bottom:26px;
+}
+.gains ol{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px}
+.gains li{display:grid;grid-template-columns:38px minmax(0,1fr);gap:14px}
+.gains li b{
+  font-family:var(--mono);font-size:13px;font-weight:600;color:var(--un-600);
+  padding-top:3px;letter-spacing:.02em;
+}
+.gains li p{font-size:14.5px;line-height:1.95;color:var(--body)}
+.gains-note{
+  margin-top:30px;padding:20px 24px;background:var(--stone);
+  border-left:3px solid var(--un);font-size:14px;line-height:1.95;color:var(--body);
+}
+
+/* ---------- 参会通道 ---------- */
+.seats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:44px}
+.seat{border:1px solid var(--line);position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.seat::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:var(--line-2);transition:background .3s}
+.seat.free::before{background:var(--eco)}
+.seat.paid::before{background:var(--gold)}
+.seat:hover{border-color:var(--line-2);box-shadow:0 10px 30px rgba(10,61,99,.08);transform:translateY(-3px)}
+.seat-cap{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:28px 28px 0}
+.seat-cap h3{font-size:19px;font-weight:700;color:var(--ink);letter-spacing:.05em}
+.seat-cap .hn{margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.seat ul{padding:22px 28px 0;display:flex;flex-direction:column;gap:13px}
+.seat li{display:grid;grid-template-columns:16px minmax(0,1fr);gap:11px;font-size:14.5px;line-height:1.8;color:var(--body)}
+.seat li svg{margin-top:6px;color:var(--eco)}
+.seat.paid li svg{color:var(--gold)}
+.seat-foot{
+  margin:26px 28px 0;padding:16px 0 22px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--muted);line-height:1.7;
+}
+.seat-foot strong{color:var(--navy);font-weight:650}
+
+.chan{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin-bottom:36px}
+.chan-cell{padding:24px 22px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.chan-cell:last-child{border-right:none}
+.chan-cell .ic{width:34px;height:34px;border:1px solid var(--line-2);color:var(--un-700);display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.chan-cell .k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.chan-cell .v{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--navy);letter-spacing:.01em}
+.chan-cell .v.sm{font-size:13.5px}
+.chan-cell .h{font-size:11.5px;color:var(--faint)}
+
+.qr{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:32px;align-items:center;
+  padding:32px;background:var(--stone);border:1px solid var(--line);
+}
+.qr img{border:1px solid var(--line-2);background:#fff;padding:6px}
+.qr h3{font-size:17px;font-weight:700;color:var(--ink);letter-spacing:.04em}
+.qr p{margin-top:12px;font-size:14.5px;line-height:1.95;color:var(--body);max-width:62ch}
+
+/* ---------- 大会公告 ---------- */
+.bulletin{border-top:1px solid var(--line-2)}
+.bn{
+  display:grid;grid-template-columns:118px minmax(0,1fr) 22px;gap:22px;
+  padding:22px 0;border-bottom:1px solid var(--line);align-items:start;
+  transition:background .24s,padding .24s;
+}
+.bn:hover{background:var(--stone);padding-left:14px;padding-right:14px}
+.bn-d{
+  font-family:var(--mono);font-size:13px;font-weight:600;color:var(--navy);letter-spacing:0;
+  padding-top:3px;
+}
+.bn-d em{display:block;font-style:normal;font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-top:4px}
+.bn-b h3{font-size:15.5px;font-weight:650;color:var(--ink);letter-spacing:.03em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bn-b h3 .new{
+  font-size:10px;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--un-600);
+  padding:2px 8px;
+}
+.bn-b p{margin-top:7px;font-size:14px;line-height:1.85;color:var(--muted)}
+.bn .arw{color:var(--faint);padding-top:4px;transition:color .24s,transform .24s var(--ease)}
+.bn:hover .arw{color:var(--un-600);transform:translateX(3px)}
+
+/* ---------- 历届 ---------- */
+.ed{border-top:1px solid var(--line-2)}
+.ed-row{
+  display:grid;grid-template-columns:120px minmax(0,1fr) 140px;gap:26px;
+  padding:26px 0;border-bottom:1px solid var(--line);align-items:center;
+}
+.ed-row .e-no{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--un-600)}
+.ed-row .e-no em{display:block;font-style:normal;font-family:var(--sans);font-size:17px;font-weight:700;color:var(--ink);letter-spacing:.02em;margin-top:5px}
+.ed-row h3{font-size:16.5px;font-weight:650;color:var(--ink);letter-spacing:.04em;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ed-row p{margin-top:7px;font-size:13.5px;line-height:1.8;color:var(--muted)}
+.ed-row .e-yr{
+  text-align:right;font-family:var(--mono);font-size:22px;font-weight:600;
+  color:var(--line-2);letter-spacing:-.01em;
+}
+.ed-row.now{background:var(--un-50);padding-left:18px;padding-right:18px}
+.ed-row.now .e-yr{color:var(--un-600)}
+.pill{
+  display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.1em;
+  padding:3px 10px;border:1px solid var(--line-2);color:var(--muted);
+}
+.pill.now{color:#fff;background:var(--un-600);border-color:var(--un-600)}
+
+/* ============================================================
+   5. 卷尾
+   ============================================================ */
+.finale{position:relative;background:linear-gradient(160deg,#062A42,#0A3D63 60%,#0E4E7C);color:#fff;overflow:hidden;padding:104px 0 96px}
+.finale .fbg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.finale-in{position:relative;max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);text-align:center}
+.couplet{display:grid;grid-template-columns:1fr 1fr;gap:20px 56px;max-width:760px;margin:0 auto}
+.couplet span{
+  font-family:var(--serif);font-size:clamp(16px,1.75vw,23px);letter-spacing:.14em;
+  color:#EAF4FA;line-height:1.7;
+}
+.f-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:52px 0 34px}
+.f-rule i{width:74px;height:1px;background:rgba(255,255,255,.28)}
+.f-rule b{width:6px;height:6px;background:var(--un);transform:rotate(45deg)}
+.f-org{font-size:16px;font-weight:650;letter-spacing:.14em}
+.f-org-en{margin-top:10px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#7FB6D6}
+
+/* ---------- 页脚 ---------- */
+.foot{background:var(--ink);color:#9FB6C6;font-size:13.5px}
+.foot-in{max-width:var(--wrap);margin:0 auto;padding:64px var(--gut) 0}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:52px;padding-bottom:52px}
+.foot h4{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#fff;
+  font-weight:700;margin-bottom:20px;
+}
+.foot h4.big{
+  font-size:18px;letter-spacing:.06em;text-transform:none;margin-bottom:14px;
+}
+.foot p{line-height:2}
+.foot ul{display:flex;flex-direction:column;gap:11px}
+.foot li{display:flex;gap:12px;align-items:baseline;line-height:1.7}
+.foot li span{flex:0 0 68px;color:#6D8598;font-size:12px}
+.foot li a{color:#9FB6C6;transition:color .2s}
+.foot li a:hover{color:#fff}
+.foot li em{font-style:normal;font-family:var(--mono);color:#D6E4EE}
+.foot-bot{
+  border-top:1px solid rgba(255,255,255,.1);padding:26px 0 34px;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  font-size:12.5px;line-height:1.8;
+}
+.foot-bot .en-line{font-family:var(--mono);font-size:11.5px;color:#6D8598}
+
+/* ---------- 回到顶部 ---------- */
+.totop{
+  position:fixed;right:26px;bottom:26px;width:44px;height:44px;z-index:90;
+  background:var(--navy);color:#fff;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translateY(12px);pointer-events:none;
+  transition:all .3s var(--ease);
+}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--un-600)}
+
+/* ---------- 入场动效 ---------- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ============================================================
+   6. 响应式
+   ============================================================ */
+@media (max-width:1180px){
+  .doc-in{grid-template-columns:1fr;gap:0}
+  .rail{position:static;padding:0;margin-bottom:-12px}
+  .rail-t,.rail ol{display:none}
+  .rail-box{display:none}
+  .hero-in{grid-template-columns:1fr;min-height:0}
+  .hero-l{padding:64px var(--gut)}
+  .hero-r{padding:52px var(--gut);border-left:none;border-top:1px solid var(--line)}
+  .hero-year{margin-bottom:26px}
+}
+@media (max-width:1000px){
+  .nav-links{
+    position:absolute;left:0;right:0;top:100%;background:var(--paper);
+    flex-direction:column;align-items:stretch;gap:0;padding:12px 20px 22px;
+    border-bottom:1px solid var(--line);box-shadow:0 16px 32px rgba(10,61,99,.12);
+    transform:translateY(-12px);opacity:0;pointer-events:none;transition:.28s var(--ease);
+    max-height:calc(100vh - 150px);overflow:auto;
+  }
+  .nav-links.open{transform:none;opacity:1;pointer-events:auto}
+  .nav-links a{padding:14px 4px;border-bottom:1px solid var(--line);font-size:15.5px}
+  .nav-links a::after{display:none}
+  .nav-cta{margin:16px 0 0;text-align:center;justify-content:center;display:flex}
+  .burger{display:flex;margin-left:auto}
+  .brand-txt em{display:none}
+  .rat{grid-template-columns:1fr;gap:34px}
+  .figures{grid-template-columns:1fr 1fr}
+  .fig:nth-child(2n){border-right:none}
+  .fig:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .sec-grid{grid-template-columns:1fr 1fr}
+  .sec-cell:nth-child(2n){border-right:none}
+  .sec-cell:nth-child(n+5){border-bottom:1px solid var(--line)}
+  .sec-cell:nth-child(n+7){border-bottom:none}
+  .chan{grid-template-columns:1fr 1fr}
+  .chan-cell:nth-child(2n){border-right:none}
+  .chan-cell:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .foot-top{grid-template-columns:1fr 1fr;gap:40px}
+  .foot-top>div:first-child{grid-column:1/-1}
+  .sheet-row{grid-template-columns:1fr;gap:8px}
+  .sheet-row .k{padding-top:0}
+}
+@media (max-width:720px){
+  body{font-size:15.5px}
+  .ubar-in{height:auto;padding-top:9px;padding-bottom:9px;flex-wrap:wrap;gap:6px 14px;font-size:12px}
+  .ubar .ub-mid,.ubar .sp{display:none}
+  .nav-in{height:64px;gap:14px}
+  .brand-txt strong{font-size:15px}
+  .hero-l{padding:52px var(--gut) 48px}
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .btn{width:100%}
+  .count-cell{padding:0 12px}
+  .dsec{padding:56px 0}
+  .sh{gap:14px;margin-bottom:30px}
+  .sh-no{width:40px;height:40px;font-size:13.5px}
+  .ag{grid-template-columns:1fr}
+  .ag-cell{border-right:none!important}
+  .ag-cell:nth-child(n+3){border-bottom:1px solid var(--line)}
+  .ag-cell:last-child{border-bottom:none}
+  .figures{grid-template-columns:1fr}
+  .fig{border-right:none!important;border-bottom:1px solid var(--line)}
+  .fig:last-child{border-bottom:none}
+  .sec-grid{grid-template-columns:1fr}
+  .sec-cell{border-right:none!important}
+  .sec-cell:nth-child(n+7){border-bottom:1px solid var(--line)}
+  .sec-cell:last-child{border-bottom:none}
+  .gains ol{grid-template-columns:1fr;gap:20px}
+  .seats{grid-template-columns:1fr}
+  .chan{grid-template-columns:1fr}
+  .chan-cell{border-right:none!important;border-bottom:1px solid var(--line)}
+  .chan-cell:last-child{border-bottom:none}
+  .qr{grid-template-columns:1fr;gap:24px;justify-items:center;text-align:center;padding:26px 20px}
+  .qr p{margin-left:auto;margin-right:auto}
+  .bn{grid-template-columns:1fr;gap:8px}
+  .bn .arw{display:none}
+  .ed-row{grid-template-columns:1fr;gap:10px}
+  .ed-row .e-yr{text-align:left}
+  .couplet{grid-template-columns:1fr;gap:8px}
+  .foot-top{grid-template-columns:1fr;gap:36px}
+  .foot-bot{flex-direction:column}
+
+  /* 议程表 → 卡片式 */
+  .pt thead{display:none}
+  .pt,.pt tbody,.pt tr,.pt td{display:block;width:100%}
+  .pt tr{border-bottom:1px solid var(--line);padding:6px 0}
+  .pt tr:last-child{border-bottom:none}
+  .pt tbody tr:nth-child(even){background:var(--stone)}
+  .pt td{
+    border:none!important;padding:8px 16px;display:grid;
+    grid-template-columns:88px minmax(0,1fr);gap:12px;align-items:baseline;
+  }
+  .pt td::before{
+    content:attr(data-th);font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);font-weight:700;
+  }
+  .pt td>.tg{justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+@media print{
+  .nav,.ubar,.totop,.progress{display:none}
+  .hero-l,.finale,.foot{background:#fff!important;color:#000!important}
+}
+
+/* ============================================================
+   第二批：动效体系 + 移动端紧凑排版
+   ============================================================ */
+
+/* ---------- 关键帧 ---------- */
+@keyframes heroIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+@keyframes rowIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes badgeIn{from{transform:translateY(10px) scale(.66) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes lineIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@keyframes spinRev{to{transform:rotate(-360deg)}}
+@keyframes breathe{0%,100%{opacity:.22}50%{opacity:.5}}
+@keyframes pulseDot{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes glowSweep{0%{transform:translateX(-230px)}55%,100%{transform:translateX(880px)}}
+@keyframes tickUp{from{transform:translateY(-7px);opacity:.25}to{transform:none;opacity:1}}
+
+/* ---------- 页面环境纹理 ---------- */
+.doc{position:relative;overflow-x:clip}
+.doc::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);
+  background-size:26px 26px;opacity:.55;
+  -webkit-mask-image:linear-gradient(#000 0%,rgba(0,0,0,.12) 70%,transparent);
+          mask-image:linear-gradient(#000 0%,rgba(0,0,0,.12) 70%,transparent);
+}
+.doc-in{position:relative;z-index:1}
+
+/* 交替底纹带（全宽出血） */
+.dsec{position:relative}
+.dsec.alt{background:var(--stone);box-shadow:0 0 0 100vmax var(--stone);clip-path:inset(0 -100vmax)}
+
+/* 章节水印数字 */
+.dsec::after{
+  content:attr(data-no);position:absolute;right:4px;bottom:14px;
+  font-family:var(--mono);font-size:clamp(54px,6.2vw,92px);font-weight:700;line-height:1;
+  letter-spacing:-.03em;color:var(--line);pointer-events:none;user-select:none;
+}
+@supports(-webkit-text-stroke:1px #000){
+  .dsec::after{color:transparent;-webkit-text-stroke:1px var(--line-2)}
+}
+
+/* ---------- HERO 入场 + 视差图层 ---------- */
+.hero-l>*:not(svg){animation:heroIn .95s var(--ease) both}
+.hero-l .hero-eyebrow{animation-delay:.05s}
+.hero-l h1{animation-delay:.13s}
+.hero-l .h1-en{animation-delay:.19s}
+.hero-l .h1-rule{animation-delay:.25s}
+.hero-l .theme-line{animation-delay:.31s}
+.hero-l .mission{animation-delay:.37s}
+.hero-l .count{animation-delay:.45s}
+.hero-l .hero-btns{animation-delay:.53s}
+.hero-r>*:not(svg){animation:heroIn .95s var(--ease) both}
+.hero-r .hero-year{animation-delay:.2s}
+.hero-r .spec{animation-delay:.38s}
+
+.hl .glow{transform-box:view-box;transform-origin:624px 146px;animation:breathe 9s ease-in-out infinite}
+.hl .orb{transform-box:view-box;transform-origin:640px 120px;animation:spinSlow 52s linear infinite}
+.hl .orb.r{animation:spinRev 34s linear infinite}
+.hl .pd{animation:pulseDot 3.8s ease-in-out infinite}
+.hl .pd.a{animation-delay:1.5s}
+.hl .sweep{animation:glowSweep 13s ease-in-out infinite}
+
+/* 倒计时数字跳动 */
+.count-cell b.upd{animation:tickUp .34s var(--ease)}
+
+/* ---------- 数据带：顶部生长线 + 数字 ---------- */
+.fig{position:relative;overflow:hidden}
+.fig::before{
+  content:'';position:absolute;left:0;top:0;height:2px;width:100%;background:var(--un);
+  transform:scaleX(0);transform-origin:left;transition:transform .75s var(--ease);
+}
+.figures.in .fig::before{transform:scaleX(1)}
+.figures.in .fig:nth-child(2)::before{transition-delay:.09s}
+.figures.in .fig:nth-child(3)::before{transition-delay:.18s}
+.figures.in .fig:nth-child(4)::before{transition-delay:.27s}
+
+/* ---------- 章节头动效 ---------- */
+.sh.in .sh-no{animation:badgeIn .62s var(--ease) both}
+.sh.in .sh-txt{animation:fadeUp .62s var(--ease) .07s both}
+.sh.in .sh-line{transform-origin:left;animation:lineIn .85s var(--ease) .14s both}
+
+/* ---------- 四大议题 ---------- */
+.ag-cell{transition:background .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease)}
+.ag-cell:hover{background:var(--un-50);transform:translateY(-2px);box-shadow:inset 0 0 0 1px var(--un-100)}
+.ag-cell .rn{transition:color .3s}
+.ag-cell:hover .rn{color:var(--un-700)}
+.ag.in .ag-cell{animation:fadeUp .6s var(--ease) both}
+.ag.in .ag-cell:nth-child(1){animation-delay:.02s}
+.ag.in .ag-cell:nth-child(2){animation-delay:.09s}
+.ag.in .ag-cell:nth-child(3){animation-delay:.16s}
+.ag.in .ag-cell:nth-child(4){animation-delay:.23s}
+
+/* ---------- 议程 ---------- */
+.daytabs{
+  display:flex;align-items:stretch;background:var(--stone);
+  border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;
+}
+.daytabs::-webkit-scrollbar{display:none}
+.dt{
+  position:relative;flex:1 0 auto;appearance:none;background:none;border:none;cursor:pointer;
+  padding:13px 20px;font-family:inherit;font-size:13.5px;font-weight:650;color:var(--muted);
+  letter-spacing:.03em;white-space:nowrap;transition:color .22s,background .22s;
+}
+.dt em{display:block;font-style:normal;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-top:3px;font-weight:600}
+.dt::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--un);
+  transform:scaleX(0);transform-origin:center;transition:transform .3s var(--ease);
+}
+.dt:hover{color:var(--navy);background:rgba(255,255,255,.75)}
+.dt.on{color:var(--un-700);background:#fff}
+.dt.on em{color:var(--un-600)}
+.dt.on::after{transform:scaleX(1)}
+.daymeta{
+  margin-left:auto;display:flex;align-items:center;padding:0 20px;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;white-space:nowrap;
+}
+.daymeta b{font-family:var(--mono);font-size:15px;color:var(--navy);margin:0 4px;letter-spacing:0}
+.pt tbody tr.hide{display:none!important}
+.pt tbody.swap{animation:rowIn .4s var(--ease)}
+.tbl-wrap.in .pt tbody tr{animation:rowIn .48s var(--ease) both}
+.tbl-wrap.in .pt tbody tr:nth-child(1){animation-delay:.03s}
+.tbl-wrap.in .pt tbody tr:nth-child(2){animation-delay:.07s}
+.tbl-wrap.in .pt tbody tr:nth-child(3){animation-delay:.11s}
+.tbl-wrap.in .pt tbody tr:nth-child(4){animation-delay:.15s}
+.tbl-wrap.in .pt tbody tr:nth-child(5){animation-delay:.19s}
+.tbl-wrap.in .pt tbody tr:nth-child(6){animation-delay:.23s}
+.tbl-wrap.in .pt tbody tr:nth-child(7){animation-delay:.27s}
+.tbl-wrap.in .pt tbody tr:nth-child(8){animation-delay:.31s}
+.tbl-wrap.in .pt tbody tr:nth-child(9){animation-delay:.35s}
+.tbl-wrap.in .pt tbody tr:nth-child(10){animation-delay:.39s}
+.pt tbody tr{transition:background .24s}
+
+/* ---------- 公告 / 历届 ---------- */
+.bn{transition:background .24s,padding .24s var(--ease)}
+.bn .new{animation:pulseDot 2.6s ease-in-out infinite}
+.ed-row.now{transition:background .3s}
+.ed-row.now .e-yr{animation:breathe 4.5s ease-in-out infinite}
+
+/* ---------- 走马灯 ---------- */
+.ticker{position:relative;background:var(--navy);overflow:hidden;border-top:1px solid rgba(255,255,255,.1)}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:76px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--navy),transparent)}
+.ticker::after{right:0;background:linear-gradient(270deg,var(--navy),transparent)}
+.ticker-in{display:flex;width:max-content;animation:marquee 40s linear infinite}
+.ticker-in:hover{animation-play-state:paused}
+.ticker-in span{
+  display:flex;align-items:center;gap:26px;padding:13px 26px;white-space:nowrap;
+  font-size:12px;letter-spacing:.16em;color:#BFD8E8;
+}
+.ticker-in span i{font-style:normal}
+.ticker-in span b{width:4px;height:4px;background:var(--un);transform:rotate(45deg);flex:0 0 auto}
+.ticker-in span strong{color:#fff;font-weight:650;letter-spacing:.1em}
+
+/* ---------- 快速章节导航 ---------- */
+.chips{
+  display:none;position:sticky;top:74px;z-index:70;
+  background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.chips-in{display:flex;gap:8px;overflow-x:auto;padding:11px var(--gut);scrollbar-width:none}
+.chips-in::-webkit-scrollbar{display:none}
+.chips a{
+  flex:0 0 auto;padding:7px 15px;border:1px solid var(--line-2);font-size:13px;color:var(--body);
+  white-space:nowrap;transition:all .24s var(--ease);
+}
+.chips a:hover,.chips a.on{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* ---------- 长文折叠 ---------- */
+.more{
+  display:none;appearance:none;background:none;border:none;cursor:pointer;
+  padding:12px 0 0;font-family:inherit;font-size:13.5px;font-weight:650;
+  color:var(--un-700);letter-spacing:.04em;
+}
+.more::after{content:' ▾';font-size:11px}
+.more[aria-expanded="true"]::after{content:' ▴'}
+.clampable{position:relative}
+.gains li.fold{display:none}
+.gains.open li.fold{display:grid}
+
+/* ---------- 底部固定操作条 ---------- */
+.mobar{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:95;gap:10px;
+  padding:10px 14px;align-items:center;
+  background:rgba(6,42,66,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,.14);
+  transform:translateY(115%);transition:transform .35s var(--ease);
+}
+.mobar.show{transform:none}
+.mobar a{flex:1;text-align:center;padding:12px 0;font-size:14px;font-weight:650;letter-spacing:.04em}
+.mobar a.primary{background:var(--un-600);color:#fff}
+.mobar a.ghost{border:1px solid rgba(255,255,255,.34);color:#fff}
+
+/* ---------- 触屏反馈 ---------- */
+@media (hover:none){
+  .seat:active,.ag-cell:active,.fig:active{transform:scale(.985)}
+  .btn:active{transform:scale(.98)}
+}
+
+/* ---------- 窄屏启用 ---------- */
+@media (max-width:1180px){
+  .chips{display:block}
+}
+@media (max-width:900px){
+  .mobar{display:flex}
+}
+@media (max-width:720px){
+  body{padding-bottom:68px}
+  .chips{top:64px}
+  .totop{bottom:80px;right:16px}
+
+  .dsec{padding:46px 0;scroll-margin-top:128px}
+  .dsec:first-child{padding-top:48px}
+  .dsec::after{font-size:40px;bottom:10px;opacity:.55}
+  .lead{font-size:14.5px;line-height:1.85}
+  .sh{gap:13px;margin-bottom:26px}
+  .sh-no{width:40px;height:40px;font-size:13.5px}
+
+  /* Hero 收紧 */
+  .hero-in{min-height:0}
+  .hero-l{padding:44px var(--gut) 40px}
+  .hero-r{padding:36px var(--gut) 40px}
+  .hero-eyebrow{font-size:10.5px;letter-spacing:.18em}
+  .hero h1{font-size:clamp(27px,8.4vw,38px);letter-spacing:.05em}
+  .hero .h1-en{font-size:10px;letter-spacing:.16em;margin-top:12px}
+  .hero .h1-rule{margin:20px 0 18px;width:52px}
+  .hero .theme-line{font-size:16px;line-height:1.7}
+  .hero .mission{font-size:12px;letter-spacing:.18em}
+  .count{margin-top:30px}
+  .count-cell{padding:0 11px}
+  .count-cell b{font-size:23px}
+  .count-cell span{font-size:10.5px}
+  .hero-btns{margin-top:28px}
+  .hero-year{font-size:clamp(62px,19vw,104px);margin-bottom:18px}
+  .hero-year-cap{font-size:9.5px}
+
+  /* 规格表 → 双列磁贴 */
+  .spec{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:none}
+  .spec-row{display:block;border:1px solid var(--line);padding:12px 13px}
+  .spec-row .sk{padding-top:0;margin-bottom:6px;font-size:10px}
+  .spec-row .sv{font-size:14px}
+  .spec-row .sv em{font-size:11.5px;margin-top:2px}
+  .spec-row:last-child{grid-column:1/-1}
+
+  /* 关键信息表 → 双列磁贴 */
+  .sheet{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:none}
+  .sheet-row{display:block;border:1px solid var(--line);padding:13px 14px}
+  .sheet-row .k{padding-top:0;margin-bottom:6px;font-size:10px}
+  .sheet-row .k b{font-size:12px}
+  .sheet-row .v{font-size:14px}
+  .sheet-row .v em{font-size:11.5px;margin-top:2px}
+
+  /* 数据带 → 2×2 */
+  .figures{display:grid;grid-template-columns:1fr 1fr;gap:10px;border:none;margin-bottom:26px}
+  .fig{border:1px solid var(--line)!important;padding:18px 16px}
+  .fig b{font-size:30px}
+  .fig .fl{font-size:13.5px;margin-top:10px}
+  .fig .fe{font-size:9.5px}
+
+  .ag-cell{padding:26px 22px 24px}
+  .ag-cell p{margin-top:14px;font-size:14px;line-height:1.9}
+
+  /* 与会各界 → 2 列磁贴 */
+  .sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;border:none}
+  .sec-cell{border:1px solid var(--line)!important;padding:17px 15px}
+  .sec-cell:last-child{grid-column:1/-1}
+  .sec-cell h4{font-size:14px;margin-top:9px}
+  .sec-cell .e{font-size:9.5px}
+  .gains{margin-top:36px;padding-top:26px}
+  .gains ol{gap:16px}
+  .gains li p{font-size:14px;line-height:1.85}
+  .gains-note{padding:16px 18px;font-size:13.5px}
+  .more{display:inline-block}
+  .clampable:not(.open){max-height:236px;overflow:hidden}
+  .clampable:not(.open)::after{
+    content:'';position:absolute;left:0;right:0;bottom:0;height:78px;
+    background:linear-gradient(transparent,#fff);pointer-events:none;
+  }
+  .rat p{font-size:14.5px;line-height:1.9;margin-bottom:16px}
+  .claim{padding:28px 22px 26px}
+  .claim .q{font-size:21px}
+  .claim .qt{font-size:44px}
+
+  /* 参会通道 */
+  .seats{gap:16px;margin-bottom:32px}
+  .seat li{font-size:14px}
+  .seat-cap{padding:22px 22px 0}
+  .seat ul{padding:18px 22px 0}
+  .seat-foot{margin:22px 22px 0;padding-bottom:20px}
+  .chan{display:grid;grid-template-columns:1fr 1fr;gap:10px;border:none;margin-bottom:28px}
+  .chan-cell{border:1px solid var(--line)!important;padding:16px 15px}
+  .chan-cell .v{font-size:14.5px}
+  .chan-cell .v.sm{font-size:11.5px;word-break:break-all}
+  .chan-cell .ic{width:30px;height:30px}
+  .qr{padding:22px 18px;gap:20px}
+
+  /* 议程：页签 6 等分 */
+  .daytabs{display:grid;grid-template-columns:repeat(6,1fr);overflow:visible;border-radius:0}
+  .dt{padding:10px 0;font-size:12px;text-align:center;letter-spacing:.01em}
+  .dt em{display:none}
+  .daymeta{grid-column:1/-1;justify-content:center;padding:7px 0;border-top:1px solid var(--line);font-size:10px}
+  .daymeta b{font-size:12px}
+  .pt td{padding:7px 14px}
+  .pt tr{padding:4px 0}
+
+  /* 公告 / 历届 */
+  .bn{padding:17px 0}
+  .bn-b h3{font-size:14.5px}
+  .bn-b p{font-size:13.5px}
+  .ed-row{padding:20px 0;gap:8px}
+  .ed-row.now{padding-left:14px;padding-right:14px}
+  .ed-row h3{font-size:15px}
+  .ed-row .e-yr{font-size:19px}
+  .ed-row p{font-size:13px}
+
+  /* 卷尾 / 页脚 */
+  .finale{padding:72px 0 64px}
+  .couplet{gap:6px}
+  .couplet span{font-size:15.5px;letter-spacing:.1em}
+  .f-rule{margin:36px 0 26px}
+  .f-rule i{width:52px}
+  .f-org{font-size:15px}
+  .f-org-en{font-size:9.5px}
+  .foot-in{padding:44px var(--gut) 0}
+  .foot-top{padding-bottom:34px;gap:30px}
+  .foot h4.big{font-size:16.5px}
+  .foot p,.foot ul{font-size:13.5px}
+  .foot-bot{padding:22px 0 28px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-l>*:not(svg),.hero-r>*:not(svg),
+  .ticker-in,.sh.in .sh-no,.sh.in .sh-txt,.sh.in .sh-line,
+  .ag.in .ag-cell,.tbl-wrap.in .pt tbody tr,
+  .hl .glow,.hl .orb,.hl .pd,.hl .sweep,.bn .new,.ed-row.now .e-yr{
+    animation:none!important;
+  }
+}
+</style>
+</head>
+<body id="top" data-page-node-id="tNbCpCSERaX7Va55FuqO8G">
+
+<a class="skip" href="#main" data-page-node-id="5YayTeQslqWMQXCUroqx6p">跳转到主要内容</a>
+<div class="progress" id="progress" aria-hidden="true" data-page-node-id="C9mzU8IEHy5fa6yld1nGRc"></div>
+
+<!-- ============ 顶部工具条 ============ -->
+<div class="ubar" data-page-node-id="GIO09MDWv01QGmBOoZaYDY">
+  <div class="ubar-in" data-page-node-id="EvXeXBGR9pizq5ZTdtW9RU">
+    <span data-page-node-id="BvDYrtzTb1geN0tlKUPvYa"><b data-page-node-id="MvFzLAAvkoXm6EAzzmErZA">第一届</b> · 2026 年 10 月 3 — 6 日</span>
+    <span class="dot" aria-hidden="true" data-page-node-id="lEHGRR5fDYC0yRrvYTld9E"></span>
+    <span class="ub-mid" data-page-node-id="vIihs2JN5eXiCfWlpQg2mG">中国 · 吉林 · 长春国际会展中心大饭店</span>
+    <span class="sp" data-page-node-id="AaidvCq2hG6Be7ChEeRDgo"></span>
+    <span data-page-node-id="kcEM2cjLEvBBTDYjfalu8e">报名专线 <a href="tel:+8616210139688" data-page-node-id="c07OmxgcvoRr570iLEV258"><b data-page-node-id="8sW6RXN5C4MeA4dyeGXcGa">162 1013 9688</b></a></span>
+    <span class="sep" aria-hidden="true" data-page-node-id="RIpDHMNITA0nrAZ4UuLZ4v">/</span>
+    <a href="mailto:xzq_789@163.com" data-page-node-id="VMCwjwUE2K04OUDZbTiK7Y">xzq_789@163.com</a>
+  </div>
+</div>
+
+<!-- ============ 主导航 ============ -->
+<header class="nav" id="nav" data-page-node-id="4nxvkolyhrLvm769dex6Ys">
+  <div class="nav-in" data-page-node-id="DM43IQ8ddwAMzXNjgh0jTF">
+    <a class="brand" href="#top" aria-label="生态文明与发展论坛 首页" data-page-node-id="AmNtDEdinbBb9JWkippKhr">
+      <span class="brand-mark" aria-hidden="true" data-page-node-id="SyJ8LGSB4Bm2Iys3cjIJdK">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" data-page-node-id="beHn04CFEN8IrMtnAEsBGg">
+          <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3" opacity=".38" data-page-node-id="ORPxJoNVMIWszDOzf0wU83"/>
+          <circle cx="20" cy="20" r="12.6" stroke="currentColor" stroke-width="1.6" data-page-node-id="hZ5rvE1ZXIIkbUsq4ONFSq"/>
+          <path d="M20 1.4v37.2" stroke="currentColor" stroke-width="1.1" opacity=".5" data-page-node-id="ZIfUkoAjz8c4rEms257qCk"/>
+          <path d="M20 8.2c6.6 3.4 10.6 7.1 10.6 11.8S26.6 31.8 20 31.8" stroke="currentColor" stroke-width="1.1" opacity=".5" data-page-node-id="o3HyMHBk7XzEZmkqPhDA2L"/>
+          <path d="M20 8.2C13.4 11.6 9.4 15.3 9.4 20s4 8.1 10.6 11.8" stroke="currentColor" stroke-width="1.1" opacity=".5" data-page-node-id="hOTrkcviC5XxL3xA83WSR4"/>
+          <path d="M20.6 12.4c3.9.5 6.4 3 6.4 5.6 0 2.7-2.6 4.9-6.4 5.4" stroke="#009EDB" stroke-width="1.5" stroke-linecap="round" data-page-node-id="CwAhK3LG7IY0WFYkYzvKUx"/>
+          <circle cx="20" cy="20" r="2.6" fill="#0A3D63" data-page-node-id="4Xom2z75vRqNUhI3FEfJMu"/>
+        </svg>
+      </span>
+      <span class="brand-txt" data-page-node-id="5m7cdFZKYE1HtoqalWjd3a">
+        <strong data-page-node-id="4auxvukkEWr80Ja7HzRWrw">生态文明与发展论坛</strong>
+        <em data-page-node-id="BdEoXK2zAncOT6c2ikxEXe">Ecological Civilization &amp; Development Forum</em>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="主导航" data-page-node-id="T7r47UkAnWVaeRsCfWX6lw">
+      <a href="#glance" data-page-node-id="OCeOoPqy6gi5wvBCM2bDu3">大会要览</a>
+      <a href="#agendas" data-page-node-id="lmp5NDo5lGJjdinJQCJaED">四大议题</a>
+      <a href="#programme" data-page-node-id="wJtwTiQZe6HXr5sxGkgRQy">大会议程</a>
+      <a href="#sectors" data-page-node-id="rq4uvFzditkzKXlyHSsVGo">与会各界</a>
+      <a href="#editions" data-page-node-id="IooVrbyhEbIjyYw8cZShQE">历届回顾</a>
+      <a href="#access" class="nav-cta" data-page-node-id="TNKluHxqVW2i6HkrLxrFl7">报名参会</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="打开导航菜单" aria-expanded="false" aria-controls="navLinks" data-page-node-id="Ze7xlSCWQHIhjw4AfEpf1d">
+      <span data-page-node-id="LojwIGfcQg1MfBuHcaSFyu"></span><span data-page-node-id="yRcHW8DwSDe7wFQ0EhE5SA"></span><span data-page-node-id="qsgGIbNIsqmETOOpvEqTgl"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main" data-page-node-id="ABpRfAKQbUWcExHdC05uqu">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" data-page-node-id="HDjtHKlKp3wO3YtRbU45HL">
+    <div class="hero-in" data-page-node-id="WJFL1bRnscmCuzN4JYz81a">
+
+      <!-- 左：深蓝档案块 -->
+      <div class="hero-l" data-page-node-id="Ig4zyQpJXPhpg46BEbP6uo">
+        <svg class="hl" viewBox="0 0 760 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-page-node-id="2vbVCDg8dH7TP2KFwfB4Cp">
+          <g stroke="#FFFFFF" stroke-opacity=".055" stroke-width="1" data-page-node-id="yT3h3izioGdFCzVDbJFo8b">
+            <path d="M0,80 H760 M0,160 H760 M0,240 H760 M0,320 H760 M0,400 H760 M0,480 H760 M0,560 H760" data-page-node-id="xhGtnMsexRvvtRDo3GE32N"/>
+            <path d="M95,0 V640 M190,0 V640 M285,0 V640 M380,0 V640 M475,0 V640 M570,0 V640 M665,0 V640" data-page-node-id="uhKH0mmVy8ZKZ5ubxqqhnf"/>
+          </g>
+          <defs data-page-node-id="OYUxdJwqdRWlkE4cffhBsC">
+            <linearGradient id="sweepG" x1="0" y1="0" x2="1" y2="0" data-page-node-id="DEEn6AEWKgsDwaIqbfqHtJ">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0" data-page-node-id="Y9K3DClicDfxyE8HULmO11"/>
+              <stop offset="50%" stop-color="#FFFFFF" stop-opacity=".075" data-page-node-id="JjE8gKJ5wRT9zHV2GDNu3s"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" data-page-node-id="gkXn7Vooq83zzQ1LVGAGhI"/>
+            </linearGradient>
+            <radialGradient id="glowG" cx="50%" cy="50%" r="50%" data-page-node-id="IvXUBXcQLt0wAeXcMEN3sG">
+              <stop offset="0%" stop-color="#009EDB" stop-opacity=".36" data-page-node-id="PLDVNWDsIwi0TaJo1irqnl"/>
+              <stop offset="100%" stop-color="#009EDB" stop-opacity="0" data-page-node-id="NepxdXB86qu4kGJTD7Y2Y3"/>
+            </radialGradient>
+          </defs>
+          <circle class="glow" cx="624" cy="146" r="252" fill="url(#glowG)" data-page-node-id="8RLKSVAVwYSu3XH9P0pgKl"/>
+          <rect class="sweep" y="0" width="170" height="640" fill="url(#sweepG)" data-page-node-id="R7JRA85RRjPwkHwpl9W18E"/>
+          <g stroke="#7FCFEE" stroke-opacity=".17" stroke-width="1" fill="none" data-page-node-id="NbNdjlGVUcJnvYp0Lv5dQ8">
+            <circle cx="640" cy="120" r="210" data-page-node-id="8I6Brm5X8sUGQ8hKhQSP06"/>
+            <circle class="orb" cx="640" cy="120" r="168" stroke-dasharray="2 9" data-page-node-id="YNWH3a6hUW25lMXtgMxbbV"/>
+            <circle class="orb r" cx="640" cy="120" r="124" stroke-dasharray="2 9" data-page-node-id="5fYgCIRGq4P9SyN0sXCd3c"/>
+          </g>
+          <g fill="#7FCFEE" data-page-node-id="7D110wMeRoVqLvDSW1UZRi">
+            <circle class="pd" cx="472" cy="120" r="3" data-page-node-id="zQMvCNjG3dFGWPygKydDDp"/>
+            <circle class="pd a" cx="640" cy="292" r="2.6" data-page-node-id="aM7OOJojfZ3CO57CARLg31"/>
+          </g>
+          <g stroke="#FFFFFF" stroke-opacity=".07" stroke-width="1" fill="none" data-page-node-id="kFPvwZrYLzlP5HqeNlnoeC">
+            <path d="M-40,520 C180,470 380,570 600,505 S800,470 900,500" data-page-node-id="RfivLFnXs8cthSMlWYy6Gy"/>
+            <path d="M-40,580 C200,540 420,620 640,565 S820,540 900,560" data-page-node-id="9S85lGyN7DqUNHJGi8mH3H"/>
+          </g>
+          <g fill="#009EDB" opacity=".5" data-page-node-id="3XuXSffB5MVHdxm5dJdTiv">
+            <rect x="560" y="248" width="5" height="5" data-page-node-id="BL8xv5yYchHVA6ZgfhXHhQ"/>
+            <rect x="712" y="336" width="4" height="4" data-page-node-id="wCGkX6sQ3RmwHR8lw1hsa7"/>
+            <rect x="486" y="392" width="4" height="4" data-page-node-id="d8tKUKWyUvmITB2zFnJyfW"/>
+          </g>
+          <rect x="0" y="0" width="760" height="3" fill="#009EDB" opacity=".22" data-page-node-id="EkRAd1i0B4zqgCEdV0loBR"/>
+        </svg>
+
+        <p class="hero-eyebrow" data-page-node-id="US1ao4V4i1vd3rc9fgGtPh">
+          <span class="ln" aria-hidden="true" data-page-node-id="MjLylvuejVPyxCucv7O2t2"></span>
+          第一届 · 中国 · 长春
+        </p>
+
+        <h1 data-page-node-id="b71nOkSSi28wn8GxjxeL99">生态文明与发展论坛</h1>
+        <p class="h1-en" data-page-node-id="ibd35gHP9CI6HMg7Go3zWK">Ecological Civilization &amp; Development Forum</p>
+
+        <div class="h1-rule" aria-hidden="true" data-page-node-id="Nm9Wsm9uQAfAMUu2oQm6Na"></div>
+
+        <p class="theme-line" data-page-node-id="FhoZ1wLQTRxqO5JwAkq2mi">共建生态文明<br data-page-node-id="hUX9BZiWyESaiigoAJZa5O">—— 探索人类文明发展新格局</p>
+        <p class="mission" data-page-node-id="qlKzlBjzMYWTkhEfA17ExQ">提升文明 · 维护生态</p>
+
+        <div class="count" id="count" aria-live="polite" data-page-node-id="b1gV2olhVKCKxQuohrvhvt">
+          <span class="count-label" id="cdLabel" data-page-node-id="BNY25wfiNyQMxd5yX34vcY">距本届论坛开幕</span>
+          <div class="count-cell" data-page-node-id="DdWY2E2YgwVd6Y6wC5R0u4"><b data-cd="d" data-page-node-id="KNIbtN5pUOeWh7NkTi5XZV">--</b><span data-page-node-id="HliVh0s09wZrj1FWeUkhwJ">天</span></div>
+          <div class="count-cell" data-page-node-id="MzQCGVuxOXsZdOBIyBKDfE"><b data-cd="h" data-page-node-id="zOAGgxHtlOE4Pg0RaZHWkM">--</b><span data-page-node-id="iIXnSeCsvBNys3BtsFHTTu">时</span></div>
+          <div class="count-cell" data-page-node-id="7vRmmAy1ZTtcrSK7oH9Ydj"><b data-cd="m" data-page-node-id="idzo9LHbFovKvmEFLaI8Jj">--</b><span data-page-node-id="NdcGYmdkiOFis0XgZrmboA">分</span></div>
+          <div class="count-cell" data-page-node-id="uyQa4hgWeG0h9D7i7C1xEc"><b data-cd="s" data-page-node-id="H5s0wfEAHYd2eDn3aAaFsh">--</b><span data-page-node-id="76WzvqNDTL5jUEj6BerGEY">秒</span></div>
+        </div>
+
+        <div class="hero-btns" data-page-node-id="C3KDlqdDgNjMWGGLUrEXZ8">
+          <a class="btn btn-primary" href="#access" data-page-node-id="yxjSMxluOjz3HzlOoY2kBd">报名参会</a>
+          <a class="btn btn-ghost" href="#programme" data-page-node-id="uQbBcJWxyGCCk8sdhLGhqq">查看议程</a>
+        </div>
+      </div>
+
+      <!-- 右：白纸规格栏 -->
+      <div class="hero-r" data-page-node-id="u219LN5Yjuvuy3ejn9V4ce">
+        <svg class="grid-bg" viewBox="0 0 560 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-page-node-id="EkHjn4XMNYPUf7g9iphmkt">
+          <defs data-page-node-id="XxZWzXbnkArLscTXqVGjZN">
+            <pattern id="dotgrid" width="26" height="26" patternUnits="userSpaceOnUse" data-page-node-id="PPXglDomb5pBEVsQ71Ifeu">
+              <circle cx="1" cy="1" r="1" fill="#C9D8E2" fill-opacity=".55" data-page-node-id="qJ3YmOaiEFgpCEqzuNtCwY"/>
+            </pattern>
+          </defs>
+          <rect width="560" height="640" fill="url(#dotgrid)" data-page-node-id="DfKEjWgvKyECwbHDaVFQzS"/>
+          <g stroke="#C9D8E2" stroke-width="1" fill="none" opacity=".8" data-page-node-id="brt3KaNeqjX6t1eAiaqz9r">
+            <path d="M0,556 H560" data-page-node-id="oll4x3g8TWwL3vmncQf69E"/>
+          </g>
+          <g stroke="#009EDB" stroke-width="1.4" fill="none" opacity=".35" data-page-node-id="GlkrzIb4aAqxRuZbkyHJqu">
+            <path d="M392,596 h26 M405,583 v26" data-page-node-id="GC7aIexHoUIzoDAM1Jf53A"/>
+          </g>
+        </svg>
+
+        <div class="hero-year" aria-hidden="true" data-page-node-id="ZHSIEnzDevOqvM48hnAGxY">2026<span class="hero-year-cap" data-page-node-id="uRZlCks10nZGGBqeIe3tqo">First Session</span></div>
+
+        <div class="spec" data-page-node-id="oACBce5TuFnfpUDvjEKM2u">
+          <div class="spec-row" data-page-node-id="TMomWUysVaQp3d0BsKTQIR">
+            <span class="sk" data-page-node-id="KKRPDuuMVhrfRwjyhY1uIU">Date</span>
+            <span class="sv" data-page-node-id="OjQHvLYhFLBsgUBIiqeCcl">2026 年 10 月 3 — 6 日<em data-page-node-id="x6NKnmIMmH9E6pgjqPXP3M">10 月 2 日报到 · 全程 5 天</em></span>
+          </div>
+          <div class="spec-row" data-page-node-id="soQoRX6ExTBhUVuHI3XIqY">
+            <span class="sk" data-page-node-id="ccGmwVp0xAl9J7eM377J5z">Venue</span>
+            <span class="sv" data-page-node-id="fLemkcFXwS6gIaNy1LT3AV">长春国际会展中心大饭店<em data-page-node-id="874Vgf44DwjFV2QVpq0KKP">中国 · 吉林 · 长春</em></span>
+          </div>
+          <div class="spec-row" data-page-node-id="v7VFM8JYW3cQUZThZYXTs1">
+            <span class="sk" data-page-node-id="jOByINbororwOJBLsiJPIh">Theme</span>
+            <span class="sv" data-page-node-id="yAnEABGu6F1uUivPdggF4t">共建生态文明<em data-page-node-id="oGyDCdKy7ExDV5JoV6smDi">探索人类文明发展新格局</em></span>
+          </div>
+          <div class="spec-row" data-page-node-id="jyzgxtLttZA5DF3HiUCGzb">
+            <span class="sk" data-page-node-id="ayplK1hT7koeRxJoXVkMcu">Mission</span>
+            <span class="sv" data-page-node-id="a9JyIaP7nxF1njri91AsOP">提升文明，维护生态<em data-page-node-id="ClMQgVipQvmt1pORhLgLaH">Advancing Civilization · Sustaining Ecology</em></span>
+          </div>
+          <div class="spec-row" data-page-node-id="8j7FWwoMCzm5tFHDjhDERe">
+            <span class="sk" data-page-node-id="D4ZEZAVYugkmOTD3v1pmFc">Cycle</span>
+            <span class="sv" data-page-node-id="EXaPuOI5tb5srMNS9jPXa4">一年一届 · 长期举办<em data-page-node-id="phJTiztOfoBNCTLalHLYEk">Annual &amp; Continuing</em></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 走马灯 -->
+  <div class="ticker" aria-hidden="true" data-page-node-id="D2EVaxFjVHFEX4iANjCbU3">
+    <div class="ticker-in" data-page-node-id="v2zHKTJqiOwROajITJzHUl">
+        <span data-page-node-id="EUsB3eJXAhYG5A8DHHRkBP"><i data-page-node-id="3t2DJDE4qcDZdwdMhAajPR"><strong data-page-node-id="lk4uSXNCm2kGTNwlwA1tLw">共建生态文明</strong> · —— 探索人类文明发展新格局</i><b data-page-node-id="4nok0vg3EPfHL8Es3mL7Cj"></b></span>
+        <span data-page-node-id="pG95wn11HZFC3n579Ob4Tw"><i data-page-node-id="Sdrd3wuRjsf5dYyJySusFt"><strong data-page-node-id="6lmdXtk3PvCi6t1oIr0nNG">提升文明</strong> · 维护生态</i><b data-page-node-id="OHAlc7AA5ozecsg2bZS50Z"></b></span>
+        <span data-page-node-id="58PhcJlw5jQXjRj5QirHTL"><i data-page-node-id="Ko7iIs6ehObkwg0HZhQsQ9"><strong data-page-node-id="vmMPdXseZQR0q2B5Gltw1T">第一届</strong> · 2026 年 10 月 3 — 6 日</i><b data-page-node-id="p9sWJJhVGfvp8cw70eO5KQ"></b></span>
+        <span data-page-node-id="vsDxtembA1Y9LS9LBxlwkD"><i data-page-node-id="Yn2ar0EX3pzAH4rk2MjgOE"><strong data-page-node-id="AQzQBjjvrIYPH3MW82rGEB">中国 · 吉林 · 长春</strong> · 长春国际会展中心大饭店</i><b data-page-node-id="QJXFTcVjCW46A4w8QbR7Xt"></b></span>
+        <span data-page-node-id="Lve1JUxHKFsKoxXzGIyMa5"><i data-page-node-id="oXAv2IpgfFFKUSJcvXnZzW"><strong data-page-node-id="xphvntFMA3cnMNZX3Z31BE">一年一届</strong> · 长期举办</i><b data-page-node-id="MP0oQIo4nvmYxcdiahCg9h"></b></span>
+        <span data-page-node-id="DcoAWTQm1CBPnESGhAa5Z4"><i data-page-node-id="KMnmWlxTPKMgS4NekLD9gq"><strong data-page-node-id="4cFJfb10LVEuLiIrctCwpC">共建生态文明</strong> · —— 探索人类文明发展新格局</i><b data-page-node-id="dafpn6HhPq36pzlIPevUeM"></b></span>
+        <span data-page-node-id="BIbuzqcYdVB2aNkjfakoIC"><i data-page-node-id="GfwB7B37l00GGxVhn7ovYF"><strong data-page-node-id="zaqz4jaecKRCRuDYSIZwno">提升文明</strong> · 维护生态</i><b data-page-node-id="6MPsXYv0hve4CbhxnmAjNq"></b></span>
+        <span data-page-node-id="cQeootlS6iqK43ZMZUVXUT"><i data-page-node-id="xTttMRDoFUwKLHva2oLiKU"><strong data-page-node-id="ajCumIqtVjReT7iCSvR2Yk">第一届</strong> · 2026 年 10 月 3 — 6 日</i><b data-page-node-id="urFCO8MxcSF9PzGwdAiHhV"></b></span>
+        <span data-page-node-id="SLXHCzYVbuwl7xtyFkOJDa"><i data-page-node-id="0OokzCXgu4OF7Mqg9Rh8SS"><strong data-page-node-id="mQ6jf1ORHzonJxPNxALriT">中国 · 吉林 · 长春</strong> · 长春国际会展中心大饭店</i><b data-page-node-id="qR8iFvHFpCnLhPgbQV9o9u"></b></span>
+        <span data-page-node-id="cro9bvddytwa5vglUKqa7l"><i data-page-node-id="Ij1xnsfrZ54KQCHLYBBVFL"><strong data-page-node-id="DSqjADIa0ohr31uL7iIXWV">一年一届</strong> · 长期举办</i><b data-page-node-id="PQAxB8PBiGudm0uZtXXLaw"></b></span>
+    </div>
+  </div>
+
+  <!-- 章节快速导航（窄屏；宽屏由左侧目录承担） -->
+  <nav class="chips" aria-label="章节快速导航" data-page-node-id="I3TEmAtXTfb7YHwFLbBWGS">
+    <div class="chips-in" data-page-node-id="HuGI4WacOIhpnCFEcvp98D">
+      <a href="#glance" data-page-node-id="rsmscQWdVMRAIvMlvDZHfs">大会要览</a><a href="#rationale" data-page-node-id="Ajbyvbstm6XY0454VAEOlH">缘起与主张</a><a href="#agendas" data-page-node-id="FxvBLGpRAbqaHWJYZ1y4GU">四大议题</a>
+      <a href="#programme" data-page-node-id="hS2z2xyMgd9O5QCNP4hCkA">大会议程</a><a href="#sectors" data-page-node-id="X3PsaD6OB5MEblTvBIdh4k">与会各界</a><a href="#access" data-page-node-id="cfGoECRzhaKGHysOGgTshE">参会通道</a>
+      <a href="#org" data-page-node-id="NlaqLiKrHQob0dODRkzbeJ">组织架构</a><a href="#bulletin" data-page-node-id="ITmEtsvi3EHGlQDK5bmSxl">大会公告</a><a href="#editions" data-page-node-id="UhISy1mMXpblnzoH37AjCS">历届回顾</a>
+    </div>
+  </nav>
+
+  <!-- ==================== 文档区 ==================== -->
+  <div class="doc" data-page-node-id="FHwKNvcY9qhfzaHjKW8Qin">
+    <div class="doc-in" data-page-node-id="NPGKqloquOOkejtvuAjmFU">
+
+      <!-- 左侧常驻目录 -->
+      <aside class="rail" data-page-node-id="tXzyjjY1pJxNzjeTTJRVcZ">
+        <p class="rail-t" data-page-node-id="zBiJbsSxVkumlttEu8G6Fv">目录 / Index</p>
+        <ol id="railList" data-page-node-id="kDbyZfSGow1Z1HnibjO62o">
+          <li data-page-node-id="H8q8ARxoRnFahSegkJqs92"><a href="#glance" data-page-node-id="iuQ00gCYtA8eq9wRoABiFw"><i data-page-node-id="9r28JWhHmVE1nDzAiF8HIf">01</i>大会要览</a></li>
+          <li data-page-node-id="F8lKiLnVnXgGq9VJoBFVBj"><a href="#rationale" data-page-node-id="ONxqCbPmJO0Eq1W279XmMO"><i data-page-node-id="MLWiWGyabqHD0PEAcKTONp">02</i>缘起与主张</a></li>
+          <li data-page-node-id="BOzOSibzVa5GPdlcuko0B8"><a href="#agendas" data-page-node-id="HLxAXuEgMzWGSVqBOxQ8Am"><i data-page-node-id="CPZUIDSNt6AnUJ9b1AZ0nq">03</i>四大议题</a></li>
+          <li data-page-node-id="IIKIao1bGoVD4x2nDgwFsU"><a href="#programme" data-page-node-id="6gSEhUiJ6fgyHE5TP1GvKi"><i data-page-node-id="4CKx6xudjQcO7DaazbZA3V">04</i>大会议程</a></li>
+          <li data-page-node-id="5oT8ZlvvYH4Hqo0vLFHSEz"><a href="#sectors" data-page-node-id="iAe3egqZgcFJEn8vhT6bM6"><i data-page-node-id="XTdg41zrqvKB93Dem9KAkq">05</i>与会各界</a></li>
+          <li data-page-node-id="6V6I9pMgC5UhHLukwvu2OQ"><a href="#access" data-page-node-id="LTjXvlD9nnW0Zlie3y05RY"><i data-page-node-id="SZhxnuGeiRr2GdfyOqvP5e">06</i>参会通道</a></li>
+          <li data-page-node-id="9agXJ5oHqprWL4Jn2pTaFT"><a href="#org" data-page-node-id="sIfaaDF0fdJRFTV0iOjSfA"><i data-page-node-id="ZeO7Z6zoQA1ZrsP3gvk9CX">07</i>组织架构</a></li>
+          <li data-page-node-id="qnUnTMhQWeClB9O0Css9bl"><a href="#bulletin" data-page-node-id="7zEoqerOOHVaF1agA2NN4s"><i data-page-node-id="BBnrnkTz8x4wwjt8jZITyf">08</i>大会公告</a></li>
+          <li data-page-node-id="HQubqA4yItcJgmKz5VajRS"><a href="#editions" data-page-node-id="Hna6bhFQhmPH4UcdzqDOas"><i data-page-node-id="zFfb6yLHGYVdwwsq2mWn4Y">09</i>历届回顾</a></li>
+        </ol>
+        <div class="rail-box" data-page-node-id="i9DPy9rJbPzZiXvuVgcKDM">
+          <p data-page-node-id="qEZM7HGG52byQpwQO55iaF">报名专线</p>
+          <strong data-page-node-id="exWQbC7nkpPhdeDiEbRXfU">162 1013 9688</strong>
+          <span data-page-node-id="pNNx5OE8OTprYjKYL2HJlr">周一至周日 09:00 — 18:00</span>
+          <a href="#access" data-page-node-id="8jkZTdpHi32t35ehPG6idj">查看全部通道 →</a>
+        </div>
+      </aside>
+
+      <!-- 右侧正文 -->
+      <div class="doc-body" data-page-node-id="OQW9ycWjs0JJ6tdMA8zN2W">
+
+        <!-- 01 大会要览 -->
+        <section class="dsec" id="glance" data-no="01" data-page-node-id="9vfJz5ckSOSW28IDbtTL45">
+          <header class="sh rv" data-page-node-id="HxzU0GGSbTBjhNziTq6bp4">
+            <span class="sh-no" data-page-node-id="194ccp2j2kfsAoaVJzBtvf">01</span>
+            <div class="sh-txt" data-page-node-id="tsqLzDLfduxxR6ImLjBUri">
+              <h2 data-page-node-id="3Ihk5zlN1M7AYOw3kj3YNH">大会要览</h2>
+              <span class="sh-en" data-page-node-id="DfuZisN143EiuAp2x4vcYt">At a Glance</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="Ojw7e8865QCWYTFtNRDLj3"></span>
+          </header>
+
+          <p class="lead rv" data-page-node-id="U8ujeDh8tkzzrenIkP172A">生态文明与发展论坛是面向全球的年度性交流平台，以<strong data-page-node-id="YWXKF9eBBeoxX8H9hfawXV">「共建生态文明 —— 探索人类文明发展新格局」</strong>为核心宗旨，汇聚各界有识之士，搭建思想交流、理念共建、实践协同的综合性平台，推动人与自然和谐共生新进程。</p>
+
+          <div class="figures rv" style="margin-top:36px" data-page-node-id="sWd9ynO4cGpBODeNx5pCQI">
+            <div class="fig" data-page-node-id="X78bBvhfxLo7J7TIDx84ex"><b data-to="1" data-pad="2" data-page-node-id="wnfT1qm08mhMWNJJywATJb">01</b><span class="fl" data-page-node-id="EWHY6sDk9bW5v0D3TOOjOf">第一届</span><span class="fe" data-page-node-id="Uv7XtZUEktMiiG3HkxpFwL">Session</span></div>
+            <div class="fig" data-page-node-id="zNHYo6EBxRjmCrG98WtACF"><b data-to="5" data-page-node-id="o8OXYDBQrtwQQ3iN1rcLqF">0</b><span class="fl" data-page-node-id="cx5KCacGJsSopm7Kz2GxNW">天全程</span><span class="fe" data-page-node-id="nCZwpfHqSkbiJKSCPEUQwt">Days</span></div>
+            <div class="fig" data-page-node-id="E7mX5G9cGT3Jb4uboVNdI6"><b data-to="4" data-page-node-id="oR0bPthkjEtuvGUJsfrEV2">0</b><span class="fl" data-page-node-id="UiCN75Qb5haB1hGbwSd3KA">核心议题</span><span class="fe" data-page-node-id="i2JNxLb8Pws01SDqtoW7pA">Agendas</span></div>
+            <div class="fig" data-page-node-id="gZFfBrhHvfkCUhOkWxBZ82"><b data-to="7" data-page-node-id="qXeVKxeDzANX8ctEZVzKqn">0</b><span class="fl" data-page-node-id="dhHrUfotuwTAiPGZhVkBnZ">参会界别</span><span class="fe" data-page-node-id="WVhuGnFd7aqdqN3ePbJIPL">Sectors</span></div>
+          </div>
+
+          <div class="sheet rv" data-page-node-id="q4toeH4JVDsshPGpcLPNFz">
+            <div class="sheet-row" data-page-node-id="hqJBykeQEYVHn3yoQLtmJV">
+              <span class="k" data-page-node-id="D7YMVOfHQfm7PEQXW0SHOB"><b data-page-node-id="FNKq3BUYnOKL5O63H2Db9e">论坛名称</b>Forum</span>
+              <span class="v" data-page-node-id="w0I4C4ipRQWi08O1Dh7JlN">生态文明与发展论坛<em data-page-node-id="dAlY4Yqs8BB2n75jZCfL1A">Ecological Civilization &amp; Development Forum</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="mAvM7aILIdHTG8pmuHfPu8">
+              <span class="k" data-page-node-id="cNY95TnC5QfuAdpV2zykqm"><b data-page-node-id="ZXgpLwdLbLibisAvYzNxuY">举办届次</b>Session</span>
+              <span class="v" data-page-node-id="oyGJ4sUEwzXwrJRQ4YiBAE">第一届（2026）<em data-page-node-id="Xwd96pG4QemNLlbJEZN177">The First Session</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="Z5fZDrzR2tngzBN3d8SIMw">
+              <span class="k" data-page-node-id="wOXlVE4pL4UPXIuKlPNtd2"><b data-page-node-id="hFWDzWLRVMD3kdQQ6e2uuT">举办时间</b>Date</span>
+              <span class="v" data-page-node-id="ofikyXE2RsGvPrARzHNnx2">2026 年 10 月 3 日 — 6 日<em data-page-node-id="C4tl3ljTscm5ZbR21n7kt5">10 月 2 日报到 · 10.03 – 10.06, 2026</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="1NbHkbNQLn2C31s9OvO4aW">
+              <span class="k" data-page-node-id="aStvd3lRugTBcSAr2n3VLL"><b data-page-node-id="7CgXhDfvM4979uFBaqAQTH">举办地点</b>Venue</span>
+              <span class="v" data-page-node-id="hLaGAEaWnGwtOU4BUjDE4d">长春国际会展中心大饭店<em data-page-node-id="4tUV2boj1jWcvTB6noglqa">中国 · 吉林 · 长春</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="9KpsYHhGgMvLDBlLBTAwBE">
+              <span class="k" data-page-node-id="tIeg6tLEfq6cGZDo612cdO"><b data-page-node-id="8U0z3NsNPOJZLE0vC4ScWW">论坛主题</b>Theme</span>
+              <span class="v" data-page-node-id="xSK01yv1PkrL7bxAnw3cjQ">共建生态文明<em data-page-node-id="3W5INTaQKTMlsq5Uul2VpE">探索人类文明发展新格局</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="KwZfAhkRyXePn9tJEYNN8n">
+              <span class="k" data-page-node-id="DH1LWvjBf7F8icHCNpV97g"><b data-page-node-id="9fpvzFwHpJE77WGVFjw75l">论坛使命</b>Mission</span>
+              <span class="v" data-page-node-id="nAL8Tu4odn4CkSZHr8afW9">提升文明，维护生态<em data-page-node-id="KiyxohCnUxX9fJoXmHTOYO">Advancing Civilization · Sustaining Ecology</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="HNUCEIajthfA53gWWlawc2">
+              <span class="k" data-page-node-id="CMpRDBpsVVlD9RYi0L2DG1"><b data-page-node-id="KXFOGPaBGudHa1V5Q4GEnc">举办周期</b>Cycle</span>
+              <span class="v" data-page-node-id="acp3jmGco5XlhXd1UV39dB">一年一届，长期举办<em data-page-node-id="wWhqp0gb2yJemzohra1PLw">Annual · Continuing</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="TlBa1se3sblwJoH4cCFuzj">
+              <span class="k" data-page-node-id="6X68AnSTxtDE6FbBEGaRyZ"><b data-page-node-id="656I2vqA5XQbucGAcjJW2Y">板块构成</b>Structure</span>
+              <span class="v" data-page-node-id="Hi8A9oH6CJr8tFq9m1rfUz">主论坛 + 延伸活动<em data-page-node-id="KkzkkzGZcjWyh8lYVchZH4">Main Forum + Extended Programme</em></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 缘起与主张 -->
+        <section class="dsec alt" id="rationale" data-no="02" data-page-node-id="iTw3febl7HGggpJING0uxW">
+          <header class="sh rv" data-page-node-id="nQDbp7ziq7kYXiz9BrETfX">
+            <span class="sh-no" data-page-node-id="Ips4mL5j8Rn7cEqDKI14HJ">02</span>
+            <div class="sh-txt" data-page-node-id="bI58h3ivVYffcOase4vFsb">
+              <h2 data-page-node-id="JlFqbgFw4JNfRKVL6vJoaG">缘起与主张</h2>
+              <span class="sh-en" data-page-node-id="UA5TqRcJpwVxqeZCTsoqMC">Rationale &amp; Statement</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="4jrmcoJuKmPL8epGh74Yim"></span>
+          </header>
+
+          <div class="rat" data-page-node-id="8WvQPweeDLgF3pZRsTfyIO">
+            <div class="rv" data-page-node-id="8RVcxeIyI56wBwcBBKp5kI">
+              <div class="clampable" id="ratText" data-page-node-id="ufRnIyVzWEClK0bR3yuSJD">
+              <p data-page-node-id="hST4D5qWPPYwbhuthxqNJF">生态无国界，万物共家园，地球命运休戚与共。<span class="mk" data-page-node-id="a01upPlEJENCOgA8XYSv0f">生态文明建设不止于环境保护，更是一场深刻的文明形态迭代</span>——生态环境维系着世间万物的生存根基，决定着整个生态系统的长久未来。</p>
+              <p data-page-node-id="EHmKbdFAYplplhw6jybHJX">环境危机不因地域国界而止步，其代价由地球上的所有生命共同承受。立足全球可持续发展，依托中国式现代化建设实践，本届论坛顺势启幕。我们愿汇集同频力量，共同探索人与自然和谐共生的文明发展新路径；愿心怀大局、肩负担当的有志之士凝聚共识，共赴生机永续的绿色未来。</p>
+              </div>
+              <button class="more" type="button" data-more="ratText" aria-controls="ratText" aria-expanded="false" data-page-node-id="wkNvUDMFIFveWAJqBux2Fb">展开全文</button>
+            </div>
+
+            <aside class="claim rv" data-page-node-id="benCwRywA4hNdGHh7B3Da5">
+              <span class="qt" aria-hidden="true" data-page-node-id="h0aSfHx4LmFP1DN7pvREVl">“</span>
+              <p class="q" data-page-node-id="IFv5vIViQMzpjJ5z6n6wVU">生态无国界<br data-page-node-id="z9W25305VK9DHsE6wAq7xE">万物共家园</p>
+              <p class="src" data-page-node-id="V1mfFdo8rDZDFyBgH2nc89">Forum Statement · 论坛主张</p>
+            </aside>
+          </div>
+        </section>
+
+        <!-- 03 四大议题 -->
+        <section class="dsec" id="agendas" data-no="03" data-page-node-id="gd6Iq4iBWiL0tDgjomEhJV">
+          <header class="sh rv" data-page-node-id="mqt3hLzfnVpleBROBvzHPE">
+            <span class="sh-no" data-page-node-id="pQr4mUBQAfelyh1o2NoD3p">03</span>
+            <div class="sh-txt" data-page-node-id="OuO4lRPC2HiYZHffmvN8Xn">
+              <h2 data-page-node-id="ehB1vt4szxqOF4lXaPNeR2">四大议题</h2>
+              <span class="sh-en" data-page-node-id="CNJwSCsyWxJEawqL1A7uqV">Four Agendas</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="ruhiiV19TQig2MgNetraGS"></span>
+          </header>
+
+          <p class="lead rv" style="margin-bottom:34px" data-page-node-id="CxjMEMTJyRK121Otq3A8RI">本届论坛设置四大核心议题，整体划分为主论坛与延伸活动两大板块，多层次展开深度对话。</p>
+
+          <div class="ag rv" data-page-node-id="vUUjSGUcu27rMvtE502ZkC">
+            <article class="ag-cell" data-page-node-id="Xq1rJD15DAxpwuqFBT5C6k">
+              <span class="rn" data-page-node-id="PeS1ZxmWQB4GBKJUqZCLZn">Agenda Ⅰ</span>
+              <div class="rbar" aria-hidden="true" data-page-node-id="uklatZRAeCGJISuEXDuh3h"></div>
+              <h3 data-page-node-id="4WnlrJdKOb4KzcmfKW5LVq">文明建设</h3>
+              <p class="hn" data-page-node-id="GR44Uz2z7TGR99jMkZWhAb">Civilization</p>
+              <p data-page-node-id="dzHQbPGCGk1Wzp3sNwm8rK">文明原本就存在于内心深处，认知的转变终将推动整体发展的新走向。探索核心要义与深刻内涵，为精神文明的建设贡献力量。</p>
+            </article>
+
+            <article class="ag-cell" data-page-node-id="fH4s9rRhsoPCFhHqHlI2hU">
+              <span class="rn" data-page-node-id="jqn34s5vgd0CikdCKpO4xi">Agenda Ⅱ</span>
+              <div class="rbar" aria-hidden="true" data-page-node-id="hnpjMrv20XoxgU2hWuO2AF"></div>
+              <h3 data-page-node-id="OMHb4vRAmzdGjgGAcbaAgK">自然生态</h3>
+              <p class="hn" data-page-node-id="d7umWOae3z4A1TFRlG2AtB">Ecosystem</p>
+              <p data-page-node-id="tWrkSBOmay42QZ8NPc9rid">人文精神是自然生态的内在根基。立足地球生命的稳态维护，构建和谐有序的人文体系，探寻生态保护与经济发展双向进程、协同共生的可持续路径。</p>
+            </article>
+
+            <article class="ag-cell" data-page-node-id="TLaCnGcsaVNdsceZgkXPFe">
+              <span class="rn" data-page-node-id="VLX6cYcuF2BEF4HxOAfolD">Agenda Ⅲ</span>
+              <div class="rbar" aria-hidden="true" data-page-node-id="g9cIWtC1PM0dhWDKMxkXGI"></div>
+              <h3 data-page-node-id="nzONu0gVhavG6k8a0ig7eT">正确教育</h3>
+              <p class="hn" data-page-node-id="KUTk1reKogwLY5qpTyHG66">Education</p>
+              <p data-page-node-id="OlHIepTsRGQfY2p3cKdDcM">探索面向时代发展的新型教育，为人类文明升级积淀力量。激活个体自主成长的内在动力，完成认知迭代与生命进阶，培育兼具社会责任与奉献担当的时代新人。</p>
+            </article>
+
+            <article class="ag-cell" data-page-node-id="PUQO6ZjeRXyKNfTHzFVpxV">
+              <span class="rn" data-page-node-id="X0s7tY5nV3BA6FKkmCeAmS">Agenda Ⅳ</span>
+              <div class="rbar" aria-hidden="true" data-page-node-id="eQ8RKTpNwOC7KVVtIUau5v"></div>
+              <h3 data-page-node-id="Fl0eQhmLsmCK0HDrLbVWH1">使命与社会责任</h3>
+              <p class="hn" data-page-node-id="fOpigI5ttpgpFhnkPK1xYT">Mission &amp; Responsibility</p>
+              <p data-page-node-id="i1o0fq6GteiJ0ogTwpzq3S">明晰个体、企业、社会各界在生态文明进程中的时代使命与公共责任，将思想共识转化为躬身践行，凝聚各界的协同合力，护航生态文明建设行稳致远。</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- 04 大会议程 -->
+        <section class="dsec alt" id="programme" data-no="04" data-page-node-id="NMvJpSFIwlM4exr6HDFVhh">
+          <header class="sh rv" data-page-node-id="RPVxo6leVltoXkMvBpBgL8">
+            <span class="sh-no" data-page-node-id="GleDRvPXWh0K7iz1urDXpt">04</span>
+            <div class="sh-txt" data-page-node-id="jFFDF3vWwX5kGV49TBHq9Y">
+              <h2 data-page-node-id="Hea7yAZJ7UNqEmPDgfEx9E">大会议程</h2>
+              <span class="sh-en" data-page-node-id="Ai1fxA3yuTC3yGioMk3ZGs">Programme</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="qb8KrLA6AUbQTOE1jS8USS"></span>
+          </header>
+
+          <p class="lead rv" style="margin-bottom:30px" data-page-node-id="wBJRteyOWBZogc2W2Yp3uu">2026 年 10 月 2 日报到，10 月 3 日至 6 日议程依次展开。具体课程与嘉宾以现场安排为准。</p>
+
+          <div class="tbl-wrap rv" data-page-node-id="Yfu5LSzTHf6d9srhu3SZ0j">
+            <div class="daytabs" role="tablist" aria-label="按日期筛选议程" data-page-node-id="IlCe8syuc9Xgah5oweejtE">
+              <button class="dt" type="button" role="tab" data-day="all" aria-selected="false" data-page-node-id="IsXXL50NbB5R1maBMQT7DE">全部<em data-page-node-id="q1Q1rZdiQX18QDNCAyBw72">All</em></button>
+              <button class="dt" type="button" role="tab" data-day="10.02" aria-selected="false" data-page-node-id="sZkI5Ps7y88NGGkUVu2vSy">10.02<em data-page-node-id="p55PprDDmsysTlJrTXIPIh">报到</em></button>
+              <button class="dt" type="button" role="tab" data-day="10.03" aria-selected="false" data-page-node-id="G4EiqAQ81BwyveUukveC8c">10.03<em data-page-node-id="4jQ6xXYzbTAIhOXAAsIQtL">主论坛</em></button>
+              <button class="dt" type="button" role="tab" data-day="10.04" aria-selected="false" data-page-node-id="ftQ4Qjgnuy2GkRcNjGkdyg">10.04<em data-page-node-id="ruMIAZq8Ql9l0acqFCHoCk">主论坛</em></button>
+              <button class="dt" type="button" role="tab" data-day="10.05" aria-selected="false" data-page-node-id="2Bd9uRGLllVPKBfDX8Pm2k">10.05<em data-page-node-id="Kujladw5MoZZIfTX0MQTkd">延伸活动</em></button>
+              <button class="dt" type="button" role="tab" data-day="10.06" aria-selected="false" data-page-node-id="h3wmAQGBtITF5M4VLYtDY9">10.06<em data-page-node-id="64J1b9aDp7TdL0ndVuGAAK">延伸活动</em></button>
+              <span class="daymeta" data-page-node-id="z6HtGCoW3YAvng2Xu3GB0g">共<b id="dayCount" data-page-node-id="yd5FwUS6U51XeAXBcD7zqb">10</b>项</span>
+            </div>
+            <table class="pt" data-page-node-id="NKgulf88RVHkWsxBKwn9mQ">
+              <caption class="skip" data-page-node-id="QwocXeO9CRhFO7mDgBsAYd">第一届论坛议程安排</caption>
+              <thead data-page-node-id="U1RyGxQcWl5DBDIxU5tGK7">
+                <tr data-page-node-id="gMMjNUK5M9lsl4pjzT3kRT">
+                  <th scope="col" data-page-node-id="2gQhO1hmwhdBMSyTiGRe7D">日期</th>
+                  <th scope="col" data-page-node-id="W6GUWV9BicqQ3R3OP4rSvr">时段</th>
+                  <th scope="col" data-page-node-id="02D82WeHTiTNDvD9EXoPLo">环节</th>
+                  <th scope="col" data-page-node-id="VDIjRgo8hcLkLRHi74i4CD">类别</th>
+                </tr>
+              </thead>
+              <tbody data-page-node-id="O9Kkl5l14SYKPFldgZ60g3">
+                <tr data-day="10.02" data-page-node-id="oqKWHs7n9dA80CM2oxWZxa">
+                  <td class="d" data-th="日期" data-page-node-id="fUsUDDwZIjZBGQXIrPx9K1">10.02<em data-page-node-id="yv9BpddPYTlvRqwfFAEqjC">Oct 02</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="Q6bR460EfkKsmDglOodFnh">09:00 – 16:00</td>
+                  <td class="n" data-th="环节" data-page-node-id="c6V82gkO2QlvzJg45h4MrN">报到 · 入住酒店<em data-page-node-id="cuXoDkPpyAO3Y8Wll4wRwr">Registration &amp; Check-in</em></td>
+                  <td data-th="类别" data-page-node-id="L6OIgtr13TJoepgVuhF9Lz"><span class="tg" data-page-node-id="MWxNPAb21bkeqUmpWMFG6W">报到</span></td>
+                </tr>
+                <tr data-day="10.02" data-page-node-id="fMhnFxXzb5c5jGwGTA8UYc">
+                  <td class="d" data-th="日期" data-page-node-id="WEKcbMMlp9ExNh6B8vPZ3W">10.02<em data-page-node-id="TwK3cNy5vEBiShuc37xMAd">Oct 02</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="3M3DbTxiYUY8piWMwR7lvy">17:30 – 19:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="jB350o8PSB7iDkLdvc4LAJ">论坛晚宴<em data-page-node-id="tEu3NeIJnJNNEj7hEL6m5b">Welcome Banquet</em></td>
+                  <td data-th="类别" data-page-node-id="3UUE5LJunyKD5a1agO3ISV"><span class="tg" data-page-node-id="7CnFC3Vwicsljn2Gz47XZa">报到</span></td>
+                </tr>
+                <tr data-day="10.03" data-page-node-id="YDGTOkpxAWTArSFW8Jz4Q3">
+                  <td class="d" data-th="日期" data-page-node-id="hZp326C71nzLQRho6W2K1f">10.03<em data-page-node-id="DGN4RInAiIhOvxBVko7rHg">Oct 03</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="SxZb6UBXVGZKEAs6NHy73k">08:30 – 11:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="dfJtAcooJdCGMojTEWVdQf">主论坛 · 主题论坛（上午场）<em data-page-node-id="hTAYfhjwmiKJ7fmTSskk7P">Main Forum · Morning Session</em></td>
+                  <td data-th="类别" data-page-node-id="oAiGtoBfYQNZdTYiOQTuHB"><span class="tg free" data-page-node-id="6SVqvm4WbJVoC2wzQ2yfwp">公益参会</span></td>
+                </tr>
+                <tr data-day="10.03" data-page-node-id="K1QbZZTHShj7d8HSBnHkCT">
+                  <td class="d" data-th="日期" data-page-node-id="gSDGUujwji4Dxncj2NcFmP">10.03<em data-page-node-id="OrfezsqLV9waFEYFqRKTnQ">Oct 03</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="YErhIsDBlNqhefdgsu2FU0">11:30 – 12:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="bt8wgZX3ENzKk26z09hZWl">午餐休息<em data-page-node-id="VatUHwdZwQtlMLHU7MtJAZ">Lunch Break</em></td>
+                  <td data-th="类别" data-page-node-id="DIe3bQeUZI9X87ijycxycv"><span class="tg free" data-page-node-id="R1m8myHZceBzw9l9tiJoAa">公益参会</span></td>
+                </tr>
+                <tr data-day="10.03" data-page-node-id="aNl2dr0Mzy9skV38aPTGKG">
+                  <td class="d" data-th="日期" data-page-node-id="mhGDhfZjJDUbOIWWvqv9rh">10.03<em data-page-node-id="laK3LWVq1OORVkWvErC8Af">Oct 03</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="cMYxeVUzGyj0Cv0ttC5IKv">14:30 – 17:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="02esdhMXjC6H24eFmGoGlT">主论坛 · 主题论坛（下午场）<em data-page-node-id="ZMz7GQReZ6QiAdS6yggTGA">Main Forum · Afternoon Session</em></td>
+                  <td data-th="类别" data-page-node-id="cbNYZIM0V4gdEsF4o9EDus"><span class="tg free" data-page-node-id="AmbHm4ex9H1T8dh6sbLC7K">公益参会</span></td>
+                </tr>
+                <tr data-day="10.04" data-page-node-id="lDWilxVe8peqMNIIpPps9k">
+                  <td class="d" data-th="日期" data-page-node-id="1baFU6qsB8Er63CvFtFFO0">10.04<em data-page-node-id="ILahswI96LimOTgFwUql3K">Oct 04</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="QZu1ADLvFePcKnUyEBMGan">08:30 – 17:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="cvR2tzdnspAdNs4vQ5TFBF">主论坛 · 主题论坛（全天）<em data-page-node-id="3lwcl5mkxDneMarnw4PE7H">Main Forum · Full Day</em></td>
+                  <td data-th="类别" data-page-node-id="p4DjYEroWQ88iILCO2lC7n"><span class="tg free" data-page-node-id="XYZi4AbwjBwhZxqhvp8VmG">公益参会</span></td>
+                </tr>
+                <tr data-day="10.05" data-page-node-id="opapEfT4zs8NaXAnClGAej">
+                  <td class="d" data-th="日期" data-page-node-id="Hb8xKMmb7yHZNgKHbIerK3">10.05<em data-page-node-id="3yGvf3J7AIzACcwp1xLYA0">Oct 05</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="FEdmRq8Tp9AxYarKUmTl6U">08:30 – 11:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="Jofj2oZd1KbCRBDL6yNGcq">延伸活动 · 使命与社会责任（上午场）<em data-page-node-id="5f6wwtUUpowJ72uyyrkvId">Extended Programme · Morning</em></td>
+                  <td data-th="类别" data-page-node-id="f052s5ONZ0CKe56KV41Ytu"><span class="tg paid" data-page-node-id="hA8RRCKoxMtknIBol2FOvW">深度参会</span></td>
+                </tr>
+                <tr data-day="10.05" data-page-node-id="vo3D3pdohqanQ0ZODiFHWN">
+                  <td class="d" data-th="日期" data-page-node-id="vaD77bEBM3SDNmAOKnRvaR">10.05<em data-page-node-id="bx01L4lMHqTGBpKuhMO3ei">Oct 05</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="Av35sIJoD8noHro2mAHfzb">11:30 – 12:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="GevqADTT6MH5GCbdaoFJ7J">午餐休息<em data-page-node-id="XiZg27nj9Hrap4qjXST7bm">Lunch Break</em></td>
+                  <td data-th="类别" data-page-node-id="UMnbDrUbQlyEBsIEMjRZLw"><span class="tg paid" data-page-node-id="ITz3G0kL02ud0qgT7r1Ekb">深度参会</span></td>
+                </tr>
+                <tr data-day="10.05" data-page-node-id="2KeXooBAktJU6roMFZSscN">
+                  <td class="d" data-th="日期" data-page-node-id="LOrimCpbDFrEF5I8dnYGXq">10.05<em data-page-node-id="9Acg4rePQUFgSHRGAmskEY">Oct 05</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="sFxYUvFBsKvaKg4KrpmtiV">14:30 – 17:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="U80RZMvJEGiUUkAy6C3cgY">延伸活动 · 主题会议（下午场）<em data-page-node-id="dx7wMaeHhxxvhhx5mkwATf">Extended Programme · Afternoon</em></td>
+                  <td data-th="类别" data-page-node-id="2wNbnjiQctn4DjM6vEWTP2"><span class="tg paid" data-page-node-id="EPMTh69Gk0fROS2SutLX4U">深度参会</span></td>
+                </tr>
+                <tr data-day="10.06" data-page-node-id="EQuHOIc9ePGazyJN562GHC">
+                  <td class="d" data-th="日期" data-page-node-id="SOsHOVNQSeBVNLe83zGZOc">10.06<em data-page-node-id="AW2VoMjfmzOeOCFCePj8cp">Oct 06</em></td>
+                  <td class="t" data-th="时段" data-page-node-id="zItBzBylQWMCmxs7nNZW10">08:30 – 17:30</td>
+                  <td class="n" data-th="环节" data-page-node-id="eup5HeWP7TaJDlDxoFkDGV">延伸活动 · 专题研讨与实践协同<em data-page-node-id="64lPykIDNOpfFDyz06zz26">Workshops &amp; Collaboration</em></td>
+                  <td data-th="类别" data-page-node-id="Dp0NuzH4aORfxLpIGw0qzj"><span class="tg paid" data-page-node-id="M6jQnqaGDg1gBNglfelBLW">深度参会</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="tbl-note rv" data-page-node-id="O0kX9KRgZkBoCFMONWre8N">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" data-page-node-id="XthwrYy8w4mi28uSWWWYd0"><circle cx="12" cy="12" r="9" data-page-node-id="tOaHnlufuXtbbVNSdjlZha"/><path d="M12 8h.01M11 12h1v4h1" data-page-node-id="XFleEhTl6LyygiJ6AYgH8k"/></svg>
+            <span data-page-node-id="exQfaGikaNjTkO4iSfLTvN">本表为第一版议程，组委会将根据筹备进展持续更新，最终以现场安排为准。更新内容将同步发布于「大会公告」。</span>
+          </p>
+        </section>
+
+        <!-- 05 与会各界 -->
+        <section class="dsec" id="sectors" data-no="05" data-page-node-id="F1Sg7DASpKJ1aEkFJESziF">
+          <header class="sh rv" data-page-node-id="3h3CGdCynIwrCV27HNt34V">
+            <span class="sh-no" data-page-node-id="HrxeKqTwYkCGhjZ4br4hRQ">05</span>
+            <div class="sh-txt" data-page-node-id="ECDOMViCQyHE3GaKPJg9p6">
+              <h2 data-page-node-id="qctk1UTdTX3HZqgm8gdauO">与会各界</h2>
+              <span class="sh-en" data-page-node-id="h9IjhAfQrc1IAEYFXslZ36">Participation Sectors</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="wE2J3ySXSMzPA1ZHrbJEL0"></span>
+          </header>
+
+          <p class="lead rv" style="margin-bottom:34px" data-page-node-id="LWAWJFN2Sye4bknBqFwN3Q">论坛面向全球，诚邀各界有识之士共聚一堂，以多元主体的同向发力，推进生态文明建设行稳致远。</p>
+
+          <div class="sec-grid rv" data-page-node-id="ghD7QG4rWD3zEcXV7309HN">
+            <div class="sec-cell" data-page-node-id="6rSsIUcjE8Qzkhg4LvOhbl"><span class="i" data-page-node-id="oK8xaLmdDpkaOaFhzaLppz">01</span><h4 data-page-node-id="P9bwT2rThJUS6xvm48MeAp">全球发展贡献者</h4><span class="e" data-page-node-id="9fxv8oYo8EEquKPUcMbxni">Global Contributors</span></div>
+            <div class="sec-cell" data-page-node-id="KOSDdL9DlnsQglP2oHov5x"><span class="i" data-page-node-id="Hvpw7PPcOE1UAKoCxRq8bT">02</span><h4 data-page-node-id="0nxFKzULq5EtkKPG2jjeH0">生态环保践行者</h4><span class="e" data-page-node-id="6ErCher7SKOG2BMdCrASim">Eco Practitioners</span></div>
+            <div class="sec-cell" data-page-node-id="L6oidyzxMPrcbYLIsjLH0R"><span class="i" data-page-node-id="rbhS90aIi1l8UGXz3JDU6d">03</span><h4 data-page-node-id="AZfGeWIAmZdqeovJb60iay">教育与科研工作者</h4><span class="e" data-page-node-id="dh0JM5p59l2Cz7qvAZFj70">Educators &amp; Researchers</span></div>
+            <div class="sec-cell" data-page-node-id="gR2WUeJb246GVfggIMKcKS"><span class="i" data-page-node-id="xJhlmngRkAurS6SBswpEWQ">04</span><h4 data-page-node-id="VMCy9CJxjAEhI1obxPV00i">社会团体组织者</h4><span class="e" data-page-node-id="AbEUsbRLhs3wN2rvYRhtHt">Social Organizations</span></div>
+            <div class="sec-cell" data-page-node-id="pqCKtDwUIBglTVIDce5H6B"><span class="i" data-page-node-id="KGfK3Iju1I0TkZyn0iy0X3">05</span><h4 data-page-node-id="9nv9TFLOCLVYnF6CLK2WoC">企业家</h4><span class="e" data-page-node-id="h9cWInXmc7EnjFCdNxljDc">Entrepreneurs</span></div>
+            <div class="sec-cell" data-page-node-id="TlAVSGs1izvV561sechEGg"><span class="i" data-page-node-id="PSPD8bokFfiWW0Q6fNEr73">06</span><h4 data-page-node-id="R3Iq9zgmYqdAZKSOFQAkdY">媒体人</h4><span class="e" data-page-node-id="ZbDoFSyraFkh8RCbDNCmEV">Media</span></div>
+            <div class="sec-cell" data-page-node-id="uusgE8djU0U0nRhffns64U"><span class="i" data-page-node-id="Rr7Nq6t9kzbkJxER4Icazw">07</span><h4 data-page-node-id="icjaBcIsfCE9aF0ferJGU8">青年代表</h4><span class="e" data-page-node-id="0y13XtGo1YLY7NCXNF78dI">Youth Delegates</span></div>
+            <div class="sec-cell" data-page-node-id="x569csx8Aq55EGjEAjZy7j"><span class="i" data-page-node-id="lQUbIFWrOK1jIccn8fFEZ0">08</span><h4 data-page-node-id="SDdRl61jcWOAX6ZbWuFobf">各领域关注人类未来发展的有识之士</h4><span class="e" data-page-node-id="mzADULkhZ0kNIS4lPUWnmf">And All Concerned Parties</span></div>
+          </div>
+
+          <div class="gains rv" data-page-node-id="VE6lnIkl5GHnWgS5JMgFE2">
+            <p class="gains-t" data-page-node-id="AtbvytTsNW2QDokKhEUQw4">论坛收获 / Forum Outcomes</p>
+            <ol data-page-node-id="VQl2b6gacvjZGEelL4EK3a">
+              <li data-page-node-id="zstp1YkZ0Vw4BpXRuBUWBM"><b data-page-node-id="7vFHbKEaxZbrKvWc5O7vaN">01</b><p data-page-node-id="JTYUvz2BFyscruqXPZy26r">提高生命素养，有效改善自身与外界的互动关系，增加精神魅力，优化人际相处层次。</p></li>
+              <li data-page-node-id="jhFjAucrAEMmRuOpGHiDTq"><b data-page-node-id="6x1mLSs8UNUjNFjaAlo4Ie">02</b><p data-page-node-id="9G8TR6s73aKEEnDAucYAGP">开启敏锐的内在觉知，提升正向目标的达成率，增强资源统筹运用能力。</p></li>
+              <li class="fold" data-page-node-id="AKlLx0KzEkwaDfPHyO58sb"><b data-page-node-id="fFqBgS4XydXpKGpAcACOGE">03</b><p data-page-node-id="ai7f5FdVpswEPYGcPTglhS">明晰共建之责与长远存续，清晰社会使命与责任，涵养生命素养，实现身心与外在的同步发展。</p></li>
+              <li class="fold" data-page-node-id="a93cb1coZInRvhJjOzidPP"><b data-page-node-id="fBOmWLxgNGbzBLmpxKATbg">04</b><p data-page-node-id="hMQ5I0hIqXGcLLpglvmtdw">自觉养成「心爱自然」的言行状态，形成珍爱自然景观、保护生态植被与动物的生活方式。</p></li>
+            </ol>
+            <button class="more" type="button" data-fold aria-expanded="false" data-page-node-id="jDfawFMiXmeXbd81wU4ewR">展开全部 4 项</button>
+            <p class="gains-note" data-page-node-id="GnzQdmQp2IQiVei8Dogw5C">自觉养成「心爱自然」的言行状态：建立保护自然环境、保存文明古迹的深层意识，形成珍爱自然景观、保护生态植被与动物的生活方式，最终实现生态系统的自我平衡。</p>
+          </div>
+        </section>
+
+        <!-- 06 参会通道 -->
+        <section class="dsec alt" id="access" data-no="06" data-page-node-id="Ikr2g5I9NcMpoPdpStGAeA">
+          <header class="sh rv" data-page-node-id="qD49jRW2FRRImXkN1qQegT">
+            <span class="sh-no" data-page-node-id="0Cz3RTQOB75yIVGFRCYq9D">06</span>
+            <div class="sh-txt" data-page-node-id="Gei3GrGXGHmCiXEoHrxzo7">
+              <h2 data-page-node-id="RUfplCerBGRBtFVLTf2W4h">参会通道</h2>
+              <span class="sh-en" data-page-node-id="Mb5Uh8AVXo6q5HVPWS6dE2">Registration &amp; Access</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="iplYgZZPMEbTaXj0xr1KBF"></span>
+          </header>
+
+          <p class="lead rv" style="margin-bottom:34px" data-page-node-id="gI18BN4mj9cLQVGR7T1TgC">本届论坛设公益参会与深度参会两类席位，欢迎各界同仁依需选择，并按以下通道完成报名。</p>
+
+          <div class="seats rv" data-page-node-id="kNyHi8tpt4DcwdLtJCcBRc">
+            <div class="seat free" data-page-node-id="yXIN9BpWzwZBBO4DI0Rzit">
+              <div class="seat-cap" data-page-node-id="BXodqmGxT6gUF6AIKRxDBQ">
+                <div data-page-node-id="V0Ce3HlzMKSWBy5s7zYEsY">
+                  <h3 data-page-node-id="ZoNx8nzus8jcHY7Lts2EoR">公益参会</h3>
+                  <p class="hn" data-page-node-id="XmBvCrfPfKwUYxEK96tGe7">Public Session · 无偿</p>
+                </div>
+                <span class="tg free" data-page-node-id="x46b9je0LvWLAHTq9QHZCH">无偿</span>
+              </div>
+              <ul data-page-node-id="80ETr1gvtALbxAt9kfO1VZ">
+                <li data-page-node-id="AvCX9R521dvbvoNLxSOnh3"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="UsgsVdjQD1uDUV1hbnlD2o"><path d="M20 6 9 17l-5-5" data-page-node-id="jw89HvHGLLw5Ix3njcVcQe"/></svg><span data-page-node-id="208L0jjE81v3ehr2YxxVAM">含 10 月 2 日报到与论坛晚宴</span></li>
+                <li data-page-node-id="wKyI79jPt4cDibCCAQJzCp"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="nzJjAUxsekrgsjtcpoR236"><path d="M20 6 9 17l-5-5" data-page-node-id="VAWq6Nky91ZFqZh2rbWfHJ"/></svg><span data-page-node-id="EeNIGK9SDdg6OlbFFe5ApP">含 10 月 3 — 4 日主论坛全部议程</span></li>
+                <li data-page-node-id="ZbbuVjH7fXD5a3VHeSIp4b"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="e5qRPXJ55jADb9x1oyS9GT"><path d="M20 6 9 17l-5-5" data-page-node-id="tjqoXKYT5ffXYFFhbA3fUv"/></svg><span data-page-node-id="qfc3HyFIXMn9rF1aoMfALY">面向所有关注生态文明建设的各界人士</span></li>
+              </ul>
+              <p class="seat-foot" data-page-node-id="SFDGjt5DhfHeSPLCGXewoZ">席位有限，按报名先后安排 · <strong data-page-node-id="kbgxjDzAwikTppA0mlfpLF">详询报名专线</strong></p>
+            </div>
+
+            <div class="seat paid" data-page-node-id="vBjOd1eZCtiPr5P3BAU5tF">
+              <div class="seat-cap" data-page-node-id="FHrYlmVHtBmTzChG8wD3kB">
+                <div data-page-node-id="LnUm1TiIlJpBUK8K4Givg3">
+                  <h3 data-page-node-id="2F5TtSVGTahrOXrtlEH5tS">深度参会</h3>
+                  <p class="hn" data-page-node-id="hHz4zzmbmWDFjgAJOWtMCI">Extended Programme · 有偿</p>
+                </div>
+                <span class="tg paid" data-page-node-id="5zfueiEx9ismGWh5KmAlqf">有偿</span>
+              </div>
+              <ul data-page-node-id="zG9J5cjawx3uxTwxcdAtEI">
+                <li data-page-node-id="l8dDoRHdZg3EXH5iMo45bn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="amO2fy0em5Q3w93amRuZ6L"><path d="M20 6 9 17l-5-5" data-page-node-id="UxhzWbMmPLgBaNknmNCu0R"/></svg><span data-page-node-id="E0kviqQOhnTiT0nTZ8MUJH">含全部公益参会议程</span></li>
+                <li data-page-node-id="mGFaPwhEsO1nsMhwfONYwK"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="945YMOkbsBoreZLyLVR9Bg"><path d="M20 6 9 17l-5-5" data-page-node-id="D6IEer9VDZLcfRk6F63jsq"/></svg><span data-page-node-id="wltft1jgtLcxHMDTqZLfSv">延伸至 10 月 5 — 6 日「使命与社会责任」专题板块</span></li>
+                <li data-page-node-id="oO9TYfY7WEVHJAPzVMlNTx"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="8Ao3NT4yxWyA4VR0QDS0XQ"><path d="M20 6 9 17l-5-5" data-page-node-id="Qb1wbfHWBgEN8ZGQPURck7"/></svg><span data-page-node-id="a8h1uEydiB7EJLWhRDb0Lv">面向希望参与延伸研讨与实践协同的同仁</span></li>
+              </ul>
+              <p class="seat-foot" data-page-node-id="jA1Ye0CjyB8YgM0ENrc6L9">费用标准与名额安排请咨询报名专线 · <strong data-page-node-id="ABhtuBD7jY0IXautvmac2X">162 1013 9688</strong></p>
+            </div>
+          </div>
+
+          <div class="chan rv" data-page-node-id="FF2w3SzDwwlcLltSbZK35c">
+            <div class="chan-cell" data-page-node-id="jPQxk5h14ViFqOW8GmHfi7">
+              <span class="ic" aria-hidden="true" data-page-node-id="WjpWZCAhwGUEkZjBwfYr4k"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="Bzgulg2xG1EbRHy9RAO6WG"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" data-page-node-id="p7m8FBq4ASNzeeE174z4ph"/></svg></span>
+              <span class="k" data-page-node-id="1nT006U3sosUABjbIU23Mw">报名联系电话</span>
+              <span class="v" data-page-node-id="urmEXxjRIS9YwoiqRsWRas">162 1013 9688</span>
+              <span class="h" data-page-node-id="ZsCjFe3ziaI0aWWYkCwHJ5">论坛报名专线</span>
+            </div>
+            <div class="chan-cell" data-page-node-id="VOk7urHSK1ovGF6sh6gB6F">
+              <span class="ic" aria-hidden="true" data-page-node-id="GUh75qdpoAKtGld30aBn1V"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="2ZuQ48x3shMrjuDaKGerDN"><rect x="2" y="4" width="20" height="16" rx="2" data-page-node-id="VqVaqpxNSBCi6OdQ71nFAp"/><path d="m2.5 6 9.5 7 9.5-7" data-page-node-id="EB2dmySMtL8G0clCQA1N2u"/></svg></span>
+              <span class="k" data-page-node-id="keqrT4HDEcoqVqUz4QPYVd">线上报名邮箱</span>
+              <span class="v sm" data-page-node-id="TxPlNYP488JHUimwYiXPIT">xzq_789@163.com</span>
+              <span class="h" data-page-node-id="C4hGMA7LqM4D5QmUSG7Log">邮箱报名通道</span>
+            </div>
+            <div class="chan-cell" data-page-node-id="5cOCrqIYQPx5IS5ZchHzU3">
+              <span class="ic" aria-hidden="true" data-page-node-id="t1R6S4lluAHG7xtihnx6ZT"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="5rzyG61B4cMWHxfhAXTFEZ"><path d="M3 11a9 9 0 0 1 18 0" data-page-node-id="EwosZTSbexwTt1qfEE8mc0"/><path d="M3 11v5a2 2 0 0 0 2 2h2v-7H5a2 2 0 0 0-2 2z" data-page-node-id="SWoFMz2xYwYhxPBzSkD8AW"/><path d="M21 11v5a2 2 0 0 1-2 2h-2v-7h2a2 2 0 0 1 2 2z" data-page-node-id="VsSiBQsm6NQFTbDFN036sE"/><path d="M19 18v1.5a2.5 2.5 0 0 1-2.5 2.5H13" data-page-node-id="DPSp1Tsj3JBLS4eWglCug8"/></svg></span>
+              <span class="k" data-page-node-id="BRyo91C7JZOKg8EhjTtEgZ">全国嘉宾服务专线</span>
+              <span class="v" data-page-node-id="CJUgJS9YxAkcEhe7LNNLT3">162 1186 3031</span>
+              <span class="h" data-page-node-id="Bxf5mf2sTBLT4ILibgPMxK">全国嘉宾统一服务</span>
+            </div>
+            <div class="chan-cell" data-page-node-id="BRQ5kNcX82WtsGojzx3BYU">
+              <span class="ic" aria-hidden="true" data-page-node-id="nFTkeiBFmG6LzA6R1sXYAr"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="VqiEUtbkhMd44JoHtRvhMB"><circle cx="12" cy="12" r="9" data-page-node-id="bEJ3OohD2c353SKA1LIw3B"/><path d="M12 8v4l3 2" data-page-node-id="G38MgwzJW7X9mgn8PxGrDo"/></svg></span>
+              <span class="k" data-page-node-id="BCtDM1eOeBp59FCKDnP5A7">综合事务服务专线</span>
+              <span class="v" data-page-node-id="Azx2NMGLQOoAvjqeREuFMq">162 1186 3026</span>
+              <span class="h" data-page-node-id="owQMpUbKdKKF9ZXyFf9MmY">综合事务咨询</span>
+            </div>
+          </div>
+
+          <div class="qr rv" data-page-node-id="N7Eil7aHowDJTZ0Pg9fj82">
+            <img src="assets/qrcode.png" alt="服务号「A心爱自然」二维码" width="190" height="190" loading="lazy" data-page-node-id="s7Ghx9iwWosa1dDqW3pR7Q">
+            <div data-page-node-id="P5Z74NlkFbSjCAJJztI8J4">
+              <h3 data-page-node-id="a1o352UAiZiNQ6Y5DqLcll">扫码关注服务号 · A心爱自然</h3>
+              <p data-page-node-id="6qa1lTRRZafwlakeBnZzNV">扫描二维码关注论坛服务号，第一时间获取大会公告、议程更新、嘉宾信息与报名通道。论坛一年一届、长期举办，欢迎持续关注。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 07 组织架构 -->
+        <section class="dsec" id="org" data-no="07" data-page-node-id="1l4VXKXbnZl9P8vUNzYpma">
+          <header class="sh rv" data-page-node-id="QpVKFsFhJr9NGC0jLQ5aWC">
+            <span class="sh-no" data-page-node-id="qXCXTVEUQHHe5FkJCMAH7b">07</span>
+            <div class="sh-txt" data-page-node-id="3eFsegvBwEPJ7h7KFFFZwB">
+              <h2 data-page-node-id="AvAlG1c2jp5KWQUAZXaqkW">组织架构</h2>
+              <span class="sh-en" data-page-node-id="V2vdq2uCTWQOcSnGeVfSL1">Organization</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="XWbQsPrkZCbsNidBT1L6BU"></span>
+          </header>
+
+          <div class="sheet rv" data-page-node-id="hj1TImFjlvyVLHobb8QEx3">
+            <div class="sheet-row" data-page-node-id="imMQ2QAkDSMyVYdBj0QBNX">
+              <span class="k" data-page-node-id="flMfVIghIonr0EGLUIdXZ1"><b data-page-node-id="2DkyE5meOWwCwKcgCpz1Ur">主办单位</b>Organizer</span>
+              <span class="v" data-page-node-id="zgfWTLJtNkNHK3nKF55xHL">心爱自然文化发展（临沂）有限公司<em data-page-node-id="CdOeVMohumqjXjy5BdLLNC">Organizer</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="yUDncQesKUYOx5GNG554Ae">
+              <span class="k" data-page-node-id="4NPFIoTMAgH0G4nuPvo8nX"><b data-page-node-id="z1tVsQ6i82jwjNfrydUzj8">承办单位</b>Co-organizer</span>
+              <span class="v" data-page-node-id="txU8s1AO8EBQojXtgQbHYY">心之清文化旅游（吉林）有限公司<em data-page-node-id="kbT7BeGACzu9qRUUZD9a5Y">Co-organizer</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="pxhPWxTXgJLOq8i8bDxx5K">
+              <span class="k" data-page-node-id="cSaooE8WITuIAhMuwHt0KZ"><b data-page-node-id="TwwtdfbVjdt6EBPxHE2DHg">支持单位</b>Supporting Partner</span>
+              <span class="v" data-page-node-id="MKXEaLpz20BCkcbrtuz1wj">长春国际会展中心大酒店<em data-page-node-id="sqcgVzpFv3AMjv93cKqi5p">Supporting Partner</em></span>
+            </div>
+            <div class="sheet-row" data-page-node-id="qErlhMjWmZjkOo08Crp3Ow">
+              <span class="k" data-page-node-id="RxOgVLcwDyq5JHtr63ehFS"><b data-page-node-id="zwfkTaLOQ7FCACEnJEgRmO">组委会</b>Committee</span>
+              <span class="v" data-page-node-id="SzjPW11K6pgFjlTOvYyoly">生态文明与发展论坛组委会<em data-page-node-id="pVoRGWaxvIWhkg1i4hVQAf">Organizing Committee</em></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 08 大会公告 -->
+        <section class="dsec alt" id="bulletin" data-no="08" data-page-node-id="FmH5Kv1UadPQXSujTTNGzJ">
+          <header class="sh rv" data-page-node-id="pL88r3eYzvpmGf0DyIp0qq">
+            <span class="sh-no" data-page-node-id="yys3B5FVLEcejqQ5Ca8MZk">08</span>
+            <div class="sh-txt" data-page-node-id="xmVmNK65HAuvs3zcFQwgSY">
+              <h2 data-page-node-id="PnC5hQgMSYfWIFAQ8g4tnq">大会公告</h2>
+              <span class="sh-en" data-page-node-id="38odhyeHcI5fth6Ci43crr">Bulletin</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="o9hiyKFa0XKmB8O65xQpfO"></span>
+          </header>
+
+          <p class="lead rv" style="margin-bottom:26px" data-page-node-id="omEBPKKg8MgPzHF7k69fGB">此处发布论坛筹备进展、议程更新、嘉宾信息与参会须知。内容随筹备推进持续更新。</p>
+
+          <div class="bulletin rv" data-page-node-id="O0I3zGvJr51GcX4GNVcmmZ">
+            <a class="bn" href="#access" data-page-node-id="cuOwqpcdeLtHyCDalooFsC">
+              <span class="bn-d" data-page-node-id="nxsKReiqOj1PeHbGbcvAdL">2026.09<em data-page-node-id="p8wIrQjReWFLaAxtlrVrnQ">Sep 2026</em></span>
+              <div class="bn-b" data-page-node-id="38mzHju2UMG6grs75CGDn0">
+                <h3 data-page-node-id="jAgrpMmdjhj95pXcAHklzg"><span class="new" data-page-node-id="qLDG7fgQS5K6nb5nmZZCG9">最新</span>第一届论坛报名通道正式开启</h3>
+                <p data-page-node-id="HAbAaZBgCLmcQfqJoryVR3">公益参会与深度参会两类席位同步开放，可通过报名专线、电子邮箱或服务号二维码提交报名信息。</p>
+              </div>
+              <span class="arw" aria-hidden="true" data-page-node-id="yLwglX2Mz6Wt86r3FDIIZN"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="wwpkqrk7eibgOHH7lhR8e6"><path d="m9 6 6 6-6 6" data-page-node-id="O3J1YpSt2OQ6Z4o4SxWmBI"/></svg></span>
+            </a>
+            <a class="bn" href="#programme" data-page-node-id="Aips9QI2kBC5CnKeSfPj8K">
+              <span class="bn-d" data-page-node-id="gVYr281DB7zwMRJaKwNx1P">2026.09<em data-page-node-id="D8x5eGdVjkC144AAQ4sUV6">Sep 2026</em></span>
+              <div class="bn-b" data-page-node-id="BgCrrBZQHJja8E6KBF96Vw">
+                <h3 data-page-node-id="wr3HEPx5AugxH8K5Tl9Dep">大会日程（第一版）发布</h3>
+                <p data-page-node-id="GYUbZcYu4Dk6cgpsF1bAkj">10 月 2 日报到与晚宴，10 月 3 — 4 日主论坛，10 月 5 — 6 日「使命与社会责任」延伸活动。日程将持续更新。</p>
+              </div>
+              <span class="arw" aria-hidden="true" data-page-node-id="if9PtNXcKA2RQZCak45ODN"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="Y3XMeD8hUDh2ZERvuxIWgI"><path d="m9 6 6 6-6 6" data-page-node-id="EZdf7VGQmW75VExglZBx7k"/></svg></span>
+            </a>
+            <a class="bn" href="#sectors" data-page-node-id="GVkoOxS7g88IFRisBzs5uf">
+              <span class="bn-d" data-page-node-id="18zBU87iFBZFzSJgPaOuav">2026.09<em data-page-node-id="tdPu0wVf7Fd6jeSFB0X9bz">Sep 2026</em></span>
+              <div class="bn-b" data-page-node-id="1nQoQMA114pqvwiUr66wZH">
+                <h3 data-page-node-id="xTyBiH3bxpKrSsZ76rpU73">参会界别与议题框架公布</h3>
+                <p data-page-node-id="vWfQWGMGUUpCVbVL5sY3O6">论坛面向全球发展贡献者、生态环保践行者、教育与科研工作者等七类界别开放，设置四大核心议题。</p>
+              </div>
+              <span class="arw" aria-hidden="true" data-page-node-id="CTccClquQaPHVNqN1DaRMx"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="6ClLb23CrMVWZvzCIhW0UC"><path d="m9 6 6 6-6 6" data-page-node-id="L5twCxKhhE9ilq7ktEANeL"/></svg></span>
+            </a>
+            <a class="bn" href="#access" data-page-node-id="GlbaaJ9XldVbPkE72UfxHD">
+              <span class="bn-d" data-page-node-id="LBmA4gYwkNFIhU8xxelGmv">2026.10<em data-page-node-id="4l54HN1tBWNNYVvLNWhNbA">Oct 2026</em></span>
+              <div class="bn-b" data-page-node-id="TnIamGD9ajvUHaW6rHd3O1">
+                <h3 data-page-node-id="itFBtvRMLauthkfqCO0bsR">报到日现场服务指引</h3>
+                <p data-page-node-id="mqxUtGZQExeIj1ZoPvYJQF">10 月 2 日 09:00 — 16:00 于长春国际会展中心大饭店办理报到与入住，17:30 举行论坛晚宴。</p>
+              </div>
+              <span class="arw" aria-hidden="true" data-page-node-id="uFO9c5KF2waAEFybvF3d9B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="fR50067m9fIAxylXc5ovAz"><path d="m9 6 6 6-6 6" data-page-node-id="qCIw368L8lS6aX4S2GHa8q"/></svg></span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 09 历届回顾 -->
+        <section class="dsec" id="editions" data-no="09" data-page-node-id="MWL5cCEfTBcKy2lGmMXral">
+          <header class="sh rv" data-page-node-id="ECwVGQzLbGt9ohHEV7leus">
+            <span class="sh-no" data-page-node-id="FfXvun7k4CHNf5B5aswXQ0">09</span>
+            <div class="sh-txt" data-page-node-id="DLtUfHtTTd65bpnLl3zEUK">
+              <h2 data-page-node-id="yptAMMsH0uBjgcdXYkffgl">历届回顾</h2>
+              <span class="sh-en" data-page-node-id="x9Oc37jlFMeEYt5WfvCsOC">Editions</span>
+            </div>
+            <span class="sh-line" aria-hidden="true" data-page-node-id="u2m4Jgv03A57F8E4unAdfG"></span>
+          </header>
+
+          <p class="lead rv" style="margin-bottom:26px" data-page-node-id="JR3mJ8WydgskxwBwqw9ljG">生态文明与发展论坛一年一届、长期举办。此处将随每一届的举办持续沉淀大会资料。</p>
+
+          <div class="ed rv" data-page-node-id="1fNjARQIiaFTvmiBhJAGwU">
+            <div class="ed-row now" data-page-node-id="xBbib1JHeusobkm9rKySqA">
+              <span class="e-no" data-page-node-id="iXZ1EGNqfJIPpbxaoQfSLY">Session<em data-page-node-id="qYrEDdxBhmmKYuY8AGzLmQ">首届论坛</em></span>
+              <div data-page-node-id="AfE9GvNVZEEIyqePFrQHAI">
+                <h3 data-page-node-id="2l6jTflU1Fop64AaEtXeRQ">生态文明与发展论坛 · 第一届<span class="pill now" data-page-node-id="Tthovhim6n7K3NWYqXPZyh">本届 · 即将启幕</span></h3>
+                <p data-page-node-id="JOFMw4sw6ishrmhwhnyes3">落地中国 · 吉林 · 长春，以「共建生态文明 —— 探索人类文明发展新格局」为主题，围绕四大核心议题展开。</p>
+              </div>
+              <span class="e-yr" data-page-node-id="3IZyBUpyXQ5VDY2QHhUL5R">2026</span>
+            </div>
+
+            <div class="ed-row" data-page-node-id="iuqP6TdS6oSDN7sJ5SYfYN">
+              <span class="e-no" data-page-node-id="Gx5rPrHYev3iycHo3c5hEV">Session<em data-page-node-id="sv2CaXPcP3RZsdmDwKAuIp">第二届论坛</em></span>
+              <div data-page-node-id="YVlw4GUhyigrGFqwG5TI0B">
+                <h3 data-page-node-id="oTMhnVY57r2icbe2xebluT">生态文明与发展论坛 · 第二届<span class="pill" data-page-node-id="G20TGCI3sxHeN8CYG3Hysl">筹办中</span></h3>
+                <p data-page-node-id="QFvMy1MjGUZjFwt9TCLgHW">第二届论坛的时间、地点与主题将于首届闭幕后公布。相关议程与参会通道将同步在本页更新。</p>
+              </div>
+              <span class="e-yr" data-page-node-id="uCJTalYL5SZUVPZFeqL2xv">TBD</span>
+            </div>
+
+            <div class="ed-row" data-page-node-id="AMO42BzFNFTFS8H9H3OpIF">
+              <span class="e-no" data-page-node-id="Pn9LuEGXaxQ0CRXxKlMx6A">Annual<em data-page-node-id="oWmrXNN06QQItorcaRXFMQ">年度机制</em></span>
+              <div data-page-node-id="qJDNo2I069RSvgDaQtDsuV">
+                <h3 data-page-node-id="BqHFtFwgHF6IHdhD44LcdC">年度举办机制<span class="pill" data-page-node-id="HffM72Yds32keaZVeYlOWU">长期举办</span></h3>
+                <p data-page-node-id="J20tqlh8gZGqstLrPP1JWL">论坛以年度为周期持续举办，逐步形成主论坛、延伸活动与专题研讨相结合的长期内容机制。</p>
+              </div>
+              <span class="e-yr" data-page-node-id="Qj2xleUeGohO7PkqxJdKWL">1 / 年</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 卷尾 ==================== -->
+  <section class="finale" data-page-node-id="x4XLZLbIi3bdgEyEAeRJyj">
+    <svg class="fbg" viewBox="0 0 1440 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-page-node-id="n3wtjErYwAcLVxL6DyVID9">
+      <g stroke="#FFFFFF" stroke-opacity=".05" stroke-width="1" data-page-node-id="GHGR7CiV8QiFqdr7HTOWlH">
+        <path d="M0,92 H1440 M0,184 H1440 M0,276 H1440 M0,368 H1440" data-page-node-id="LfSvNEon22QlRYiN6QBELB"/>
+        <path d="M180,0 V460 M360,0 V460 M540,0 V460 M720,0 V460 M900,0 V460 M1080,0 V460 M1260,0 V460" data-page-node-id="WpXE6hUqBKGg3oF7R3UQPI"/>
+      </g>
+      <g fill="none" stroke="#7FCFEE" stroke-opacity=".12" stroke-width="1" data-page-node-id="lw6blCvbJ6xASycQQYIDSO">
+        <circle cx="1240" cy="80" r="230" data-page-node-id="cWjdYYtiiyX61h6g3iC925"/><circle cx="1240" cy="80" r="162" stroke-dasharray="2 10" data-page-node-id="muLG7FaQamebVLE881UlE8"/>
+        <circle cx="200" cy="400" r="180" stroke-dasharray="2 10" data-page-node-id="Iszo551jPjnEjSvFhBZB5C"/>
+      </g>
+    </svg>
+    <div class="finale-in" data-page-node-id="I4jgROwspLvfEX62VGYSRm">
+      <p class="couplet rv" data-page-node-id="rTsu7dFkZwaEyPdUEWp65C">
+        <span data-page-node-id="tPP9mspYS8xfv3lHVwXBj6">生态文明共生共荣</span>
+        <span data-page-node-id="RoGWkQKiU58WAyXyOxjafg">山河万象永续绵长</span>
+        <span data-page-node-id="luC3T8a7Fie0Fo19fBvYBu">四海之士同心聚力</span>
+        <span data-page-node-id="cYSLC4oVHpAIlHiU6yLbOa">共赴文明恒远新章</span>
+      </p>
+      <div class="f-rule rv" aria-hidden="true" data-page-node-id="mcgM5wzOubkgoUePGRBNCU"><i data-page-node-id="aiRAzWARR9LEhTvSHNDKU2"></i><b data-page-node-id="kGn0knu5kIpGTE9nvjJHd3"></b><i data-page-node-id="MahcJrvPQudfjtlc9Hqbh0"></i></div>
+      <p class="f-org rv" data-page-node-id="6x0qj71iAO0GejIlroaHSv">生态文明与发展论坛组委会</p>
+      <p class="f-org-en rv" data-page-node-id="DqzsiwoTykmR7kWojMHAc3">Organizing Committee of the Ecological Civilization &amp; Development Forum</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================== 页脚 ==================== -->
+<footer class="foot" data-page-node-id="GKpuK8KC3TivUREpmulPeS">
+  <div class="foot-in" data-page-node-id="Axu9sjZqEqP3C1KwZCYM6E">
+    <div class="foot-top" data-page-node-id="yXrDUrikVQrD0JOBORIWur">
+      <div data-page-node-id="S91ZMn5uEb5Ev4jT5Yr9Tv">
+        <h4 class="big" data-page-node-id="mGTrmCwdWGpIZE4LWdI6ZT">生态文明与发展论坛</h4>
+        <p data-page-node-id="xmNwAbMCtkgEG3BebUU1me">一年一届 · 长期举办<br data-page-node-id="MSHyPF1Nh5lCJLoJACzz5P">第一届 · 2026 年 10 月 3 — 6 日<br data-page-node-id="bx41eLvUx4eoEDQzhmwSb5">中国 · 吉林 · 长春国际会展中心大饭店</p>
+      </div>
+      <div data-page-node-id="VdSMHaUirBApblasZgytmv">
+        <h4 data-page-node-id="eYAVm6s3u7bCzOgK7zQV1H">联系我们</h4>
+        <ul data-page-node-id="7cYOaCJ9UzK6ZqTarrlkDv">
+          <li data-page-node-id="mOTiqRuE1LH3ZJQVi7uSzo"><span data-page-node-id="4CTHY1EH9vjSmGgriWXHz0">报名电话</span><em data-page-node-id="psb9oMZuJCNHWPh5Xtv04b">162 1013 9688</em></li>
+          <li data-page-node-id="hUR7gD7mDYND7ugplN8W7J"><span data-page-node-id="sQpKJ3oeo8l2IUZHOw1nzK">嘉宾专线</span><em data-page-node-id="I4uUKklsEXy4XExR5bOyll">162 1186 3031</em></li>
+          <li data-page-node-id="0sxzOetkaX97a8Z1ZblvKu"><span data-page-node-id="UEWKqSjPgpffhwk9jRnyEF">综合事务</span><em data-page-node-id="atRDQRX0F7ZmPfDPjcwv8x">162 1186 3026</em></li>
+          <li data-page-node-id="fhpm5azjfxQguWHOHjmfwG"><span data-page-node-id="geiZtPlFChdaGgJC3jshSA">报名邮箱</span><em data-page-node-id="d9YDBrQwUz7EY6mBh62Mpj">xzq_789@163.com</em></li>
+        </ul>
+      </div>
+      <div data-page-node-id="eo0bkHb74Xku8XExPf4ICj">
+        <h4 data-page-node-id="cf9v4w3nRI9WeN5ALPCkCe">会议信息</h4>
+        <ul data-page-node-id="21nKECiLOzmbXwOVvIukg1">
+          <li data-page-node-id="U26sDjktpIoB9icKNcCBKX"><a href="#glance" data-page-node-id="EkzcB9p8LHMxhMWWsL2sYl">大会要览</a></li>
+          <li data-page-node-id="aYD9AcLi4i452AYaFOTHYI"><a href="#programme" data-page-node-id="47MTAbhGcsWymof285qFzR">大会议程</a></li>
+          <li data-page-node-id="khF3YPNODVPS9q3IyMOOGH"><a href="#access" data-page-node-id="VQVnPF8BMhXWtKFHMekScS">参会通道</a></li>
+          <li data-page-node-id="6HFoTqdScP6li0x4m4Fw9A"><a href="#bulletin" data-page-node-id="XqrkqlLtQoyTFLrxmSOeOD">大会公告</a></li>
+          <li data-page-node-id="fbvejQ97DWFDEEIgMGDTlh"><a href="#editions" data-page-node-id="jIbEnLIEyvxoJiwdU8PP88">历届回顾</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot" data-page-node-id="k7GBfOIucryk5mxVhwtfiH">
+      <span data-page-node-id="hGjfICcvtn4QjsxKGJvk2J">主办：心爱自然文化发展（临沂）有限公司　|　承办：心之清文化旅游（吉林）有限公司</span>
+      <span class="en-line" data-page-node-id="3aY0AG82hQeziqdw6Ho2bW">© 2026 Ecological Civilization &amp; Development Forum. All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobar" id="mobar" data-page-node-id="JwoRJ2k7piVHqPHWzCVTLT">
+  <a class="primary" href="#access" data-page-node-id="m1vrIOOEKGNasDfN6jZ0qV">报名参会</a>
+  <a class="ghost" href="#programme" data-page-node-id="hCfXt4GgKR9J8GGl0orDOe">大会议程</a>
+</div>
+
+<button class="totop" id="totop" aria-label="回到顶部" data-page-node-id="xKwcan1t3Q86iUPCDnlXaZ">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="h8XvtSJ9DhV7Wkl7lcipif"><path d="M12 19V5M5 12l7-7 7 7" data-page-node-id="pWVuLj6kbAYKnT3tBuxeP9"/></svg>
+</button>
+
+<script>
+(function(){
+  'use strict';
+
+  var nav      = document.getElementById('nav');
+  var burger   = document.getElementById('burger');
+  var navLinks = document.getElementById('navLinks');
+  var totop    = document.getElementById('totop');
+  var progress = document.getElementById('progress');
+
+  /* ---------- 滚动：导航实色 / 进度条 / 回顶 ---------- */
+  function onScroll(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    nav.classList.toggle('solid', y > 60);
+    totop.classList.toggle('show', y > 800);
+    progress.style.width = (h > 0 ? Math.min(100, (y / h) * 100) : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  /* ---------- 移动端菜单 ---------- */
+  function closeMenu(){
+    navLinks.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    burger.setAttribute('aria-label','打开导航菜单');
+  }
+  burger.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? '关闭导航菜单' : '打开导航菜单');
+  });
+  navLinks.addEventListener('click', function(e){
+    if (e.target.closest('a')) closeMenu();
+  });
+  document.addEventListener('click', function(e){
+    if (!navLinks.classList.contains('open')) return;
+    if (e.target.closest('#navLinks') || e.target.closest('#burger')) return;
+    closeMenu();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  /* ---------- 目录联动（顶部导航 + 左侧目录） ---------- */
+  var spyLinks = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'))
+    .concat([].slice.call(document.querySelectorAll('#railList a[href^="#"]')))
+    .concat([].slice.call(document.querySelectorAll('.chips a[href^="#"]')));
+  var sections = [].slice.call(document.querySelectorAll('.dsec[id]'));
+  if ('IntersectionObserver' in window && sections.length){
+    var visible = Object.create(null);
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0;
+      });
+      var best = null, bestR = 0;
+      sections.forEach(function(s){
+        var r = visible[s.id] || 0;
+        if (r > bestR){ bestR = r; best = s.id; }
+      });
+      if (!best){
+        var mid = window.pageYOffset + window.innerHeight * 0.35;
+        sections.forEach(function(s){
+          if (s.offsetTop <= mid) best = s.id;
+        });
+      }
+      spyLinks.forEach(function(a){
+        a.classList.toggle('on', a.getAttribute('href') === '#' + best);
+      });
+    }, {rootMargin:'-110px 0px -45% 0px', threshold:[0,.12,.4,.75,1]});
+    sections.forEach(function(s){ io.observe(s); });
+  }
+
+  /* ---------- 入场动效 ---------- */
+  var rvs = [].slice.call(document.querySelectorAll('.rv'));
+  if ('IntersectionObserver' in window){
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          var el = en.target;
+          var i = rvs.indexOf(el);
+          el.style.transitionDelay = Math.min(i % 6, 5) * 55 + 'ms';
+          el.classList.add('in');
+          ro.unobserve(el);
+        }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+    rvs.forEach(function(el){ ro.observe(el); });
+  } else {
+    rvs.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- 倒计时（三态自动切换） ---------- */
+  var CD_OPEN = new Date('2026-10-02T09:00:00+08:00').getTime(); // 报到日
+  var CD_END  = new Date('2026-10-06T23:59:59+08:00').getTime(); // 会期结束
+  var count   = document.getElementById('count');
+  var cdLabel = document.getElementById('cdLabel');
+  var cdCells = count ? count.querySelectorAll('[data-cd]') : [];
+  var pad = function(n){ return n < 10 ? '0' + n : '' + n; };
+  var labels = {d:'天', h:'时', m:'分', s:'秒'};
+
+  function setCells(map){
+    for (var k in map){
+      for (var i = 0; i < cdCells.length; i++){
+        if (cdCells[i].getAttribute('data-cd') !== k) continue;
+        var v = pad(map[k]), cell = cdCells[i];
+        if (cell.textContent !== v){
+          cell.textContent = v;
+          cell.classList.remove('upd'); void cell.offsetWidth; cell.classList.add('upd');
+        }
+      }
+    }
+  }
+
+  function tick(){
+    if (!count) return;
+    var now = Date.now();
+    if (now < CD_OPEN){
+      count.classList.remove('done');
+      cdLabel.textContent = '距本届论坛开幕';
+      var gap = Math.floor((CD_OPEN - now) / 1000);
+      setCells({
+        d: Math.floor(gap / 86400),
+        h: Math.floor(gap % 86400 / 3600),
+        m: Math.floor(gap % 3600 / 60),
+        s: gap % 60
+      });
+      return;
+    }
+    if (now <= CD_END){
+      count.classList.add('done');
+      cdLabel.textContent = '第一届论坛 · 正在进行中';
+      var consumed = Math.floor((now - CD_OPEN) / 1000);
+      var total = Math.floor((CD_END - CD_OPEN) / 1000);
+      var left = Math.max(0, total - consumed);
+      setCells({
+        d: Math.floor(left / 86400),
+        h: Math.floor(left % 86400 / 3600),
+        m: Math.floor(left % 3600 / 60),
+        s: left % 60
+      });
+      return;
+    }
+    count.classList.add('done');
+    cdLabel.textContent = '首届已圆满闭幕 · 第二届正在筹办';
+    setCells({d: 0, h: 0, m: 0, s: 0});
+    clearInterval(cdTimer);
+  }
+
+  var cdTimer = setInterval(tick, 1000);
+  tick();
+
+  /* ---------- 电话链接（移动端可点） ---------- */
+  [].slice.call(document.querySelectorAll('.chan-cell .v, .foot li em')).forEach(function(el){
+    var txt = el.textContent.replace(/\s/g,'');
+    if (/^\d{11,13}$/.test(txt)){
+      var a = document.createElement('a');
+      a.href = 'tel:+86' + txt;
+      a.textContent = el.textContent;
+      el.textContent = '';
+      el.appendChild(a);
+    }
+  });
+
+  /* ---------- 数据带数字滚动 ---------- */
+  function animateNum(el){
+    var to = parseInt(el.getAttribute('data-to'), 10);
+    var pad2 = parseInt(el.getAttribute('data-pad') || '1', 10) > 1;
+    if (isNaN(to)) return;
+    var fmt = function(v){ return pad2 && v < 10 ? '0' + v : '' + v; };
+    var t0 = null, dur = 1100;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var k = Math.min(1, (ts - t0) / dur);
+      var e = 1 - Math.pow(1 - k, 3);
+      el.textContent = fmt(Math.round(to * e));
+      if (k < 1) requestAnimationFrame(step); else el.textContent = fmt(to);
+    }
+    requestAnimationFrame(step);
+  }
+  var figsBox = document.querySelector('.figures');
+  if (figsBox && 'IntersectionObserver' in window){
+    var figObs = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if (!en.isIntersecting) return;
+        [].slice.call(en.target.querySelectorAll('b[data-to]')).forEach(animateNum);
+        figObs.unobserve(en.target);
+      });
+    }, {threshold:.35});
+    figObs.observe(figsBox);
+  }
+
+  /* ---------- 议程：按日切换 ---------- */
+  var dayTabs = [].slice.call(document.querySelectorAll('.dt'));
+  var dayRows = [].slice.call(document.querySelectorAll('.pt tbody tr[data-day]'));
+  var dayCount = document.getElementById('dayCount');
+  var ptBody = document.querySelector('.pt tbody');
+  function applyDay(day){
+    var shown = 0;
+    dayRows.forEach(function(r){
+      var ok = (day === 'all') || r.getAttribute('data-day') === day;
+      r.classList.toggle('hide', !ok);
+      if (ok) shown++;
+    });
+    dayTabs.forEach(function(b){
+      var on = b.getAttribute('data-day') === day;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    if (dayCount) dayCount.textContent = shown;
+    if (ptBody){
+      ptBody.classList.remove('swap'); void ptBody.offsetWidth; ptBody.classList.add('swap');
+    }
+  }
+  if (dayTabs.length){
+    dayTabs.forEach(function(b){
+      b.addEventListener('click', function(){ applyDay(b.getAttribute('data-day')); });
+    });
+    applyDay(window.matchMedia('(max-width:720px)').matches ? '10.02' : 'all');
+  }
+
+  /* ---------- 长文折叠 ---------- */
+  [].slice.call(document.querySelectorAll('[data-more]')).forEach(function(btn){
+    var box = document.getElementById(btn.getAttribute('data-more'));
+    if (!box) return;
+    btn.addEventListener('click', function(){
+      var open = box.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? '收起' : '展开全文';
+      if (!open) box.scrollIntoView({block:'start', behavior:'smooth'});
+    });
+  });
+  [].slice.call(document.querySelectorAll('[data-fold]')).forEach(function(btn){
+    var box = btn.closest('.gains');
+    if (!box) return;
+    btn.addEventListener('click', function(){
+      var open = box.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? '收起' : '展开全部 4 项';
+    });
+  });
+
+  /* ---------- 视差 + 底部操作条 ---------- */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hl = document.querySelector('.hl');
+  var yr = document.querySelector('.hero-r .grid-bg');
+  var mobar = document.getElementById('mobar');
+  var ticking = false;
+  function parallax(){
+    var y = window.pageYOffset || 0;
+    if (mobar) mobar.classList.toggle('show', y > 520);
+    if (reduce) { ticking = false; return; }
+    if (y < 1200){
+      if (hl) hl.style.transform = 'translate3d(0,' + (y * 0.10).toFixed(1) + 'px,0)';
+      if (yr) yr.style.transform = 'translate3d(0,' + (y * 0.055).toFixed(1) + 'px,0)';
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking){ ticking = true; requestAnimationFrame(parallax); }
+  }, {passive:true});
+  parallax();
+})();
+</script>
+</body>
+</html>
