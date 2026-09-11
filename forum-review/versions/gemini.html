@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生态文明与发展论坛官方网站 | Ecological Civilization & Development Forum (ECDF)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: 联合国官方首选衬线与现代无衬线体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            un: {
+              DEFAULT: '#009EDB',     // 经典联合国明蓝 (权威、明快、生机)
+              50: '#F0F9FF',          // 极浅透亮天蓝
+              100: '#E0F2FE',         // 冰川蓝底色
+              200: '#BAE6FD',
+              300: '#7DD3FC',
+              400: '#38BDF8',
+              500: '#009EDB',         // 主色
+              600: '#0284C7',
+              700: '#0369A1',         // 稳重深天蓝 (替代沉闷暗黑)
+              800: '#075985',
+              900: '#0C4A6E',
+            },
+            eco: {
+              DEFAULT: '#10B981',     // 生态翡翠绿
+              light: '#D1FAE5',
+              dark: '#059669',
+              teal: '#0D9488',
+              glow: '#34D399'
+            },
+            cerulean: '#1D4ED8',      // 蔚蓝提亮
+            surface: {
+              white: '#FFFFFF',
+              soft: '#F8FAFC',
+              mist: '#F1F5F9'
+            }
+          },
+          fontFamily: {
+            serif: ['"Noto Serif SC"', 'SimSun', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            display: ['Cinzel', '"Noto Serif SC"', 'serif']
+          },
+          boxShadow: {
+            'glow-un': '0 10px 30px -5px rgba(0, 158, 219, 0.25)',
+            'glow-eco': '0 10px 30px -5px rgba(16, 185, 129, 0.25)',
+            'card-clean': '0 4px 20px 0 rgba(0, 78, 140, 0.06)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 联合国式清朗明澈渐变背景与轻盈网格 */
+    .un-atmosphere {
+      background: radial-gradient(1200px circle at 50% 10%, rgba(224, 242, 254, 0.8) 0%, rgba(240, 249, 255, 0.6) 50%, #FFFFFF 90%);
+    }
+    
+    .light-grid-pattern {
+      background-image: linear-gradient(rgba(0, 158, 219, 0.06) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0, 158, 219, 0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    @keyframes subtleOrbit {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-spin-gentle {
+      animation: subtleOrbit 80s linear infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.05); }
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 5s ease-in-out infinite;
+    }
+
+    /* 现代玻璃态拟态 */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 158, 219, 0.14);
+    }
+    .glass-card-hover:hover {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(0, 158, 219, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 34px -8px rgba(0, 158, 219, 0.18);
+    }
+
+    /* 优雅平滑滚动条 */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F0F9FF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #7DD3FC;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #009EDB;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased selection:bg-un-100 selection:text-un-800">
+
+  <!-- 顶部重要公告栏：明快清透的联合国蓝条 -->
+  <aside class="bg-gradient-to-r from-un-600 via-un to-eco-dark text-white text-xs py-2.5 px-4 shadow-sm z-50 relative">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2.5 text-center sm:text-left font-medium">
+        <span class="inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-white/20 text-[11px] font-semibold tracking-wider">
+          ANNUAL SUMMIT 2026
+        </span>
+        <span>第一届生态文明与发展论坛将于2026年10月02日–06日在中国长春盛大开幕</span>
+      </div>
+      <div class="flex items-center gap-4 text-white/90 text-[11px]">
+        <span class="hidden md:inline">主办：心爱自然文化发展 · 承办：心之清文化旅游</span>
+        <span class="inline-flex items-center gap-1 font-semibold text-white bg-black/10 px-2 py-0.5 rounded">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
+          年度常设国际盛会 · 一年一届
+        </span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 官方常态化导航栏：轻盈透白与明亮天蓝线条 -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-un-100 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between flex-nowrap gap-2 sm:gap-4">
+      
+      <!-- 论坛官方标志 (联合国外交风格地球橄榄枝生态标) -->
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 flex-shrink-0 group">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-un-50 to-un-100 border border-un/30 flex items-center justify-center p-1.5 group-hover:scale-105 transition-all shadow-sm">
+          <svg class="w-7 h-7 text-un" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <!-- 地球经纬轮廓 -->
+            <circle cx="12" cy="12" r="9.5" stroke="#009EDB" stroke-width="1.5" />
+            <path d="M2.5 12h19M12 2.5a15 15 0 0 1 0 19M12 2.5a15 15 0 0 0 0 19" stroke="#009EDB" stroke-opacity="0.8" />
+            <!-- 生态绿叶环抱 -->
+            <path d="M12 7c-2.5 3-3 7 0 9.5 3-2.5 2.5-6.5 0-9.5z" fill="#10B981" fill-opacity="0.25" stroke="#10B981" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="flex flex-col justify-center">
+          <span class="text-base sm:text-lg xl:text-xl font-bold font-serif text-slate-900 tracking-tight leading-tight group-hover:text-un transition-colors whitespace-nowrap">
+            生态文明与发展论坛
+          </span>
+          <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-un-700 font-semibold font-sans leading-none mt-0.5 whitespace-nowrap">
+            ECDF · Official Portal
+          </span>
+        </div>
+      </a>
+
+      <!-- 导航主链接群：精简字符与间距，确保PC及笔记本屏幕单行不换行 -->
+      <nav class="hidden lg:flex items-center gap-3 xl:gap-6 text-[13px] xl:text-sm font-semibold text-slate-700 whitespace-nowrap flex-shrink min-w-0">
+        <a href="#about" class="hover:text-un transition-colors py-1.5 px-1">论坛愿景</a>
+        <a href="#pillars" class="hover:text-un transition-colors py-1.5 px-1">四大支柱</a>
+        <a href="#framework" class="hover:text-un transition-colors py-1.5 px-1">实施路径</a>
+        <a href="#elevation" class="hover:text-un transition-colors py-1.5 px-1">精神成效</a>
+        <a href="#agenda" class="hover:text-un transition-colors py-1.5 px-1">2026日程</a>
+        <a href="#organization" class="hover:text-un transition-colors py-1.5 px-1">组织联络</a>
+        
+        <!-- 届次标识下拉菜单 -->
+        <div class="relative group cursor-pointer py-1.5">
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-un-50 border border-un-200 text-un-700 font-bold text-xs hover:bg-un-100 transition-all">
+            <span class="w-1.5 h-1.5 rounded-full bg-eco"></span>
+            <span>2026首届</span>
+            <svg class="w-3 h-3 text-un-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </span>
+          <div class="absolute right-0 top-full pt-1.5 hidden group-hover:block w-44 transition-all z-50">
+            <div class="bg-white rounded-xl shadow-xl border border-slate-100 py-2 text-xs">
+              <div class="px-3 py-1 text-[10px] text-slate-400 uppercase font-semibold">论坛历程与规划</div>
+              <a href="#hero" class="block px-3 py-2 bg-un-50 text-un-700 font-bold">2026 第一届 (长春)</a>
+              <span class="block px-3 py-1.5 text-slate-400 cursor-not-allowed">2027 第二届 (筹备中)</span>
+              <div class="my-1 border-t border-slate-100"></div>
+              <a href="#framework" class="block px-3 py-1.5 text-slate-600 hover:bg-slate-50">常态化智库成果</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- 右侧行动注册入口 -->
+      <div class="flex items-center gap-2.5 flex-shrink-0">
+        <button onclick="scrollToRegister()" class="inline-flex items-center gap-1.5 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-un to-un-600 hover:from-un-600 hover:to-un-700 text-white text-xs sm:text-sm font-semibold shadow-glow-un hover:shadow-lg hover:scale-[1.02] transition-all whitespace-nowrap">
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>代表注册</span>
+        </button>
+        <!-- 移动端汉堡按钮 -->
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-un-50 focus:outline-none" aria-label="Toggle Navigation">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 移动端抽屉导航 -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white/98 border-b border-un-100 px-6 py-4 space-y-3">
+      <a href="#about" class="block text-slate-700 hover:text-un font-semibold py-1">论坛愿景</a>
+      <a href="#pillars" class="block text-slate-700 hover:text-un font-semibold py-1">四大支柱</a>
+      <a href="#framework" class="block text-slate-700 hover:text-un font-semibold py-1">实施路径</a>
+      <a href="#elevation" class="block text-slate-700 hover:text-un font-semibold py-1">精神成效</a>
+      <a href="#agenda" class="block text-slate-700 hover:text-un font-semibold py-1">2026日程</a>
+      <a href="#organization" class="block text-slate-700 hover:text-un font-semibold py-1">组织联络</a>
+      <div class="pt-2 border-t border-slate-100">
+        <button onclick="scrollToRegister()" class="w-full py-2.5 rounded-xl bg-un text-white font-bold text-center">参会代表在线报名</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主视觉区：明朗高洁的联合国天蓝渐变与生态环球动效 -->
+  <section id="hero" class="relative un-atmosphere light-grid-pattern pt-12 pb-24 overflow-hidden border-b border-un-100">
+    
+    <!-- 装饰性光环与经纬脉冲：柔和天蓝与翠绿，绝无沉闷黑底 -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[720px] h-[720px] rounded-full bg-gradient-to-b from-un-100/50 to-emerald-100/30 blur-3xl pointer-events-none -z-10 animate-pulse-glow"></div>
+    
+    <!-- 联合国经纬光轨环绕SVG (矢量纯画，透亮灵动) -->
+    <div class="absolute right-[-100px] top-10 w-[580px] h-[580px] pointer-events-none opacity-40 hidden xl:block animate-spin-gentle">
+      <svg viewBox="0 0 500 500" fill="none" class="w-full h-full stroke-un-400">
+        <circle cx="250" cy="250" r="230" stroke-dasharray="6 8" stroke-width="1.2"/>
+        <circle cx="250" cy="250" r="180" stroke-width="1"/>
+        <ellipse cx="250" cy="250" rx="230" ry="80" stroke-width="1"/>
+        <ellipse cx="250" cy="250" rx="80" ry="230" stroke-width="1"/>
+        <circle cx="250" cy="20" r="6" fill="#10B981" />
+        <circle cx="480" cy="250" r="5" fill="#009EDB" />
+      </svg>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <!-- 联合国可持续发展与国家战略宏大标签 -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-un-200 shadow-sm mb-6 hover:border-un transition-colors">
+        <span class="flex h-2.5 w-2.5 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-eco opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-eco"></span>
+        </span>
+        <span class="text-xs font-bold tracking-wider text-un-700 uppercase font-sans">
+          联合国可持续发展愿景 · 中国式现代化生态文明新格局
+        </span>
+      </div>
+
+      <!-- 峰会正式大标题 (双语并茂，磅礴典雅) -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-serif text-slate-900 tracking-tight leading-[1.18]">
+        第一届生态文明与发展论坛
+      </h1>
+      <p class="mt-3 text-base sm:text-lg md:text-xl font-medium text-un-700 tracking-wider font-sans uppercase">
+        The 1st Ecological Civilization & Development Forum · Changchun
+      </p>
+
+      <!-- 核心哲学宗旨与标语 (综合各资料提取) -->
+      <div class="mt-8 max-w-3xl mx-auto">
+        <div class="inline-block p-1 rounded-2xl bg-gradient-to-r from-un/20 via-eco/20 to-un/20">
+          <div class="px-6 py-3 rounded-xl bg-white shadow-sm border border-un-100">
+            <p class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 tracking-widest">
+              “ 提升文明 · 维护生态 ”
+            </p>
+            <p class="text-xs sm:text-sm text-un-600 font-medium tracking-wide mt-1">
+              自然的融入美好 · 使命成就生命价值 · 心灵创造时空意义
+            </p>
+          </div>
+        </div>
+        <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          搭建思想交流、理念共融、实践协同的全球性与全国性高阶平台。推动人与自然和谐共生新进程，共赴文明升级的时代之约。
+        </p>
+      </div>
+
+      <!-- 关键会务信息条：清新现代卡片 -->
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto text-left">
+        
+        <!-- 时间 -->
+        <div class="bg-white/90 p-5 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all group">
+          <div class="flex items-center gap-2 text-un-600 text-xs font-bold uppercase tracking-wider">
+            <svg class="w-4 h-4 text-un" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>峰会时间 (Date)</span>
+          </div>
+          <div class="mt-2 text-xl font-bold font-serif text-slate-900 group-hover:text-un transition-colors">
+            2026年10月02日 – 06日
+          </div>
+          <div class="mt-1 text-xs text-slate-500">
+            10.02报到迎宾 · 10.03-04主论坛 · 10.05-06专题研讨
+          </div>
+        </div>
+
+        <!-- 地点 -->
+        <div class="bg-white/90 p-5 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-eco transition-all group">
+          <div class="flex items-center gap-2 text-eco-dark text-xs font-bold uppercase tracking-wider">
+            <svg class="w-4 h-4 text-eco" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>会务地点 (Venue)</span>
+          </div>
+          <div class="mt-2 text-xl font-bold font-serif text-slate-900 group-hover:text-eco-dark transition-colors">
+            长春国际会展中心大饭店
+          </div>
+          <div class="mt-1 text-xs text-slate-500">
+            中国 · 吉林 · 长春 (国际化峰会主会场)
+          </div>
+        </div>
+
+        <!-- 常态化机制 -->
+        <div class="bg-white/90 p-5 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all group">
+          <div class="flex items-center gap-2 text-un-700 text-xs font-bold uppercase tracking-wider">
+            <svg class="w-4 h-4 text-un" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span>论坛性质 (Format)</span>
+          </div>
+          <div class="mt-2 text-xl font-bold font-serif text-slate-900 group-hover:text-un transition-colors">
+            年度常设战略论坛
+          </div>
+          <div class="mt-1 text-xs text-slate-500">
+            每年一届 · 长期思想库与实践协同平台
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 交互按钮组 -->
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <button onclick="scrollToRegister()" class="px-8 py-3.5 rounded-full bg-un hover:bg-un-600 text-white font-bold text-sm shadow-glow-un hover:scale-105 transition-all flex items-center gap-2">
+          <span>申请出席首届峰会</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+        <a href="#agenda" class="px-8 py-3.5 rounded-full bg-white hover:bg-un-50 text-un-700 font-bold text-sm border border-un-200 shadow-sm transition-all flex items-center gap-2">
+          <span>查阅五日议程总览</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 第一板块：时代背景与全球文明升级愿景 (深度融合PDF与中国式现代化/联合国可持续发展) -->
+  <section id="about" class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- 模块标题 -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-un bg-un-50 px-3.5 py-1.5 rounded-full border border-un-200">
+          Strategic Background & Global Vision
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-serif text-slate-900">
+          时代背景与全球文明升级愿景
+        </h2>
+        <div class="w-16 h-1 bg-gradient-to-r from-un to-eco mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- 左侧文本叙述 (综合PDF第一页联合国与中国现代化宏大思想) -->
+        <div class="lg:col-span-7 space-y-5 text-slate-600 leading-relaxed text-justify text-base">
+          <p class="text-lg font-serif font-semibold text-slate-900 leading-snug">
+            生态无国界，万物共家园。地球生命系统的稳态关乎全人类的共同未来。
+          </p>
+          <p>
+            生态文明建设不止于单纯的环境修复与污染防治，更是一场深刻的<strong class="text-un-800 font-semibold">人类文明形态迭代</strong>。在人类面临全球气候挑战、资源稳态重构的历史关口，实现物质文明与精神文明协调发展、人与自然和谐共生，已成为国际社会与时代发展的必然课题。
+          </p>
+          <p>
+            论坛响应<strong class="text-un-800 font-semibold">联合国可持续发展基本主题</strong>，承诺致力于消除生态贫困、增进生命福祉；依托<strong class="text-un-800 font-semibold">中国式现代化生态文明战略实践</strong>，推动构建人类命运共同体与网络空间命运共同体，努力成为全球发展的贡献者与生态秩序的建设者。
+          </p>
+          
+          <!-- 典范引言引用框：清爽明亮的晨曦蓝底 -->
+          <div class="p-6 rounded-2xl bg-gradient-to-r from-un-50 via-white to-emerald-50 border-l-4 border-un shadow-sm">
+            <p class="font-serif italic text-slate-800 text-base">
+              “时空性文明升级要求：地球生命应当从粗放与低效的认知时空，向兼具人文敬畏、生态平衡与科技协调的高阶文明系统跨越升级。”
+            </p>
+            <div class="mt-2 text-xs font-semibold text-un-700 tracking-wider">
+              —— 生态文明与发展论坛学术指引宣言
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧视觉展示：三大战略坐标卡片 -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- 坐标 1 -->
+          <div class="p-5 rounded-2xl bg-un-50/70 border border-un-200/80 hover:bg-white hover:shadow-card-clean transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-8 h-8 rounded-lg bg-un text-white flex items-center justify-center font-bold text-sm">01</span>
+              <h3 class="font-bold text-slate-900 text-base">联合国可持续发展愿景对齐</h3>
+            </div>
+            <p class="text-xs text-slate-600 leading-normal pl-11">
+              积极推动全球绿色低碳转型，回应国际社会对于生命环境安全、代际公平与可持续发展的普遍关切。
+            </p>
+          </div>
+
+          <!-- 坐标 2 -->
+          <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 hover:bg-white hover:shadow-card-clean transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-8 h-8 rounded-lg bg-eco text-white flex items-center justify-center font-bold text-sm">02</span>
+              <h3 class="font-bold text-slate-900 text-base">中国式现代化生态文明新形态</h3>
+            </div>
+            <p class="text-xs text-slate-600 leading-normal pl-11">
+              统筹人与自然共生，以科学系统观推动物质文明与精神文明双丰收，实现全社会长远永续发展。
+            </p>
+          </div>
+
+          <!-- 坐标 3 -->
+          <div class="p-5 rounded-2xl bg-sky-50/70 border border-sky-200/80 hover:bg-white hover:shadow-card-clean transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-8 h-8 rounded-lg bg-cerulean text-white flex items-center justify-center font-bold text-sm">03</span>
+              <h3 class="font-bold text-slate-900 text-base">内在精神涵养与生态践行合一</h3>
+            </div>
+            <p class="text-xs text-slate-600 leading-normal pl-11">
+              将认知迭代、心灵提升深植于环境保护之中，自觉养成“心爱自然”的知行生活方式。
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 第二板块：四大核心学术与实践支柱 (Four Pillars) -->
+  <section id="pillars" class="py-24 bg-un-50/50 border-t border-b border-un-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-un bg-white px-3.5 py-1.5 rounded-full border border-un-200 shadow-sm">
+          Core Thematic Architecture
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-serif text-slate-900">
+          四大核心学术与实践支柱
+        </h2>
+        <p class="mt-3 text-slate-600 text-sm">
+          围绕四大核心维度构建多层次研讨机制，划分为主论坛主旨对话与延伸专题研讨两大矩阵
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-un to-eco mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- 支柱 1: 文明建构 -->
+        <div class="bg-white rounded-2xl p-7 border border-un-100 shadow-card-clean hover:shadow-glow-un hover:-translate-y-1 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-un-50 text-un flex items-center justify-center mb-6 group-hover:bg-un group-hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <div class="text-xs font-bold text-un tracking-widest uppercase">Pillar 01</div>
+            <h3 class="text-xl font-bold font-serif text-slate-900 mt-1 mb-2 group-hover:text-un transition-colors">文明建构</h3>
+            <div class="text-xs text-slate-400 uppercase tracking-wider mb-4 font-sans">Civilization Architecture</div>
+            <p class="text-slate-600 text-sm leading-relaxed text-justify">
+              本质上从人类认知出发，重在躬行与践履。文明原本就扎根于内心深处，认知的转变，终将推动整体社会发展的新走向。探索核心要义与深刻内涵，为全社会精神文明建设贡献深远力量。
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-un font-semibold">主论坛核心议题</span>
+            <span class="text-slate-400">10月3-4日</span>
+          </div>
+        </div>
+
+        <!-- 支柱 2: 自然生态 -->
+        <div class="bg-white rounded-2xl p-7 border border-emerald-100 shadow-card-clean hover:shadow-glow-eco hover:-translate-y-1 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-eco-dark flex items-center justify-center mb-6 group-hover:bg-eco group-hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            </div>
+            <div class="text-xs font-bold text-eco tracking-widest uppercase">Pillar 02</div>
+            <h3 class="text-xl font-bold font-serif text-slate-900 mt-1 mb-2 group-hover:text-eco-dark transition-colors">自然生态</h3>
+            <div class="text-xs text-slate-400 uppercase tracking-wider mb-4 font-sans">Natural Ecosystem</div>
+            <p class="text-slate-600 text-sm leading-relaxed text-justify">
+              人文精神是自然生态得以永续修复的内在根基。立足地球生命系统的稳态维护，促成万物共生、和谐有序。探寻生态环境保护与经济高质量发展双向奔赴的协同共生路径。
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-eco-dark font-semibold">主论坛核心议题</span>
+            <span class="text-slate-400">10月3-4日</span>
+          </div>
+        </div>
+
+        <!-- 支柱 3: 正确教育 -->
+        <div class="bg-white rounded-2xl p-7 border border-un-100 shadow-card-clean hover:shadow-glow-un hover:-translate-y-1 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-un-50 text-un flex items-center justify-center mb-6 group-hover:bg-un group-hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <div class="text-xs font-bold text-un tracking-widest uppercase">Pillar 03</div>
+            <h3 class="text-xl font-bold font-serif text-slate-900 mt-1 mb-2 group-hover:text-un transition-colors">正确教育</h3>
+            <div class="text-xs text-slate-400 uppercase tracking-wider mb-4 font-sans">Authentic Education</div>
+            <p class="text-slate-600 text-sm leading-relaxed text-justify">
+              探索面向时代演进的全新教育范式，为人类文明永续升级积淀深厚力量。唤醒个体自主成长的内在动力，完成认知迭代与生命进阶，培育兼具社会责任、理性与奉献担当的时代栋梁。
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-un font-semibold">主论坛专题议题</span>
+            <span class="text-slate-400">10月3-4日</span>
+          </div>
+        </div>
+
+        <!-- 支柱 4: 使命与社会责任 -->
+        <div class="bg-white rounded-2xl p-7 border border-amber-100 shadow-card-clean hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div class="text-xs font-bold text-amber-600 tracking-widest uppercase">Pillar 04</div>
+            <h3 class="text-xl font-bold font-serif text-slate-900 mt-1 mb-2 group-hover:text-amber-600 transition-colors">使命与社会责任</h3>
+            <div class="text-xs text-slate-400 uppercase tracking-wider mb-4 font-sans">Mission & Responsibility</div>
+            <p class="text-slate-600 text-sm leading-relaxed text-justify">
+              明晰个体、企业与社会各界在生态文明进程中肩负的时代使命与公共责任。推动思想共识转化为躬身践行，凝聚各界协同合力，引导多元主体和衷共进，护航生态文明行稳致远。
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-amber-600 font-semibold">专题闭门研讨</span>
+            <span class="text-slate-400">10月5-6日</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 第三板块：七大行动实施路径与三大递进流程 (来自确定版PDF核心方法论) -->
+  <section id="framework" class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-un bg-un-50 px-3.5 py-1.5 rounded-full border border-un-200">
+          Action Pathways & Framework
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-serif text-slate-900">
+          七大行动实施路径与递进建构流程
+        </h2>
+        <p class="mt-3 text-slate-600 text-sm">
+          不仅有崇高愿景，更有扎实行之有效的落地方法论与生命轨迹服务建构体系
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-un to-eco mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <!-- 7大行动标签链条 (活动标签: 宣传/影响/激活/建立/调整/确定/执行) -->
+      <div class="mb-16">
+        <div class="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider mb-6">
+          生态文明战略推进七大闭环步骤 (Strategic Action Loop)
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+          
+          <div class="p-4 rounded-xl bg-un-50 border border-un-200/60 text-center hover:bg-un hover:text-white transition-all group">
+            <span class="text-xs text-un group-hover:text-white font-mono block mb-1">STEP 01</span>
+            <span class="text-base font-bold font-serif">1. 宣传</span>
+            <span class="text-[11px] text-slate-500 group-hover:text-white/80 block mt-1">思想传播共振</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-un-50 border border-un-200/60 text-center hover:bg-un hover:text-white transition-all group">
+            <span class="text-xs text-un group-hover:text-white font-mono block mb-1">STEP 02</span>
+            <span class="text-base font-bold font-serif">2. 影响</span>
+            <span class="text-[11px] text-slate-500 group-hover:text-white/80 block mt-1">圈层观念重塑</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-un-50 border border-un-200/60 text-center hover:bg-un hover:text-white transition-all group">
+            <span class="text-xs text-un group-hover:text-white font-mono block mb-1">STEP 03</span>
+            <span class="text-base font-bold font-serif">3. 激活</span>
+            <span class="text-[11px] text-slate-500 group-hover:text-white/80 block mt-1">内生动力唤醒</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-un-50 border border-un-200/60 text-center hover:bg-un hover:text-white transition-all group">
+            <span class="text-xs text-un group-hover:text-white font-mono block mb-1">STEP 04</span>
+            <span class="text-base font-bold font-serif">4. 建立</span>
+            <span class="text-[11px] text-slate-500 group-hover:text-white/80 block mt-1">常态机制架设</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-un-50 border border-un-200/60 text-center hover:bg-un hover:text-white transition-all group">
+            <span class="text-xs text-un group-hover:text-white font-mono block mb-1">STEP 05</span>
+            <span class="text-base font-bold font-serif">5. 调整</span>
+            <span class="text-[11px] text-slate-500 group-hover:text-white/80 block mt-1">系统稳态校正</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-un-50 border border-un-200/60 text-center hover:bg-un hover:text-white transition-all group">
+            <span class="text-xs text-un group-hover:text-white font-mono block mb-1">STEP 06</span>
+            <span class="text-base font-bold font-serif">6. 确定</span>
+            <span class="text-[11px] text-slate-500 group-hover:text-white/80 block mt-1">共识标准定格</span>
+          </div>
+
+          <div class="p-4 rounded-xl bg-un-50 border border-un-200/60 text-center hover:bg-un hover:text-white transition-all group">
+            <span class="text-xs text-un group-hover:text-white font-mono block mb-1">STEP 07</span>
+            <span class="text-base font-bold font-serif">7. 执行</span>
+            <span class="text-[11px] text-slate-500 group-hover:text-white/80 block mt-1">躬身践行落地</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 三大核心流程（静水幽深：1. 内在提升 2. 外在匹配 3. 平台建构） -->
+      <div class="bg-gradient-to-br from-un-50/60 via-white to-emerald-50/50 rounded-3xl p-8 sm:p-12 border border-un-200/80 shadow-sm">
+        <div class="max-w-3xl mb-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-eco-dark">The Three Pillars of Execution</span>
+          <h3 class="text-2xl sm:text-3xl font-bold font-serif text-slate-900 mt-1">
+            系统建构三大支柱流程
+          </h3>
+          <p class="text-slate-600 text-sm mt-2">
+            主张“言简意赅，点石成金”的高阶认知原则，决不采取长篇累牍、浮夸务虚的模式，而在关键情境以核心智慧点亮生命格局。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:border-un transition-all">
+            <div class="text-un font-bold font-serif text-lg flex items-center gap-2 mb-3">
+              <span class="w-7 h-7 rounded-full bg-un-100 text-un flex items-center justify-center text-xs">一</span>
+              <span>内在的心灵提升流程</span>
+            </div>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed text-justify">
+              深入微观心智与感知层面，打破固化认知遮蔽，激活内在对宇宙、自然、生命的深切敬畏，构建高维意识框架。
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:border-eco transition-all">
+            <div class="text-eco-dark font-bold font-serif text-lg flex items-center gap-2 mb-3">
+              <span class="w-7 h-7 rounded-full bg-emerald-100 text-eco-dark flex items-center justify-center text-xs">二</span>
+              <span>外在的环境匹配流程</span>
+            </div>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed text-justify">
+              将认知转化为对客观生态植被、动物景观及自然环境的切实呵护，实现人际场域与生态场域的和谐共鸣。
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:border-cerulean transition-all">
+            <div class="text-un-800 font-bold font-serif text-lg flex items-center gap-2 mb-3">
+              <span class="w-7 h-7 rounded-full bg-sky-100 text-un-800 flex items-center justify-center text-xs">三</span>
+              <span>整体生命轨迹平台建构</span>
+            </div>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed text-justify">
+              汇聚全球同频使命者，搭建可持续支持系统与国际交流纽带，赋能长远社会价值与时代担当落地生根。
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 第四板块：八大精神素养与生命升华成效 (来自确定版PDF第二页核心清单) -->
+  <section id="elevation" class="py-24 bg-gradient-to-b from-white via-un-50/30 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-eco-dark bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+          Core Value Growth
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-serif text-slate-900">
+          参会代表核心提升与精神文明八大维度
+        </h2>
+        <p class="mt-3 text-slate-600 text-sm">
+          参会代表通过论坛的思想激荡与体系熏陶，将实现从认知、心智到社会协同力的全方位跃升
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-un to-eco mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <!-- 八大成效卡片网格 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <div class="bg-white p-6 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all">
+          <div class="w-8 h-8 rounded-lg bg-un-50 text-un font-bold text-xs flex items-center justify-center mb-3">01</div>
+          <h4 class="font-bold text-slate-900 text-base mb-1.5">因果关系本质升华</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            实现个人意识层次本质提升，深刻洞悉自身举止与外部世界因果反馈，改善良性互动。
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all">
+          <div class="w-8 h-8 rounded-lg bg-un-50 text-un font-bold text-xs flex items-center justify-center mb-3">02</div>
+          <h4 class="font-bold text-slate-900 text-base mb-1.5">生命荣光与价值倍增</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            自然促进与延展人生的深层意义，在更高的时代格局中明确人生航向与精神充盈。
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all">
+          <div class="w-8 h-8 rounded-lg bg-un-50 text-un font-bold text-xs flex items-center justify-center mb-3">03</div>
+          <h4 class="font-bold text-slate-900 text-base mb-1.5">人际社会格局跃迁</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            在现实社交与产业合作中展现宽厚谦和气度，显著提升人际信任度与社会公信力。
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all">
+          <div class="w-8 h-8 rounded-lg bg-un-50 text-un font-bold text-xs flex items-center justify-center mb-3">04</div>
+          <h4 class="font-bold text-slate-900 text-base mb-1.5">精神魅力与感召力</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            告别浮躁焦虑，从内在涵养沉静从容的人格气场，增强团队与跨界协同凝聚力。
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 text-eco-dark font-bold text-xs flex items-center justify-center mb-3">05</div>
+          <h4 class="font-bold text-slate-900 text-base mb-1.5">正向目标高达成率</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            明晰规律大势，顺应时代节律与生态法则，自然增强重大战略与目标的落实效能。
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 text-eco-dark font-bold text-xs flex items-center justify-center mb-3">06</div>
+          <h4 class="font-bold text-slate-900 text-base mb-1.5">敏锐直觉与外界洞察</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            开启对外部趋势变化与时代脉动的深层知觉，在复杂多元环境中保持前瞻判断。
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 text-eco-dark font-bold text-xs flex items-center justify-center mb-3">07</div>
+          <h4 class="font-bold text-slate-900 text-base mb-1.5">资源统筹与社会协同</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            时代使命升级引发资源配置能力质的飞跃，高效连接各方智库、资本与生态要素。
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-un-100 shadow-card-clean hover:shadow-glow-un transition-all">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 text-eco-dark font-bold text-xs flex items-center justify-center mb-3">08</div>
+          <h4 class="font-bold text-slate-900 text-base mb-1.5">礼仪涵养与文明升阶</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            从根本上重塑行为举止、生活方式与生命敬畏感，实现身心合一的高阶文明风范。
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 生态誓言框：自发心爱自然 -->
+      <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-white border border-emerald-200/80 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 text-eco-dark flex items-center justify-center flex-shrink-0 mt-1">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-base font-serif">倡议：自觉养成“心爱自然”的言行常态</h4>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+              建立保护自然环境、保存文明古迹的深层意识；形成珍爱自然景观、保护植被与动物的生活方式，最终实现生态系统的永续自我平衡。
+            </p>
+          </div>
+        </div>
+        <button onclick="scrollToRegister()" class="flex-shrink-0 px-6 py-2.5 rounded-xl bg-eco hover:bg-eco-dark text-white font-semibold text-xs shadow-md transition-all">
+          签署并践行倡议
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 第五板块：2026 首届长春峰会日程安排 (涵盖10月2日-6日全部内容与Tab切换交互) -->
+  <section id="agenda" class="py-24 bg-white border-t border-slate-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-un bg-un-50 px-3.5 py-1.5 rounded-full border border-un-200">
+            Summit 2026 Schedule
+          </span>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-serif text-slate-900">
+            2026首届大会全日程总览
+          </h2>
+          <p class="mt-2 text-slate-600 text-sm">
+            举办地点：吉林省长春市 · 长春国际会展中心大饭店
+          </p>
+        </div>
+
+        <!-- 议程日期筛选 Tabs -->
+        <div class="mt-6 md:mt-0 flex flex-wrap gap-1.5 p-1.5 bg-un-50/80 rounded-2xl border border-un-200/60">
+          <button onclick="switchTab('tab-all')" id="btn-tab-all" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-xl bg-un text-white shadow-sm transition-all">全日程</button>
+          <button onclick="switchTab('tab-1')" id="btn-tab-1" class="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-un rounded-xl transition-all">10.02 报到</button>
+          <button onclick="switchTab('tab-2')" id="btn-tab-2" class="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-un rounded-xl transition-all">10.03-04 主论坛</button>
+          <button onclick="switchTab('tab-3')" id="btn-tab-3" class="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-un rounded-xl transition-all">10.05-06 专题会</button>
+        </div>
+      </div>
+
+      <!-- 议程卡片列表 -->
+      <div class="space-y-6">
+        
+        <!-- 阶段 1: 10月2日 报到与晚宴 -->
+        <div class="agenda-item tab-content-1 bg-white rounded-2xl p-6 sm:p-8 border border-un-200/70 shadow-card-clean hover:border-un transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full bg-un-100 text-un-800 text-xs font-bold font-mono">DAY 01 · 10月02日</span>
+              <h3 class="text-lg sm:text-xl font-bold font-serif text-slate-900">各界代表报到与首届论坛欢迎晚宴</h3>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">长春国际会展中心大饭店 · 迎宾厅</span>
+          </div>
+
+          <div class="mt-6 space-y-3.5">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 p-4 rounded-xl bg-un-50/40 border border-un-100">
+              <div class="text-un font-mono font-bold text-sm w-36 flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-un" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                09:00 – 16:00
+              </div>
+              <div class="flex-1">
+                <div class="font-bold text-slate-800 text-sm">代表报到、领取会务资料包、办理酒店入住</div>
+                <div class="text-xs text-slate-500 mt-0.5">面向受邀的海内外学者、企业家、社会组织代表及青年代表</div>
+              </div>
+              <span class="text-xs px-3 py-1 bg-white text-slate-600 rounded-lg border border-slate-200 font-medium self-start sm:self-auto">迎宾大厅</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 p-4 rounded-xl bg-un-50/40 border border-un-100">
+              <div class="text-un font-mono font-bold text-sm w-36 flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-un" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                17:30 – 19:30
+              </div>
+              <div class="flex-1">
+                <div class="font-bold text-slate-800 text-sm">首届生态文明与发展论坛 · 迎宾招待晚宴</div>
+                <div class="text-xs text-slate-500 mt-0.5">组委会主办方致欢迎辞，各领域代表自由交流对接</div>
+              </div>
+              <span class="text-xs px-3 py-1 bg-un text-white rounded-lg font-medium self-start sm:self-auto">宴会大厅</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 阶段 2: 10月3-4日 主论坛：生态文明与发展大会 -->
+        <div class="agenda-item tab-content-2 bg-white rounded-2xl p-6 sm:p-8 border border-emerald-200/70 shadow-card-clean hover:border-eco transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full bg-emerald-100 text-eco-dark text-xs font-bold font-mono">DAY 02–03 · 10月03日–04日</span>
+              <h3 class="text-lg sm:text-xl font-bold font-serif text-slate-900">主论坛：生态文明与发展大会</h3>
+            </div>
+            <span class="text-xs px-3 py-1 bg-emerald-50 text-eco-dark border border-emerald-200 font-semibold rounded-full">主峰会板块（全员出席）</span>
+          </div>
+
+          <div class="mt-6 space-y-3.5">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 p-4 rounded-xl bg-emerald-50/30 border border-emerald-100">
+              <div class="text-eco-dark font-mono font-bold text-sm w-36 flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                08:30 – 11:30
+              </div>
+              <div class="flex-1">
+                <div class="font-bold text-slate-800 text-sm">上午场 · 主旨演讲：文明建构与自然生态稳态维护</div>
+                <div class="text-xs text-slate-500 mt-0.5">探讨人类文明系统升级、地球生命协同与中国式现代化绿色实践</div>
+              </div>
+              <span class="text-xs px-3 py-1 bg-white text-slate-600 rounded-lg border border-slate-200 font-medium self-start sm:self-auto">国际报告厅</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 p-4 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="text-slate-400 font-mono font-medium text-sm w-36">11:30 – 12:30</div>
+              <div class="flex-1">
+                <div class="font-medium text-slate-700 text-sm">午间简餐与学术对话</div>
+                <div class="text-xs text-slate-400 mt-0.5">参会代表午休交流</div>
+              </div>
+              <span class="text-xs px-3 py-1 bg-white text-slate-400 rounded-lg border border-slate-200 font-medium self-start sm:self-auto">餐饮中心</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 p-4 rounded-xl bg-emerald-50/30 border border-emerald-100">
+              <div class="text-eco-dark font-mono font-bold text-sm w-36 flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                14:30 – 17:30
+              </div>
+              <div class="flex-1">
+                <div class="font-bold text-slate-800 text-sm">下午场 · 正确教育与青年发展高峰对话</div>
+                <div class="text-xs text-slate-500 mt-0.5">面向未来时代的生命素养培育范式、个体认知迭代与社会担当</div>
+              </div>
+              <span class="text-xs px-3 py-1 bg-white text-slate-600 rounded-lg border border-slate-200 font-medium self-start sm:self-auto">多功能主会议厅</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 阶段 3: 10月5-6日 延伸研讨：使命与社会责任 -->
+        <div class="agenda-item tab-content-3 bg-white rounded-2xl p-6 sm:p-8 border border-sky-200/70 shadow-card-clean hover:border-un transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 rounded-full bg-sky-100 text-un-800 text-xs font-bold font-mono">DAY 04–05 · 10月05日–06日</span>
+              <h3 class="text-lg sm:text-xl font-bold font-serif text-slate-900">延伸专题：使命与社会责任深度研讨会</h3>
+            </div>
+            <span class="text-xs px-3 py-1 bg-sky-50 text-un-800 border border-sky-200 font-semibold rounded-full">高阶闭门与智库课题研讨</span>
+          </div>
+
+          <div class="mt-6 space-y-3.5">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 p-4 rounded-xl bg-sky-50/40 border border-sky-100">
+              <div class="text-un-800 font-mono font-bold text-sm w-36 flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                08:30 – 11:30
+              </div>
+              <div class="flex-1">
+                <div class="font-bold text-slate-800 text-sm">上午场 · 使命驱动与企业/社会责任协同构建</div>
+                <div class="text-xs text-slate-500 mt-0.5">心灵层次跃升与实际资源统筹应用；探讨常态化生命轨迹服务体系</div>
+              </div>
+              <span class="text-xs px-3 py-1 bg-white text-slate-600 rounded-lg border border-slate-200 font-medium self-start sm:self-auto">贵宾研讨厅</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 p-4 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="text-slate-400 font-mono font-medium text-sm w-36">11:30 – 12:30</div>
+              <div class="flex-1">
+                <div class="font-medium text-slate-700 text-sm">午间交流与商务洽谈</div>
+                <div class="text-xs text-slate-400 mt-0.5">闭门嘉宾圆桌午餐</div>
+              </div>
+              <span class="text-xs px-3 py-1 bg-white text-slate-400 rounded-lg border border-slate-200 font-medium self-start sm:self-auto">贵宾餐厅</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 p-4 rounded-xl bg-sky-50/40 border border-sky-100">
+              <div class="text-un-800 font-mono font-bold text-sm w-36 flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                14:30 – 17:30
+              </div>
+              <div class="flex-1">
+                <div class="font-bold text-slate-800 text-sm">下午场 · 生态文明共建成果发布与长春联合倡议签署</div>
+                <div class="text-xs text-slate-500 mt-0.5">签署年度长春宣言，启动2027第二届峰会筹备机制，大会圆满闭幕</div>
+              </div>
+              <span class="text-xs px-3 py-1 bg-white text-slate-600 rounded-lg border border-slate-200 font-medium self-start sm:self-auto">学术大会堂</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 第六板块：参会群体与在线报名预审 (现代化表单与机构热线) -->
+  <section id="register" class="py-24 bg-un-50/60 border-t border-slate-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-un bg-white px-3.5 py-1.5 rounded-full border border-un-200 shadow-sm">
+          Participants & Registration
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-serif text-slate-900">
+          参会代表在线申请与席位预审
+        </h2>
+        <p class="mt-3 text-slate-600 text-sm">
+          广泛诚邀全球发展贡献者、生态环保践行者、教育科研学者、社会组织负责人、企业家与青年代表
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-un to-eco mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- 左侧在线表单 -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-un-200/80 shadow-card-clean relative">
+          <form id="regForm" onsubmit="handleRegistration(event)" class="space-y-5">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  姓名 (Full Name) <span class="text-rose-500">*</span>
+                </label>
+                <input type="text" id="name" required placeholder="请输入您的姓名" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-un focus:bg-white transition-all">
+              </div>
+
+              <div>
+                <label for="phone" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  联系电话 (Mobile) <span class="text-rose-500">*</span>
+                </label>
+                <input type="tel" id="phone" required placeholder="请输入手机号码" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-un focus:bg-white transition-all">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="org" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  工作机构 / 企业单位 <span class="text-rose-500">*</span>
+                </label>
+                <input type="text" id="org" required placeholder="如：XX研究院 / XX高校 / XX集团" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-un focus:bg-white transition-all">
+              </div>
+
+              <div>
+                <label for="title" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  职务 / 称谓 (Title)
+                </label>
+                <input type="text" id="title" placeholder="如：院长 / 教授 / 董事长 / 主任" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-un focus:bg-white transition-all">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  电子邮箱 (Email) <span class="text-rose-500">*</span>
+                </label>
+                <input type="email" id="email" required placeholder="接收会务指南与确认函" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-un focus:bg-white transition-all">
+              </div>
+
+              <div>
+                <label for="session" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  申请参会板块 <span class="text-rose-500">*</span>
+                </label>
+                <select id="session" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-un focus:bg-white transition-all">
+                  <option value="主论坛：生态文明与发展大会(10.03-04)">主论坛：生态文明与发展大会 (10.03–04)</option>
+                  <option value="专题研讨：使命与社会责任研讨会(10.05-06)">专题研讨：使命与社会责任研讨会 (10.05–06)</option>
+                  <option value="全程出席(10.02-06)">全阶段出席 (10.02报到 – 10.06)</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="remarks" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                关注课题探讨方向 / 住宿会务需求备注
+              </label>
+              <textarea id="remarks" rows="3" placeholder="请简要注明您关注的议题或行程需求..." class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-un focus:bg-white transition-all"></textarea>
+            </div>
+
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p class="text-xs text-slate-500">
+                组委会将在 24 小时内进行代表资料预审并通过电话或邮件回复。
+              </p>
+              <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-un hover:bg-un-600 text-white font-bold text-sm shadow-glow-un hover:scale-105 transition-all">
+                提交参会预审登记
+              </button>
+            </div>
+          </form>
+
+          <!-- 提交成功反馈遮罩 -->
+          <div id="successPrompt" class="hidden absolute inset-0 bg-white/98 rounded-3xl backdrop-blur-md flex flex-col items-center justify-center p-8 text-center transition-all z-20">
+            <div class="w-16 h-16 rounded-full bg-emerald-100 text-eco-dark flex items-center justify-center mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="text-2xl font-bold font-serif text-slate-900">登记信息提交成功</h3>
+            <p class="text-sm text-slate-600 mt-2 max-w-md">
+              会务秘书处已收到您的申请，我们将核对资料并向您的邮箱 <span id="confirmedEmail" class="font-bold text-un"></span> 发送会务回执。
+            </p>
+            <button onclick="resetFormModal()" class="mt-6 px-6 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold">
+              返回修改或重新填写
+            </button>
+          </div>
+        </div>
+
+        <!-- 右侧嘉宾类别与快速通道卡片 -->
+        <div class="lg:col-span-5 space-y-5">
+          
+          <!-- 嘉宾群体标签 -->
+          <div class="bg-white p-7 rounded-3xl border border-un-200/80 shadow-card-clean">
+            <h4 class="font-bold font-serif text-slate-900 text-lg mb-2">广泛汇聚各界中坚力量</h4>
+            <p class="text-xs text-slate-500 mb-5">面向全球与全国广泛邀请以下志同道合者莅临出席：</p>
+            
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3.5 py-1.5 rounded-full bg-un-50 text-un-800 text-xs font-medium border border-un-200">全球发展贡献者</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-emerald-50 text-eco-dark text-xs font-medium border border-emerald-200">生态环保践行者</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-un-50 text-un-800 text-xs font-medium border border-un-200">教育与科研学者</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">社会组织骨干</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">机构负责人</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-700 text-xs font-medium border border-amber-200">创新企业家代表</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">主流媒体人</span>
+              <span class="px-3.5 py-1.5 rounded-full bg-sky-50 text-un-700 text-xs font-medium border border-sky-200">时代青年先锋</span>
+            </div>
+          </div>
+
+          <!-- 微信官方服务号与二维码扫码卡片 (从微信图片中提取) -->
+          <div class="bg-gradient-to-br from-un-50 via-white to-sky-50 p-6 rounded-3xl border border-un-200 flex items-center gap-5 shadow-sm">
+            <!-- 示意二维码 -->
+            <div class="w-24 h-24 rounded-2xl bg-white p-2 border border-un-200 flex-shrink-0 shadow-sm flex items-center justify-center">
+              <svg class="w-full h-full text-slate-800" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm-2 10h8v8H2v-8zm2 2v4h4v-4H4zm10-14h8v8h-8V2zm2 2v4h4V4h-4zm2 10h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm-2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm0-4h2v2h-2v-2zM5 5h2v2H5V5zm0 10h2v2H5v-2zm10-10h2v2h-2V5z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-un uppercase tracking-wider">Official WeChat Channel</span>
+              <h5 class="font-bold text-slate-900 text-base mt-0.5">官方微信服务专席</h5>
+              <p class="text-xs text-slate-600 mt-1">
+                扫描二维码或搜索“心爱自然”服务号，获取峰会一手图文直播、电子胸牌及大会速递。
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 第七板块：组织机构与官方热线网络 (来自所有源文件的主办/承办/支持单位与电话) -->
+  <section id="organization" class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-un bg-un-50 px-3.5 py-1.5 rounded-full border border-un-200">
+          Organization & Hotlines
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold font-serif text-slate-900">
+          组织架构与官方联络窗口
+        </h2>
+        <p class="mt-3 text-slate-600 text-sm">
+          第一届生态文明与发展论坛常设组委会及执行机构
+        </p>
+        <div class="w-16 h-1 bg-gradient-to-r from-un to-eco mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <!-- 机构三足鼎立卡片 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        
+        <div class="p-6 rounded-2xl bg-white border border-un-100 shadow-card-clean hover:border-un transition-all text-center">
+          <span class="text-xs font-bold text-un uppercase tracking-widest px-3 py-1 bg-un-50 rounded-full">主办单位</span>
+          <h3 class="font-bold font-serif text-slate-900 text-lg mt-4 mb-2">
+            心爱自然文化发展 (临沂) 有限公司
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            践行“自然的融入美好”，发起生态文明建设核心倡议，统筹全球及全国学术主旨导向
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-emerald-100 shadow-card-clean hover:border-eco transition-all text-center">
+          <span class="text-xs font-bold text-eco-dark uppercase tracking-widest px-3 py-1 bg-emerald-50 rounded-full">承办单位</span>
+          <h3 class="font-bold font-serif text-slate-900 text-lg mt-4 mb-2">
+            心之清文化旅游 (吉林) 有限公司
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            承担第一届论坛落地吉林长春的会务执行、嘉宾统筹协调、会场保障与参会接待落地
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-sky-100 shadow-card-clean hover:border-un-700 transition-all text-center">
+          <span class="text-xs font-bold text-un-800 uppercase tracking-widest px-3 py-1 bg-sky-50 rounded-full">支持大厦会址</span>
+          <h3 class="font-bold font-serif text-slate-900 text-lg mt-4 mb-2">
+            长春国际会展中心大饭店
+          </h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            国家级高规格学术峰会综合场地，提供高标准主会场、宴会餐饮、高端客房与全维保障
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 四大官方联络通道 (整合所有资料中的电话与邮箱) -->
+      <div class="bg-gradient-to-r from-un-50/70 via-white to-emerald-50/50 p-8 sm:p-10 rounded-3xl border border-un-200/80">
+        <h3 class="text-lg font-bold font-serif text-slate-900 text-center mb-8">
+          组委会官方联络专席与咨询专线
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- 报名热线 -->
+          <div class="bg-white p-5 rounded-2xl border border-un-100 shadow-sm hover:border-un transition-all">
+            <div class="flex items-center gap-2 text-un text-xs font-bold mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <span>论坛报名联系电话</span>
+            </div>
+            <div class="text-xl font-bold font-mono text-slate-900">162 1013 9688</div>
+            <div class="text-xs text-slate-400 mt-1">负责参会资质预审与席位登记</div>
+          </div>
+
+          <!-- 全国嘉宾服务 -->
+          <div class="bg-white p-5 rounded-2xl border border-un-100 shadow-sm hover:border-un transition-all">
+            <div class="flex items-center gap-2 text-un text-xs font-bold mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              <span>全国嘉宾服务专线</span>
+            </div>
+            <div class="text-xl font-bold font-mono text-slate-900">162 1186 3031</div>
+            <div class="text-xs text-slate-400 mt-1">负责省外国外代表接待与抵离长春</div>
+          </div>
+
+          <!-- 综合事务专线 -->
+          <div class="bg-white p-5 rounded-2xl border border-un-100 shadow-sm hover:border-un transition-all">
+            <div class="flex items-center gap-2 text-un text-xs font-bold mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              <span>综合事务服务专线</span>
+            </div>
+            <div class="text-xl font-bold font-mono text-slate-900">162 1186 3026</div>
+            <div class="text-xs text-slate-400 mt-1">学术报告、媒体合作与物料统筹</div>
+          </div>
+
+          <!-- 官方邮箱 -->
+          <div class="bg-white p-5 rounded-2xl border border-un-100 shadow-sm hover:border-un transition-all">
+            <div class="flex items-center gap-2 text-un text-xs font-bold mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>线上报名与官方邮箱</span>
+            </div>
+            <div class="text-lg font-bold font-mono text-un truncate">xzq_789@163.com</div>
+            <div class="text-xs text-slate-400 mt-1">接收正式学术论文与机构公函</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 网站底栏：通透明亮、典雅大气的联合国蔚蓝基石 -->
+  <footer class="bg-gradient-to-b from-white via-un-50 to-un-100/80 border-t border-un-200/80 pt-16 pb-12 text-slate-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- 四句箴言铭刻 (保留原资料压轴气魄) -->
+      <div class="max-w-2xl mx-auto font-serif text-lg sm:text-2xl text-slate-900 tracking-widest leading-loose mb-10">
+        <p class="font-bold text-un-800">生态文明共生共荣，山河万象永续绵长；</p>
+        <p class="font-bold text-eco-dark mt-1">四海之士同心聚力，共赴文明恒远新章。</p>
+      </div>
+
+      <div class="flex items-center justify-center gap-4 text-xs font-bold text-un uppercase tracking-widest mb-8">
+        <span class="h-px w-12 bg-un/30"></span>
+        <span>生态文明与发展论坛组委会 (ECDF)</span>
+        <span class="h-px w-12 bg-un/30"></span>
+      </div>
+
+      <!-- 快速导航链接 -->
+      <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-600 mb-8">
+        <a href="#hero" class="hover:text-un transition-colors">返回顶部</a>
+        <a href="#about" class="hover:text-un transition-colors">论坛愿景</a>
+        <a href="#pillars" class="hover:text-un transition-colors">四大支柱</a>
+        <a href="#framework" class="hover:text-un transition-colors">实施路径</a>
+        <a href="#elevation" class="hover:text-un transition-colors">精神文明成效</a>
+        <a href="#agenda" class="hover:text-un transition-colors">2026日程</a>
+        <a href="#register" class="hover:text-un transition-colors">代表注册</a>
+        <a href="#organization" class="hover:text-un transition-colors">组织机构</a>
+      </div>
+
+      <p class="text-xs text-slate-500">
+        © 2026 生态文明与发展论坛 (ECDF) 官方门户网站 · 版权所有 · 年度常设性国际高峰论坛
+      </p>
+      <p class="text-[11px] text-slate-400 mt-1.5">
+        大会地址：中国 · 吉林省长春市长春国际会展中心大饭店 (中国吉林省长春市净月经济开发区)
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // 移动端汉堡菜单切换
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // 页面平滑滚动到注册报名区
+    function scrollToRegister() {
+      const regSection = document.getElementById('register');
+      if (regSection) {
+        regSection.scrollIntoView({ behavior: 'smooth' });
+        const nameInput = document.getElementById('name');
+        if (nameInput) setTimeout(() => nameInput.focus(), 600);
+      }
+    }
+
+    // 议程 Tab 切换逻辑
+    function switchTab(tabId) {
+      const items = document.querySelectorAll('.agenda-item');
+      const buttons = [
+        document.getElementById('btn-tab-all'),
+        document.getElementById('btn-tab-1'),
+        document.getElementById('btn-tab-2'),
+        document.getElementById('btn-tab-3')
+      ];
+
+      // 重置所有按钮状态为未激活样式
+      buttons.forEach(btn => {
+        if (btn) {
+          btn.className = 'px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-un rounded-xl transition-all';
+        }
+      });
+
+      // 激活被选中的按钮
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.className = 'px-4 py-2 text-xs sm:text-sm font-bold rounded-xl bg-un text-white shadow-sm transition-all';
+      }
+
+      if (tabId === 'tab-all') {
+        items.forEach(item => item.classList.remove('hidden'));
+      } else {
+        const targetClass = 'tab-content-' + tabId.replace('tab-', '');
+        items.forEach(item => {
+          if (item.classList.contains(targetClass)) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      }
+    }
+
+    // 参会申请表单提交处理
+    function handleRegistration(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const prompt = document.getElementById('successPrompt');
+      const confirmedEmail = document.getElementById('confirmedEmail');
+      
+      if (confirmedEmail) confirmedEmail.innerText = email;
+      if (prompt) prompt.classList.remove('hidden');
+    }
+
+    // 重置或关闭提交成功提示
+    function resetFormModal() {
+      const prompt = document.getElementById('successPrompt');
+      if (prompt) prompt.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
