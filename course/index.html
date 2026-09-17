@@ -97,7 +97,7 @@
       {n:'04',icon:'🛠️',title:'第四课 · 在线实践',type:'案例网页',desc:'进入线上实践页面，在真实案例中检验所学。',url:'https://mayue1982.github.io/7.1/'},
       {n:'05',icon:'🎬',title:'第五课 · WorkBuddy 高效使用技巧',type:'录播课程',desc:'积分节省策略与 Skill 精选推荐，花小积分，办大事。',url:'https://25ffc6abfd214d20968ec37247e9ad17.app.codebuddy.work/workbuddy-tips-courseware.html'},
       {n:'06',icon:'⚡',title:'第六课 · AI 工具新格局',type:'互动课件',desc:'两个月之后，AI 工具排名重新洗牌：大模型、生图、视频与智能体。',url:'./lesson-6.html'},
-      {n:'07',icon:'🔗',title:'第七课 · Codex 工具与资源入口',type:'资源导航',desc:'整理科学上网、V2ray、Codex、订阅与接码等本课所需入口。',url:'./lesson-7.html'}
+      {n:'07',icon:'🔗',title:'第七课 · Codex 工具与资源入口',type:'资源导航',desc:'整理科学上网、V2ray、Codex、订阅与接码等本课所需入口。',url:'./lesson-7.html?v=27332a0'}
     ];
     const grid=document.getElementById('courseGrid'),frame=document.getElementById('courseFrame'),title=document.getElementById('currentTitle'),openBtn=document.getElementById('openBtn'),ph=document.getElementById('placeholder');let current=null;
     grid.innerHTML=courses.map((c,i)=>`<article class="course" tabindex="0" role="button" data-i="${i}" aria-label="打开${c.title}"><div class="topline"><span class="num"><span class="course-icon">${c.icon}</span>LESSON ${c.n}</span><span class="tag">${c.type}</span></div><h3>${c.title}</h3><p>${c.desc}</p><div class="go"><span>进入学习</span><span class="arrow">↗</span></div></article>`).join('');
