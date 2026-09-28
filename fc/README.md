@@ -8,5 +8,5 @@
 - 可选：`FREE_INSTANCE_DAILY_LIMIT=20`。这是每实例内存中的尝试次数限制；实例重启或扩容会重置，不能作为严格费用上限。
 - 本版只开放 `sunny`（晴空蓝海）和 `sunset`（自然黄昏），不提供局部清理或兑换码。
 
-部署后，访问函数根路径应返回 `version: mvp-12-two-modes`。在本目录运行 `node --test backend.test.js` 可执行不产生模型费用的模拟测试。
+部署后，访问函数根路径应返回 `version: mvp-13-subject-guard`。在本目录运行 `node --test backend.test.js` 可执行不产生模型费用的模拟测试。网页还会用本地结构变化检查拦截明显新增的大面积人物或物体，但不能保证识别所有异常结果。
 
