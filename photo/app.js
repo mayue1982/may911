@@ -14,7 +14,6 @@ function sync(){
  $('generate').disabled=busy||!source; $('generate').textContent=busy?'处理中…':'免费生成照片 ↗';
  $('replace').disabled=busy; $('cancel').hidden=!busy;
  document.querySelectorAll('[name=effect]').forEach(el=>el.disabled=busy);
- $('promise').textContent='AI 调整天空、海水和光色，固定旅拍风格，一键生成。';
 }
 $('upload').onclick=$('replace').onclick=()=>{if(!busy)$('file').click();};
 $('file').onchange=async()=>{
@@ -26,10 +25,10 @@ $('file').onchange=async()=>{
  clearResult();if(source)URL.revokeObjectURL(source.url);source={canvas:c,url:URL.createObjectURL(await blobOf(c))};$('original').src=source.url;
  $('frame').style.aspectRatio=`${c.width}/${c.height}`;$('frame').style.width=`min(100%,${42*c.width/c.height}svh)`;
  $('preview').hidden=false;$('upload').hidden=true;$('replace').hidden=false;
- status(scale<1?'照片已载入，为控制手机内存，工作图长边缩至 2560 像素。':'照片已载入。请选择模式。');
+ status('照片已载入，选择模式后生成。');
  }catch(e){status(e.message,true);}finally{URL.revokeObjectURL(u);busy=false;sync();}
 };
-async function show(c){const blob=await blobOf(c);output={blob,url:URL.createObjectURL(blob),name:names[effect()]};$('result').src=output.url;['afterLayer','divider','afterLabel','compare','download'].forEach(id=>$(id).hidden=false);$('compare').value=50;compare();$('previewHint').textContent='左右滑动对比，确认后保存';}
+async function show(c){const blob=await blobOf(c);output={blob,url:URL.createObjectURL(blob),name:names[effect()]};$('result').src=output.url;['afterLayer','divider','afterLabel','compare','download'].forEach(id=>$(id).hidden=false);$('compare').value=50;compare();$('previewHint').hidden=false;}
 $('generate').onclick=async()=>{
  if(!source||busy)return;
  clearResult();busy=true;sync();let timer;
@@ -40,10 +39,11 @@ $('generate').onclick=async()=>{
  if(!/^data:image\/(png|jpeg|webp);base64,/.test(data.image))throw Error('后端未返回图片 Data URL，请部署新版后端');
  const edited=await load(data.image);if(aborter.signal.aborted)throw Error('请求已取消或超时');if(Math.abs((edited.naturalWidth/edited.naturalHeight)/(c.width/c.height)-1)>0.015)throw Error('返回比例不一致，未合成结果');
  c.getContext('2d').drawImage(edited,0,0,c.width,c.height);await show(c);status('AI 处理完成，请对比确认人物及场景细节。');
- }catch(e){status(e.name==='AbortError'?'已取消或超时；后端可能仍在处理，请勿连续重试。':e.message,true);}finally{clearTimeout(timer);aborter=null;busy=false;sync();}
+ }catch(e){status(e.name==='AbortError'?'已取消或超时；后端可能仍在处理，请勿连续重试。':e instanceof TypeError?'无法连接 AI 服务，请稍后重试。':e.message,true);}finally{clearTimeout(timer);aborter=null;busy=false;sync();}
 };
 function compare(){const v=$('compare').value;$('afterLayer').style.clipPath=`inset(0 0 0 ${v}%)`;$('divider').style.left=v+'%';}
 $('compare').oninput=compare;$('cancel').onclick=()=>aborter?.abort();
  document.querySelectorAll('[name=effect]').forEach(el=>el.onchange=()=>{clearResult();sync();status('已选择固定效果，点击 AI 生成。');});
 $('download').onclick=()=>{if(!output)return;const a=document.createElement('a');a.href=output.url;a.download=`小麦岛-${output.name}-${Date.now()}.png`;a.click();};
 sync();
+
