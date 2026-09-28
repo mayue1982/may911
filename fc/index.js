@@ -6,6 +6,7 @@ const PROMPTS = {
   "sunny": "你是一位专业旅拍修图师。以输入原照片为唯一底图，仅编辑天气、颜色和受光，不重新设计场景。保留原构图、透视、地平线角度，以及所有实体的边界、数量、形状和位置。原图是海水的区域修后仍是海水，原图是天空的区域仍是天空；栏杆缝隙、人物两侧、画面边缘也必须保持原来背景类别。禁止把海面改成陆地、岸边、礁石或草丛；不得新增原图没有的植被、船、建筑、栏杆或其他物体，也不得删除原有物体和人物。保留人物五官、脸型、笑容、牙齿、眼镜、耳饰、发型、姿势、手臂轮廓与身体比例；服装条纹的走向、数量、褶皱与配饰保持原样，不美颜、不重新绘制服装或肢体。允许只改变与环境一致的亮度、白平衡和色彩，不用重绘细节来模拟光照。清除覆盖在画面上的平台水印和账号文字，仅在文字笔画及必要的窄边缘内修补，以紧邻区域的同类纹理填补；海水上的水印补海水，栏杆上的水印延续栏杆，不能借去水印新增岸线、植被或景物。保留真实招牌和衣服图案，不新增文字或水印。若氛围效果与场景结构保留冲突，优先保留结构。\n把阴天或灰天调整成明亮清甜的晴天旅拍。清澈饱满的天蓝色天空与自然柔软白云，天空到地平线过渡真实。海水更蓝、更清透，结合原有深浅呈现青蓝到深蓝的层次，保留浪花、反光、倒影与真实质感。去除灰色罩，提升中间调明亮度与色彩鲜活度。若原图有草地，仅让已有草地鲜绿明亮，不比原图更灰、更黄或更暗；没有草地则不生成草地。光线方向与原图相容，人物和地面受光协调，阴影合理，肤色自然、白衣干净。效果要清楚可见、有晴天的清新与甜美感，不是微弱去灰；自然饱和，不要荧光蓝、HDR光晕或高光溢出。",
   "sunset": "你是一位专业旅拍修图师。对这张原照片进行夕阳光色编辑。\n天空呈现清晰可见的暖金、蜜桃橙和柔粉晚霞，上方保留淡紫蓝层次；海面出现方向一致的金色反光，保留原有水纹与明暗层次。人物与环境的受光协调，肤色自然，衣服保留原来的颜色和细节，不使用整图橙色滤镜。不要添加太阳。\n保持原照片中所有人物和物体的数量、轮廓、位置、遮挡关系以及背景区域的类别不变，尤其保留画面底部和栏杆间隙中原有的内容。只改变光色，不新增、移除或替换实体，不改变构图。人物五官、表情、发型、服装与姿势保持一致。\n若存在叠加的平台水印，仅清理文字覆盖的小范围并延续紧邻纹理，不改动周围内容。输出真实、明亮、有明确夕阳氛围的摄影照片。"
 };
+const SUBJECT_RULE = '先核对原照片中的人物数量：纯风景照没有人物时，输出也必须完全无人；绝不可为了旅拍氛围凭空添加主角、游客、远处人影、剪影、倒影、人体局部或人形物。原图有人时，只保留原有人物及原来的位置、姿势和衣着。此要求优先于任何风格效果。\n';
 const API_PATH = '/api/v1/services/aigc/multimodal-generation/generation';
 function fail(status, message, code) { return Object.assign(new Error(message), { status, code }); }
 function endpoint(base) {
@@ -54,7 +55,7 @@ function createApp({ env = process.env, fetchImpl = fetch } = {}) {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-App-Token');
     if (req.method === 'OPTIONS') { res.writeHead(204); return res.end(); }
     const path = new URL(req.url, 'http://localhost').pathname;
-    if (req.method === 'GET' && path === '/') return send(200, { ok: true, message: '小麦岛AI修图服务运行正常', version: 'mvp-12-two-modes', freeEnabled, modes: ['sunny', 'sunset'] });
+    if (req.method === 'GET' && path === '/') return send(200, { ok: true, message: '小麦岛AI修图服务运行正常', version: 'mvp-13-subject-guard', freeEnabled, modes: ['sunny', 'sunset'] });
     if (req.method !== 'POST' || !['/invoke', '/repair'].includes(path)) return send(404, { ok: false, error: '接口不存在' });
     if (!freeEnabled) {
       const secret = env.APP_ACCESS_TOKEN;
@@ -85,7 +86,7 @@ function createApp({ env = process.env, fetchImpl = fetch } = {}) {
       const response = await fetchImpl(modelEndpoint, {
         method: 'POST', signal: abort.signal,
         headers: { Authorization: `Bearer ${env.DASHSCOPE_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'qwen-image-3.0-pro', input: { messages: [{ role: 'user', content: [{ image: body.image }, { text: PROMPTS[body.mode] }] }] }, parameters: { n: 1, size, watermark: false, prompt_extend: false } })
+        body: JSON.stringify({ model: 'qwen-image-3.0-pro', input: { messages: [{ role: 'user', content: [{ image: body.image }, { text: SUBJECT_RULE + PROMPTS[body.mode] }] }] }, parameters: { n: 1, size, watermark: false, prompt_extend: false } })
       });
       let result; try { result = await response.json(); } catch { throw fail(502, '千问服务未返回有效 JSON'); }
       if (!response.ok || result.code) throw fail(502, '千问调用失败，请核对百炼地域、模型权限及额度', typeof result.code === 'string' ? result.code : `HTTP_${response.status}`);
