@@ -37,6 +37,7 @@ test('FC request contract, authorization, CORS, both effects and normalized imag
   }
   assert.match(calls[0].input.messages[0].content[1].text, /晴天/);
   assert.match(calls[1].input.messages[0].content[1].text, /不要添加太阳/);
+  for (const call of calls) assert.match(call.input.messages[0].content[1].text, /纯风景照没有人物时，输出也必须完全无人/);
   // 黄昏只发送一张原图和一条独立指令，不夹带晴天/去路人参考。
   assert.equal(calls[1].input.messages[0].content.length, 2);
   assert.doesNotMatch(calls[1].input.messages[0].content[1].text, /草地|植被|岸线|鲜绿|定位点|洋红色|清甜/);
