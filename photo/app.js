@@ -9,6 +9,13 @@ const status = (s, error=false) => { $('status').textContent=s; $('status').data
 const canvas = (w,h) => { const c=document.createElement('canvas'); c.width=w; c.height=h; return c; };
 const load = src => new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(Error('图片无法读取'));i.src=src;});
 const blobOf = c => new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(Error('无法导出图片')),'image/png'));
+function hasLargeNewSubject(original, generated) {
+ const scale=640/Math.max(original.width,original.height), w=Math.max(64,Math.round(original.width*scale)), h=Math.max(64,Math.round(original.height*scale));
+ const before=canvas(w,h), after=canvas(w,h);
+ before.getContext('2d',{willReadFrequently:true}).drawImage(original,0,0,w,h);
+ after.getContext('2d',{willReadFrequently:true}).drawImage(generated,0,0,w,h);
+ return detectLargeNewSubject(before.getContext('2d').getImageData(0,0,w,h).data,after.getContext('2d').getImageData(0,0,w,h).data,w,h);
+}
 function clearResult(){if(output)URL.revokeObjectURL(output.url);output=null;['afterLayer','divider','afterLabel','compare','download'].forEach(id=>$(id).hidden=true);}
 function sync(){
  $('generate').disabled=busy||!source; $('generate').textContent=busy?'处理中…':'免费生成照片 ↗';
@@ -38,6 +45,7 @@ $('generate').onclick=async()=>{
  const data=await response.json();if(!response.ok||!data.ok)throw Error(`${data.error||'调用失败'}${data.code?'（'+data.code+'）':''}`);
  if(!/^data:image\/(png|jpeg|webp);base64,/.test(data.image))throw Error('后端未返回图片 Data URL，请部署新版后端');
  const edited=await load(data.image);if(aborter.signal.aborted)throw Error('请求已取消或超时');if(Math.abs((edited.naturalWidth/edited.naturalHeight)/(c.width/c.height)-1)>0.015)throw Error('返回比例不一致，未合成结果');
+ if(hasLargeNewSubject(source.canvas,edited))throw Error('生成结果疑似新增大面积人物或物体，已拦截本次结果。请稍后再试，或换一张照片。');
  c.getContext('2d').drawImage(edited,0,0,c.width,c.height);await show(c);status('AI 处理完成，请对比确认人物及场景细节。');
  }catch(e){status(e.name==='AbortError'?'已取消或超时；后端可能仍在处理，请勿连续重试。':e instanceof TypeError?'无法连接 AI 服务，请稍后重试。':e.message,true);}finally{clearTimeout(timer);aborter=null;busy=false;sync();}
 };
