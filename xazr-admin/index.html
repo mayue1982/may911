@@ -430,7 +430,7 @@
   </div>
   <script src="config.js"></script>
   <script>
-    const categories=["服装","食品","文创","百货","办公用品","家用","建材"];
+    const categories=["服装","食品","文创","百货","办公","家用","建材"];
     let directoryMode="enterprise";
     const directoryName=()=>directoryMode==="travel"?"商旅":"企业";
     const directoryApi=(action,payload={})=>api(directoryMode==="travel"?action.replace("enterprise","travel"):action,payload);

@@ -34,7 +34,7 @@
   </main>
   <script src="config.js"></script>
   <script>
-    const categories=["服装","食品","文创","百货","办公用品","家用","建材"],$=selector=>document.querySelector(selector),form=$("#form");
+    const categories=["服装","食品","文创","百货","办公","家用","建材"],$=selector=>document.querySelector(selector),form=$("#form");
     let groups=[],skus=[],mainImages=[],detailImages=[],previewSelection={},productId=new URLSearchParams(location.search).get("id")||"";
     const config=()=>({url:(window.XAZR_ADMIN_CONFIG&&window.XAZR_ADMIN_CONFIG.apiUrl)||"",token:localStorage.getItem("xazr_session_token")||""});
     async function api(action,payload={}){const c=config();if(!c.url||!c.token)throw new Error("登录已失效，请返回后台重新登录");let response,lastError;for(let attempt=1;attempt<=3;attempt++){try{response=await fetch(c.url,{method:"POST",headers:{"content-type":"application/json","authorization":`Bearer ${c.token}`},body:JSON.stringify({action,...payload}),cache:"no-store"});break}catch(error){lastError=error;if(attempt<3)await new Promise(resolve=>setTimeout(resolve,attempt*700))}}if(!response)throw new Error("云后台暂时连接失败，已自动重试3次。请刷新页面；若仍失败，请检查网络或HTTP网关");let data;try{data=await response.json()}catch(error){throw new Error(`云后台返回异常（HTTP ${response.status}）`)}if(response.status===401){localStorage.removeItem("xazr_session_token");throw new Error("登录已失效，请返回商品列表重新登录")}if(!response.ok||!data.ok)throw new Error(data.error||`请求失败（HTTP ${response.status}）`);return data}
